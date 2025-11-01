@@ -45,7 +45,7 @@
 
 <link rel="stylesheet" href="/css/custom.min.css">
 
-<link rel="stylesheet" href="/css/custom.css?v=1762006094">
+<link rel="stylesheet" href="/css/custom.css?v=1762036942">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -55,7 +55,6 @@
 
 <script>
 (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);},l=d.createElement(e),l.async=1,l.src=u,n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-ml('account', '1849787');
 </script>
 
 
@@ -63,7 +62,29 @@ ml('account', '1849787');
 <link rel="alternate" type="application/rss&#43;xml" href="http://localhost:1313/tags/bootstrapping/index.xml">
 
   
+<div id="subscription-form-container"></div>
+
+<script async src="https://assets.mailerlite.com/js/universal.js"></script>
+<script>
+  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments)};
+    l=d.createElement(e);l.async=1;l.src=u;n=d.getElementsByTagName(e)[0];n.parentNode.insertBefore(l,n);
+  })(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
+
+  
+  ml('account', 'YOUR_ACCOUNT_ID', 'YOUR_SITE');
+  ml('form', 'YOUR_FORM_ID', 'subscription-form-container');
+</script>
+
 </head>
+<script type="module">
+  
+  const { hash } = window.location
+  if (hash && (hash.includes('type=recovery') || hash.includes('access_token='))) {
+    sessionStorage.setItem('sb-recovery-hash', hash)
+    window.location.replace('/reset/')
+  }
+</script>
+
 <body class="flex min-h-screen bg-neutral-900 text-neutral-100">
   
   <aside class="fixed left-0 top-0 z-30 h-full w-80 bg-neutral-900 text-white border-r border-neutral-700">
@@ -73,7 +94,7 @@ ml('account', '1849787');
     <div class="mb-8">
       
       <div style="padding-left: 2rem;">
-        <img src="/images/mgrnz-logo.webp?v=1762006094" alt="Mike G Robinson" class="mb-4 h-60 w-60 rounded-full object-contain" style="display: block;">
+        <img src="/images/mgrnz-logo.webp?v=1762036942" alt="Mike G Robinson" class="mb-4 h-60 w-60 rounded-full object-contain" style="display: block;">
       </div>
       
       <div class="text-center">
@@ -158,7 +179,7 @@ ml('account', '1849787');
     
     
     <div class="flex-shrink-0 border-t border-neutral-700 p-4 text-center text-xs text-neutral-400">
-      © 2025 Welcome to the Personal Blog of Mike G Robinson - Build 2025-11-02 03:08
+      © 2025 Welcome to the Personal Blog of Mike G Robinson - Build 2025-11-02 11:42
       
       <div class="mt-2">
         
@@ -183,13 +204,7 @@ ml('account', '1849787');
       <a href="/admin/create/" class="block px-4 py-2 text-sm text-neutral-300 hover:bg-neutral-700 hover:text-white transition-colors">
         ✏️ Create Post
       </a>
-      <a href="/admin-edit-v2-fixed.html" class="block px-4 py-2 text-sm text-neutral-300 hover:bg-neutral-700 hover:text-white transition-colors">
-        🔧 Edit Posts
-      </a>
       <div class="border-t border-neutral-700 mt-2 pt-2">
-        <a href="/admin-simple.html" class="block px-4 py-2 text-sm text-green-400 hover:bg-green-900/20 transition-colors">
-          🚀 Quick Access
-        </a>
         <button onclick="logoutAdmin(event)" class="block w-full text-left px-4 py-2 text-sm text-red-400 hover:bg-red-900/20 transition-colors">
           🚪 Logout
         </button>
@@ -204,7 +219,7 @@ ml('account', '1849787');
     <div class="px-6 py-4 border-b border-neutral-800 flex items-center justify-between">
       <div>
         <p class="text-xs uppercase tracking-widest text-orange-400">Secure Access</p>
-        <h3 class="text-xl font-semibold text-white">Admin Authentication</h3>
+        <h3 class="text-xl font-semibold text-white">Admin Login</h3>
       </div>
       <button onclick="closeAdminAuthModal()" class="text-neutral-400 hover:text-white transition-colors" aria-label="Close admin authentication modal">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -213,76 +228,39 @@ ml('account', '1849787');
       </button>
     </div>
 
-<form onsubmit="authenticateAdmin(event)" class="px-6 py-5 space-y-5">
-  <div class="space-y-2">
-    <label for="adminAccessCode" class="block text-sm font-medium text-neutral-300">Access Code</label>
-    <input
-      id="adminAccessCode"
-      type="password"
-      required
-      autocomplete="current-password"
-      placeholder="Enter access code"
-      class="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-3 text-white placeholder-neutral-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 transition"
-    />
+    <form id="login-form" class="px-6 py-5 space-y-5">
+      <div class="space-y-2">
+        <label for="adminEmail" class="block text-sm font-medium text-neutral-300">Email</label>
+        <input id="adminEmail" type="email" required placeholder="you@domain.com"
+               class="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-3 text-white placeholder-neutral-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 transition" />
+      </div>
 
-    
-    <a id="forgot-link" href="#" class="text-sm text-blue-400 hover:text-blue-200 block mt-3">
-      Forgot access code?
-    </a>
-
-    <form id="forgot-form" class="hidden mt-3">
-      <input
-        id="forgot-email"
-        type="email"
-        placeholder="Enter your admin email"
-        class="block w-full p-2 rounded bg-neutral-800 border border-neutral-600 text-neutral-200 mb-2"
-        required
-      />
-      <button
-        type="submit"
-        class="w-full bg-orange-600 hover:bg-orange-500 text-white font-medium py-2 px-4 rounded"
-      >
-        Email reset link
-      </button>
-    </form>
-
-    <p id="forgot-msg" class="text-sm text-green-300 hidden mt-2"></p>
-  </div>
-
-  <div
-    id="adminAuthError"
-    class="hidden rounded-lg border border-red-700 bg-red-900/40 px-4 py-3 text-sm text-red-200"
-  >
-    Invalid access code. Please try again.
-  </div>
-
-  <div class="flex items-center justify-between">
-    <p class="text-xs text-neutral-500">Session lasts for 24 hours.</p>
-    <button
-      type="submit"
-      id="adminAuthSubmit"
-      class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 px-4 py-2 text-sm font-semibold text-white hover:from-orange-600 hover:to-red-600 transition"
-    >
-      <span class="auth-action-label">🔐 Access Admin</span>
-    </button>
-  </div>
-</form>
-
-
-<p id="forgot-msg" class="text-sm text-green-300 hidden mt-2"></p>
-
-focus:ring-2 focus:ring-orange-500/30 transition">
+      <div class="space-y-2">
+        <label for="adminPassword" class="block text-sm font-medium text-neutral-300">Password</label>
+        <input id="adminPassword" type="password" required placeholder="Enter password"
+               class="w-full rounded-lg border border-neutral-700 bg-neutral-800 px-4 py-3 text-white placeholder-neutral-500 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/30 transition" />
       </div>
 
       <div id="adminAuthError" class="hidden rounded-lg border border-red-700 bg-red-900/40 px-4 py-3 text-sm text-red-200">
-        Invalid access code. Please try again.
+        Invalid credentials. Please try again.
       </div>
 
       <div class="flex items-center justify-between">
-        <p class="text-xs text-neutral-500">Session lasts for 24 hours.</p>
-        <button type="submit" id="adminAuthSubmit" class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 px-4 py-2 text-sm font-semibold text-white hover:from-orange-600 hover:to-red-600 transition">
+        <a id="forgot-link" href="#" class="text-sm text-blue-400 hover:text-blue-200">Forgot password?</a>
+        <button type="submit" id="adminAuthSubmit"
+                class="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-orange-500 to-red-500 px-4 py-2 text-sm font-semibold text-white hover:from-orange-600 hover:to-red-600 transition">
           <span class="auth-action-label">🔐 Access Admin</span>
         </button>
+      </div>
+
+      <div id="forgot-form" class="hidden mt-4">
+        <input id="forgot-email" type="email" placeholder="Enter your admin email"
+               class="block w-full p-2 rounded bg-neutral-800 border border-neutral-600 text-neutral-200 mb-2" required>
+        <button id="forgot-submit" type="button"
+                class="w-full bg-orange-600 hover:bg-orange-500 text-white font-medium py-2 px-4 rounded">
+          Email reset link
+        </button>
+        <p id="forgot-msg" class="text-sm hidden mt-2"></p>
       </div>
     </form>
   </div>
@@ -292,41 +270,92 @@ focus:ring-2 focus:ring-orange-500/30 transition">
   import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
   const supabase = createClient(
-    'https://YOUR_PROJECT_REF.supabase.co',
-    'PUBLIC_ANON_KEY'
+    'https://jqfodlzcsgfocyuawzyx.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA'
   )
 
+  const modal = document.getElementById('adminAuthModal')
+  const loginForm = document.getElementById('login-form')
+  const errorBox = document.getElementById('adminAuthError')
   const forgotLink = document.getElementById('forgot-link')
   const forgotForm = document.getElementById('forgot-form')
   const forgotEmail = document.getElementById('forgot-email')
   const forgotMsg = document.getElementById('forgot-msg')
+  const forgotSubmit = document.getElementById('forgot-submit')
 
-  forgotLink?.addEventListener('click', (e) => {
+  
+  function openAdminAuthModal() {
+    modal.classList.remove('hidden')
+    document.body.classList.add('overflow-hidden')
+    errorBox.classList.add('hidden')
+  }
+  function closeAdminAuthModal() {
+    modal.classList.add('hidden')
+    document.body.classList.remove('overflow-hidden')
+    errorBox.classList.add('hidden')
+  }
+
+  
+  loginForm.addEventListener('submit', async (e) => {
     e.preventDefault()
-    forgotForm.classList.remove('hidden')
+    const email = document.getElementById('adminEmail').value.trim()
+    const password = document.getElementById('adminPassword').value.trim()
+    errorBox.classList.add('hidden')
+
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password })
+    if (error) {
+      console.error('Login error:', error)
+      errorBox.textContent = 'Invalid email or password.'
+      errorBox.classList.remove('hidden')
+      return
+    }
+
+    closeAdminAuthModal()
+    window.location.href = '/admin/'
   })
 
-  forgotForm?.addEventListener('submit', async (e) => {
+  
+  async function checkAdminAccess() {
+    const { data: { user } } = await supabase.auth.getUser()
+    if (user) window.location.href = '/admin/'
+    else openAdminAuthModal()
+  }
+
+  
+  async function logoutAdmin(e) {
     e.preventDefault()
+    await supabase.auth.signOut()
+    alert('✅ Logged out successfully')
+  }
+
+  
+  forgotLink.addEventListener('click', (e) => {
+    e.preventDefault()
+    forgotForm.classList.remove('hidden')
+    forgotMsg.classList.add('hidden')
+  })
+  forgotSubmit.addEventListener('click', async () => {
     const email = forgotEmail.value.trim()
     if (!email) return
+    forgotMsg.textContent = '⏳ Sending reset link...'
+    forgotMsg.classList.remove('hidden', 'text-red-300')
+    forgotMsg.classList.add('text-orange-300')
 
     const { error } = await supabase.auth.resetPasswordForEmail(email, {
       redirectTo: `${window.location.origin}/reset/`
     })
-
     if (error) {
-      forgotMsg.textContent = `Error: ${error.message}`
-      forgotMsg.classList.remove('hidden', 'text-green-300')
+      console.error('Reset error:', error)
+      forgotMsg.textContent = `❌ ${error.message}`
+      forgotMsg.classList.remove('text-orange-300')
       forgotMsg.classList.add('text-red-300')
     } else {
       forgotMsg.textContent = '✅ Check your email for a reset link.'
-      forgotMsg.classList.remove('hidden', 'text-red-300')
+      forgotMsg.classList.remove('text-orange-300')
       forgotMsg.classList.add('text-green-300')
     }
   })
 </script>
-
 
       </div>
     </div>
@@ -500,6 +529,22 @@ focus:ring-2 focus:ring-orange-500/30 transition">
 
       </div>
     </main>
+<script type="module">
+  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+  
+  const supabase = createClient(
+    'https://jqfodlzcsgfocyuawzyx.supabase.co',
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA'
+  )
+
+  
+  const { hash } = window.location
+  if (hash && (hash.includes('type=recovery') || hash.includes('access_token='))) {
+    sessionStorage.setItem('sb-recovery-hash', hash)
+    window.location.replace('/reset/')
+  }
+</script>
 
     
 
@@ -531,88 +576,10 @@ focus:ring-2 focus:ring-orange-500/30 transition">
           <h3 class="text-2xl font-bold text-white mb-2">Stay Updated!</h3>
           <p class="text-orange-100 text-sm">Get the latest insights on AI, technology, and business delivered to your inbox.</p>
         </div>
-
         
-        <form id="subscribe-form" action="https://assets.mailerlite.com/jsonp/1849787/forms/169453382423020905/subscribe" method="post" class="space-y-4">
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <input 
-                type="text" 
-                name="fields[name]" 
-                placeholder="First Name" 
-                autocomplete="given-name"
-                class="w-full px-4 py-3 rounded-lg bg-neutral-800 bg-opacity-80 border border-neutral-600 text-white placeholder-neutral-400 focus:bg-neutral-700 focus:border-orange-400 focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 transition-all duration-200"
-              >
-            </div>
-            <div>
-              <input 
-                type="text" 
-                name="fields[last_name]" 
-                placeholder="Last Name" 
-                autocomplete="family-name"
-                class="w-full px-4 py-3 rounded-lg bg-neutral-800 bg-opacity-80 border border-neutral-600 text-white placeholder-neutral-400 focus:bg-neutral-700 focus:border-orange-400 focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 transition-all duration-200"
-              >
-            </div>
-          </div>
-          
-          <div>
-            <input 
-              type="email" 
-              name="fields[email]" 
-              placeholder="Your Email Address" 
-              autocomplete="email"
-              required
-              class="w-full px-4 py-3 rounded-lg bg-neutral-800 bg-opacity-80 border border-neutral-600 text-white placeholder-neutral-400 focus:bg-neutral-700 focus:border-orange-400 focus:ring-2 focus:ring-orange-400 focus:ring-opacity-50 transition-all duration-200"
-            >
-          </div>
-
-          
-          <div class="flex justify-center">
-            <div class="g-recaptcha" data-sitekey="6Lf1KHQUAAAAAFNKEX1hdSWCS3mRMv4FlFaNslaD" data-theme="light"></div>
-          </div>
-
-          <input type="hidden" name="ml-submit" value="1">
-          <input type="hidden" name="anticsrf" value="true">
-
-          
-          <button 
-            type="submit" 
-            class="w-full bg-neutral-900 hover:bg-neutral-800 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-200 transform hover:scale-105 focus:ring-2 focus:ring-white focus:ring-opacity-50"
-          >
-            <span class="flex items-center justify-center">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-              </svg>
-              Subscribe Now
-            </span>
-          </button>
-        </form>
-
         
-        <div id="success-message" class="hidden text-center">
-          <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Welcome Aboard! 🎉</h3>
-          <p class="text-orange-100">Thanks for subscribing! You'll receive our latest updates soon.</p>
-        </div>
-
+        <div id="popup-form-container"></div>
         
-        <div id="error-message" class="hidden text-center">
-          <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Oops! Something went wrong</h3>
-          <p class="text-orange-100 mb-4" id="error-details">There was an issue with your subscription. Please try again.</p>
-          <button onclick="resetSubscribeForm()" class="bg-white text-orange-600 px-4 py-2 rounded-lg font-semibold hover:bg-orange-50 transition-colors">
-            Try Again
-          </button>
-        </div>
-
         
         <div class="mt-6 text-center">
           <p class="text-orange-200 text-xs">No spam, unsubscribe anytime. Privacy policy compliant.</p>
@@ -631,18 +598,16 @@ focus:ring-2 focus:ring-orange-500/30 transition">
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js"></script>
-<script src="/js/mobile-menu.js?v=1762006094"></script>
+<script src="/js/mobile-menu.js?v=1762036942"></script>
 
 
 <script>
   
   let popupShown = false;
   let timeoutId = null;
-  
+
   function openSubscribePopup() {
     if (popupShown) return;
-    
     const popup = document.getElementById('subscribe-popup');
     const content = document.getElementById('popup-content');
     
@@ -656,11 +621,22 @@ focus:ring-2 focus:ring-orange-500/30 transition">
       content.classList.add('scale-100', 'opacity-100');
     }, 10);
     
+    
+    try {
+      const container = document.getElementById('popup-form-container');
+      if (container && !container.dataset.loaded) {
+        ml('form', '169453382423020905', 'popup-form-container');
+        container.dataset.loaded = 'true';
+      }
+    } catch (err) {
+      console.error('Failed to load MailerLite form:', err);
+    }
+    
     popupShown = true;
     localStorage.setItem('subscribePopupShown', 'true');
     localStorage.setItem('subscribePopupTime', Date.now().toString());
   }
-  
+
   function closeSubscribePopup() {
     const popup = document.getElementById('subscribe-popup');
     const content = document.getElementById('popup-content');
@@ -675,29 +651,23 @@ focus:ring-2 focus:ring-orange-500/30 transition">
       document.body.style.overflow = 'auto';
     }, 300);
   }
-  
+
   function shouldShowPopup() {
     
     const lastShown = localStorage.getItem('subscribePopupTime');
     const subscribed = localStorage.getItem('subscribed');
-    
     if (subscribed === 'true') return false;
-    
-    
     if (lastShown) {
       const timeDiff = Date.now() - parseInt(lastShown);
       const hoursDiff = timeDiff / (1000 * 60 * 60);
       if (hoursDiff < 24) return false;
     }
-    
     return true;
   }
-  
+
   function initPopupTriggers() {
     if (!shouldShowPopup()) return;
-    
     const currentPath = window.location.pathname;
-    
     
     if (currentPath === '/' || currentPath === '/index.html') {
       timeoutId = setTimeout(() => {
@@ -705,13 +675,11 @@ focus:ring-2 focus:ring-orange-500/30 transition">
       }, 3000);
     }
     
-    
     setTimeout(() => {
       if (!popupShown && shouldShowPopup()) {
         openSubscribePopup();
       }
-    }, 120000); 
-    
+    }, 120000);
     
     document.addEventListener('mouseleave', function(e) {
       if (e.clientY <= 0 && !popupShown && shouldShowPopup()) {
@@ -719,12 +687,10 @@ focus:ring-2 focus:ring-orange-500/30 transition">
       }
     });
     
-    
     if (currentPath.includes('/posts/')) {
       let scrollTriggered = false;
       window.addEventListener('scroll', function() {
         if (scrollTriggered || popupShown) return;
-        
         const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
         if (scrollPercent > 80) {
           scrollTriggered = true;
@@ -737,130 +703,9 @@ focus:ring-2 focus:ring-orange-500/30 transition">
       });
     }
   }
-  
-  
-  function handleFormSubmission() {
-    const form = document.getElementById('subscribe-form');
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
-    const errorDetails = document.getElementById('error-details');
-    const submitButton = form.querySelector('button[type="submit"]');
-    
-    form.addEventListener('submit', function(e) {
-      e.preventDefault(); 
-      
-      
-      const email = form.querySelector('input[name="fields[email]"]').value;
-      const name = form.querySelector('input[name="fields[name]"]').value;
-      
-      if (!email || !email.includes('@')) {
-        showError('Please enter a valid email address.');
-        return;
-      }
-      
-      if (!name || name.trim().length < 2) {
-        showError('Please enter your name (at least 2 characters).');
-        return;
-      }
-      
-      
-      const originalText = submitButton.innerHTML;
-      submitButton.innerHTML = '<svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Subscribing...';
-      submitButton.disabled = true;
-      
-      const formData = new FormData(form);
-      const submissionTime = Date.now();
-      
-      const iframe = document.createElement('iframe');
-      iframe.style.display = 'none';
-      iframe.name = 'mailerlite-submit-' + submissionTime;
-      document.body.appendChild(iframe);
-      
-      form.target = iframe.name;
-      
-      const tempForm = document.createElement('form');
-      tempForm.action = form.action;
-      tempForm.method = 'POST';
-      tempForm.target = iframe.name;
-      tempForm.style.display = 'none';
-      
-      for (let [key, value] of formData.entries()) {
-        const input = document.createElement('input');
-        input.type = 'hidden';
-        input.name = key;
-        input.value = value;
-        tempForm.appendChild(input);
-      }
-      
-      document.body.appendChild(tempForm);
-      
-      const timeout = setTimeout(() => {
-        showError('Request timed out. Please check your internet connection and try again.');
-        resetButton();
-        cleanup();
-      }, 10000);
-      
-      iframe.onload = function() {
-        clearTimeout(timeout);
-        form.style.display = 'none';
-        successMessage.classList.remove('hidden');
-        localStorage.setItem('subscribed', 'true');
-        localStorage.setItem('subscription_time', submissionTime.toString());
-        setTimeout(() => { closeSubscribePopup(); }, 4000);
-        cleanup();
-      };
-      
-      iframe.onerror = function() {
-        clearTimeout(timeout);
-        showError('Network error. Please check your connection and try again.');
-        resetButton();
-        cleanup();
-      };
-      
-      try {
-        tempForm.submit();
-      } catch (error) {
-        clearTimeout(timeout);
-        showError('Submission failed. Please try again.');
-        resetButton();
-        cleanup();
-      }
-      
-      function cleanup() {
-        setTimeout(() => {
-          if (iframe.parentNode) { iframe.parentNode.removeChild(iframe); }
-          if (tempForm.parentNode) { tempForm.parentNode.removeChild(tempForm); }
-        }, 1000);
-      }
-      
-      function resetButton() {
-        submitButton.innerHTML = originalText;
-        submitButton.disabled = false;
-      }
-      
-      function showError(message) {
-        errorDetails.textContent = message;
-        errorMessage.classList.remove('hidden');
-        form.style.display = 'none';
-      }
-    });
-  }
-  
-  function resetSubscribeForm() {
-    const form = document.getElementById('subscribe-form');
-    const successMessage = document.getElementById('success-message');
-    const errorMessage = document.getElementById('error-message');
-    const submitButton = form.querySelector('button[type="submit"]');
-    
-    form.style.display = 'block';
-    successMessage.classList.add('hidden');
-    errorMessage.classList.add('hidden');
-    submitButton.innerHTML = '<span class="flex items-center justify-center"><svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>Subscribe Now</span>';
-    submitButton.disabled = false;
-    form.reset();
-  }
-  
+
   document.addEventListener('DOMContentLoaded', function() {
+    
     document.getElementById('subscribe-popup').addEventListener('click', function(e) {
       if (e.target === this) { closeSubscribePopup(); }
     });
@@ -868,15 +713,14 @@ focus:ring-2 focus:ring-orange-500/30 transition">
       if (e.key === 'Escape') { closeSubscribePopup(); }
     });
     initPopupTriggers();
-    handleFormSubmission();
   });
+  
   
   window.triggerSubscribePopup = function() {
     if (timeoutId) clearTimeout(timeoutId);
     openSubscribePopup();
   };
 </script>
-<script src="https://groot.mailerlite.com/js/w/webforms.min.js?v176e10baa5e7ed80d35ae235be3d5024" type="text/javascript"></script>
 
 
 <script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"></script>
