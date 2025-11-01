@@ -126,6 +126,17 @@
       return
     }
 
+    // Restrict access to authorised users only
+    const allowedEmails = ['mike@mgrnz.com']
+    const userEmail = data?.user?.email || ''
+    if (!allowedEmails.includes(userEmail)) {
+      // Immediately sign out unauthorized users
+      await supabase.auth.signOut()
+      errorBox.textContent = 'Access denied. You do not have permission to access the admin console.'
+      errorBox.classList.remove('hidden')
+      return
+    }
+
     closeAdminAuthModal()
     window.location.href = '/admin/'
   })
@@ -133,8 +144,13 @@
   // Check existing Supabase session before prompting login
   async function checkAdminAccess() {
     const { data: { user } } = await supabase.auth.getUser()
-    if (user) window.location.href = '/admin/'
-    else openAdminAuthModal()
+    // Only allow if the user email is permitted
+    const allowedEmails = ['mike@mgrnz.com']
+    if (user && allowedEmails.includes(user.email)) {
+      window.location.href = '/admin/'
+    } else {
+      openAdminAuthModal()
+    }
   }
 
   // Logout

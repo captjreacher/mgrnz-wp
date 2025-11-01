@@ -25,7 +25,10 @@
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a href="/posts/" class="rounded-lg bg-orange-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-600">Read Blog</a>
         <a href="/pages/cv/" class="rounded-lg bg-blue-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-600">View CV</a>
-        <a href="/subscribe/" class="rounded-lg bg-yellow-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-yellow-600">Subscribe</a>
+        <!-- The Subscribe button now triggers the MailerLite popup instead of navigating to a separate page -->
+        <button type="button" onclick="triggerSubscribePopup()" class="rounded-lg bg-yellow-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-yellow-600">
+          Subscribe
+        </button>
       </div>
     </div>
     <!-- Background decoration -->
