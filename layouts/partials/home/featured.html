@@ -1,0 +1,25 @@
+{{/* layouts/partials/home/featured.html */}}
+{{ $featuredPosts := where .Site.RegularPages "Params.featured" true }}
+{{ if gt (len $featuredPosts) 0 }}
+<section id="featured-posts" class="featured-posts">
+  <div class="container">
+    <h2 class="section-title">Featured</h2>
+    <div class="featured-grid">
+      {{ range $featuredPosts }}
+        {{ $img := or (.Resources.GetMatch "cover*") .Params.image .Params.featuredImage }}
+        <article class="featured-item">
+          {{ if $img }}
+            <div class="featured-thumb">
+              <img src="{{ $img.RelPermalink | default ($img | absURL) }}" alt="{{ .Title }}" loading="lazy">
+            </div>
+          {{ end }}
+          <div class="featured-content">
+            <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+            {{ with .Params.description }}<p>{{ . }}</p>{{ end }}
+          </div>
+        </article>
+      {{ end }}
+    </div>
+  </div>
+</section>
+{{ end }}
