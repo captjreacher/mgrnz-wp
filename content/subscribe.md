@@ -1,7 +1,16 @@
 ---
 title: "Subscribe"
 url: "/subscribe/"
+draft: true
 ---
+
+<!--
+  The subscribe page is now retired in favour of the pop-up form integrated via
+  MailerLite. Marking this page as `draft: true` prevents Hugo from generating
+  the page in production. If you still want a fallback for users without
+  JavaScript, you can replace the contents of this file with a simple
+  call-to-action that triggers the pop-up or links back to the home page.
+-->
 
 <style>
 .subscribe-container {

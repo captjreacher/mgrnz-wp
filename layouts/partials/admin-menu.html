@@ -126,8 +126,19 @@
       return
     }
 
-    closeAdminAuthModal()
-    window.location.href = '/admin/'
+    // Restrict access to authorised users only
+    const allowedEmails = ['mike@mgrnz.com'];
+    // Check returned user email; supabase returns the authenticated user's details
+    const userEmail = data?.user?.email || '';
+    if (!allowedEmails.includes(userEmail)) {
+      // Immediately sign out unauthorized users
+      await supabase.auth.signOut();
+      errorBox.textContent = 'Access denied. You do not have permission to access the admin console.';
+      errorBox.classList.remove('hidden');
+      return;
+    }
+    closeAdminAuthModal();
+    window.location.href = '/admin/';
   })
 
   // Check existing Supabase session before prompting login
