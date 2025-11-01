@@ -1,0 +1,20 @@
+{{/* local override – forces working links for the hero buttons */}}
+<section class="hero prose dark:prose-invert mx-auto text-center py-12">
+  <div class="mb-6">
+    {{ with site.Params.home.heroAvatar }}
+      <img src="{{ . | relURL }}" alt="Avatar" class="mx-auto rounded-full w-20 h-20 object-cover" />
+    {{ end }}
+  </div>
+
+  <h1 class="text-4xl font-extrabold mb-4" style="color:#ff4f00;">Mike Who?</h1>
+
+  {{ with site.Params.home.heroIntro }}
+    <p class="mx-auto max-w-3xl text-lg opacity-90">{{ . | safeHTML }}</p>
+  {{ end }}
+
+  <div class="mt-8 flex items-center justify-center gap-3 flex-wrap">
+    <a href="{{ "posts/" | relURL }}" class="px-5 py-2 rounded-lg font-semibold bg-[#ff4f00] text-white no-underline hover:opacity-90">Read Blog</a>
+    <a href="{{ "posts/2025/01-july/my-cv/" | relURL }}" class="px-5 py-2 rounded-lg font-semibold border border-white/20 no-underline hover:bg-white/10">View CV</a>
+    <a href="{{ "subscribe/" | relURL }}" class="px-5 py-2 rounded-lg font-semibold border border-white/20 no-underline hover:bg-white/10">Subscribe</a>
+  </div>
+</section>
