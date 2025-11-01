@@ -132,7 +132,7 @@
     if (!allowedEmails.includes(userEmail)) {
       // Immediately sign out unauthorized users
       await supabase.auth.signOut()
-      errorBox.textContent = 'Access denied. You do not have permission to access the admin console.'
+      errorBox.textContent = 'Access denied. You do not have permission to access the admin console!'
       errorBox.classList.remove('hidden')
       return
     }
