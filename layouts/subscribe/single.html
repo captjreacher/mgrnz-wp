@@ -1,0 +1,11 @@
+﻿{{ define "main" }}
+<section class="py-12">
+  <div class="mx-auto max-w-3xl text-center">
+    <h1 class="text-3xl font-bold mb-4" style="color:#ff4f00;">Join the Newsletter</h1>
+    <p class="mb-8 opacity-90">Subscribe to get updates straight to your inbox.</p>
+
+    {{/* Renders the Supabase-powered form partial */}}
+    {{ partial "mailerlite.html" . }}
+  </div>
+</section>
+{{ end }}
