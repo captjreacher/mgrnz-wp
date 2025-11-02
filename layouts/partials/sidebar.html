@@ -22,7 +22,24 @@
       </button>
     </div>
     
-    
+<!-- MailerLite popup trigger -->
+<a id="subscribeBtn"
+   class="block rounded-lg px-3 py-2 text-sm font-semibold text-white bg-orange-600 hover:bg-orange-700 transition"
+   href="#subscribe">
+  Subscribe
+</a>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('subscribeBtn');
+    if (!btn || !window.ml) return;
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+       ml('account', '1849787'); // Replace YOUR_POPUP_ID with the ID from MailerLite
+    });
+  });
+</script>
+   
     <div class="mt-8 space-y-2">
       <h3 class="text-base font-semibold text-neutral-200 px-4">Brands</h3>
       <a href="https://maximisedai.com" target="_blank" rel="noopener" 
