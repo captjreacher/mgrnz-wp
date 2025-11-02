@@ -1,2 +1,4 @@
-[markup.goldmark.renderer]
-  unsafe = true
+{{ $html := readFile (printf "assets/mailerlite/%s" (.Get "file")) }}
+<div data-ml-embed>
+  {{ $html | safeHTML }}
+</div>
