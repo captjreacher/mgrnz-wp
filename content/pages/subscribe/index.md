@@ -1,6 +1,6 @@
 ﻿---
 title: "Subscribe"
-type: "page"
+type: "pages"
 layout: "subscribe"
 url: "/subscribe/"
 ---

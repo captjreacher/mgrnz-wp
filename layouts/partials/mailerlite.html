@@ -1,4 +1,4 @@
-<!-- Subscribe form (Supabase) -->
+﻿<!-- Subscribe form (Supabase) -->
 <div id="subscription-form-container" class="max-w-xl mx-auto">
   <form id="subscription-form" class="ml-form-embedContainer">
     <div class="ml-form-fieldRow">
@@ -21,17 +21,19 @@
     </div>
   </form>
 
-  <div id="form-status"
-       style="display:none;margin-top:20px;padding:15px;border-radius:4px;text-align:center;"></div>
+  <div id="form-status" style="display:none;margin-top:20px;padding:15px;border-radius:4px;text-align:center;"></div>
 </div>
 
 <script>
-(function () {
-  const SUBSCRIBE_URL = 'https://jqfodlzcsgfocyuawzyx.functions.supabase.co/subscribe';
-
+document.addEventListener('DOMContentLoaded', function () {
+  // Only run on pages that actually include the form
   const form = document.getElementById('subscription-form');
   const btn  = document.getElementById('subscribe-btn');
   const box  = document.getElementById('form-status');
+  if (!form || !btn || !box) return;
+
+  // Your deployed Edge Function endpoint (from Supabase)
+  const SUBSCRIBE_URL = 'https://jqfodlzcsgfocyuawzyx.functions.supabase.co/subscribe';
 
   function status(msg, ok) {
     box.textContent = msg;
@@ -41,16 +43,34 @@
     box.style.border = ok ? '1px solid #065f46' : '1px solid #7f1d1d';
   }
 
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const first = (document.getElementById('first-name')?.value || '').trim();
+    const last  = (document.getElementById('last-name')?.value || '').trim();
+    const email = (document.getElementById('email')?.value || '').trim();
 
-<script>
-document.addEventListener('DOMContentLoaded', function () {
-  const form = document.getElementById('subscription-form');
-  const btn  = document.getElementById('subscribe-btn');
-  const box  = document.getElementById('form-status');
-  if (!form || !btn || !box) return;
+    if (!email) { status('Please enter your email address.', false); return; }
 
-  const SUBSCRIBE_URL = 'https://jqfodlzcsgfocyuawzyx.functions.supabase.co/subscribe';
-  /* … submit handler … */
+    btn.disabled = true; btn.style.opacity = '0.7'; status('Subscribing…', true);
+
+    try {
+      const res = await fetch(SUBSCRIBE_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, name: first, last_name: last })
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && (data.ok || data.message)) {
+        status(data.message || "You're in! Please check your inbox. ✅", true);
+        form.reset();
+      } else {
+        status(data.error || 'Something went wrong. Please try again.', false);
+      }
+    } catch {
+      status('Network error. Please try again.', false);
+    } finally {
+      btn.disabled = false; btn.style.opacity = '1';
+    }
+  });
 });
 </script>
-
