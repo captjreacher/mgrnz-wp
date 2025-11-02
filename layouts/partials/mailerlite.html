@@ -41,35 +41,16 @@
     box.style.border = ok ? '1px solid #065f46' : '1px solid #7f1d1d';
   }
 
-  document.addEventListener('DOMContentLoaded', function () {
-    e.preventDefault();
-    const first = (document.getElementById('first-name')?.value || '').trim();
-    const last  = (document.getElementById('last-name')?.value || '').trim();
-    const email = (document.getElementById('email')?.value || '').trim();
 
-    if (!email) { status('Please enter your email address.', false); return; }
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('subscription-form');
+  const btn  = document.getElementById('subscribe-btn');
+  const box  = document.getElementById('form-status');
+  if (!form || !btn || !box) return;
 
-    btn.disabled = true; btn.style.opacity = '0.7'; status('Subscribing…', true);
-
-    try {
-      const res = await fetch(SUBSCRIBE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name: first, last_name: last })
-      });
-
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && (data.ok || data.message)) {
-        status(data.message || "You're in! Please check your inbox. ✅", true);
-        form.reset();
-      } else {
-        status(data.error || 'Something went wrong. Please try again.', false);
-      }
-    } catch {
-      status('Network error. Please try again.', false);
-    } finally {
-      btn.disabled = false; btn.style.opacity = '1';
-    }
-  });
-})();
+  const SUBSCRIBE_URL = 'https://jqfodlzcsgfocyuawzyx.functions.supabase.co/subscribe';
+  /* … submit handler … */
+});
 </script>
+
