@@ -53,6 +53,20 @@
     (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
     ml('account', '1849787');
   </script>
+<script>
+  // Force navigation to /subscribe/ even if another script intercepts the click
+  document.addEventListener('click', function (e) {
+    var t = e.target.closest && e.target.closest('a[href$="/subscribe/"], a[href="/subscribe/"]');
+    if (!t) return;
+    if (e.defaultPrevented) {
+      window.location.href = t.href;
+    }
+  }, true); // capture phase
+</script>
+<style>
+  #iw-backdrop { display: none !important; pointer-events: none !important; }
+</style>
+
   */}}
 </body>
 </html>

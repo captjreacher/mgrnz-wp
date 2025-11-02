@@ -14,21 +14,22 @@
       <div class="mx-auto mb-6 flex justify-center">
         <img src="/images/mgrnz-logo.webp?v=3" alt="Mike G Robinson" class="h-8 w-auto rounded-xl shadow-lg" style="display: block !important; max-height: 2rem !important;">
       </div>
-      
+
       <h1 class="mb-6 text-5xl font-bold text-orange-400">Mike Who?</h1>
       <div class="mx-auto max-w-3xl text-xl opacity-90 space-y-4">
         <p>Mike is an unashamed evangelist of AI, ricidivous vibe-coder, and lifelong learner.</p>
         <p>A seasoned technology professional and entrepreneur based in Auckland, New Zealand, Mike has over 30 years of experience spanning IT security, SAP configuration, data migration, and business consulting.</p>
         <p>In early 2025, Mike founded Maximised AI after a deep dive into AI. Mike has since developed a string of successful AI-powered products and services aimed at helping businesses leverage the power of AI to drive productivity and growth.</p>
       </div>
-      
+
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a href="/posts/" class="rounded-lg bg-orange-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-orange-600">Read Blog</a>
         <a href="/pages/cv/" class="rounded-lg bg-blue-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-blue-600">View CV</a>
-        <!-- The Subscribe button now triggers the MailerLite popup instead of navigating to a separate page -->
-        <button type="button" onclick="triggerSubscribePopup()" class="rounded-lg bg-yellow-500 px-6 py-3 font-semibold text-white transition-colors hover:bg-yellow-600">
+        <!-- Subscribe now navigates directly to the subscribe page -->
+        <a href="{{ "subscribe/" | relURL }}" target="_self" rel="noopener"
+           class="rounded-lg border border-white/10 px-6 py-3 font-semibold text-white hover:bg-white/10">
           Subscribe
-        </button>
+        </a>
       </div>
     </div>
     <!-- Background decoration -->
@@ -46,7 +47,7 @@
       </a>
       {{ end }}
     </div>
-    
+
     <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
       {{ range first (.Site.Params.homepage.showRecentItems | default 5) (where .Site.RegularPages "Type" "posts") }}
       <article class="card overflow-hidden rounded-lg p-6 transition-all hover:shadow-lg">
