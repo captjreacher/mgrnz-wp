@@ -1,4 +1,4 @@
-﻿<!-- Subscribe form (Supabase) -->
+<!-- Subscribe form (Supabase) -->
 <div id="subscription-form-container" class="max-w-xl mx-auto">
   <form id="subscription-form" class="ml-form-embedContainer">
     <div class="ml-form-fieldRow">
@@ -41,7 +41,7 @@
     box.style.border = ok ? '1px solid #065f46' : '1px solid #7f1d1d';
   }
 
-  form.addEventListener('submit', async (e) => {
+  document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
     const first = (document.getElementById('first-name')?.value || '').trim();
     const last  = (document.getElementById('last-name')?.value || '').trim();
