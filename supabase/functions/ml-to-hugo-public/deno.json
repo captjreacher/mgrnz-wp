@@ -1,6 +1,12 @@
 {
   "tasks": {},
   "deploy": {
-    "exclude": ["**/_*.*", "**/.**", "node_modules", "dist", "build"]
+    "exclude": [
+      "**/_*.*",
+      "**/.**",
+      "node_modules",
+      "dist",
+      "build"
+    ]
   }
 }
