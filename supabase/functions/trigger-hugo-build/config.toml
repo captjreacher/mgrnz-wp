@@ -1,0 +1,3 @@
+[function]
+verify_jwt = false
+# schedule removed – use Dashboard → Edge Functions → Schedules
