@@ -2,23 +2,14 @@
 <html lang="{{ .Site.Language.Lang }}" dir="{{ .Site.Language.LanguageDirection | default "ltr" }}" class="dark">
 <head>
   {{ partial "head.html" . }}
+  {{/* Keep MailerLite in one place only. If this partial includes the Universal script, we don't also inline it below. */}}
   {{ partial "mailerlite.html" . }}
 </head>
-<script type="module">
-  // Forward any Supabase recovery hash to /reset/
-  const { hash } = window.location
-  if (hash && (hash.includes('type=recovery') || hash.includes('access_token='))) {
-    sessionStorage.setItem('sb-recovery-hash', hash)
-    window.location.replace('/reset/')
-  }
-</script>
 
 <body class="flex min-h-screen bg-neutral-900 text-neutral-100">
-  
   {{ partial "sidebar.html" . }}
- 
+
   <div class="ml-80 flex min-h-screen w-full flex-col">
-    
     {{ partial "header.html" . }}
 
     <main class="flex-1 px-6 py-8 bg-neutral-900">
@@ -26,39 +17,40 @@
         {{ block "main" . }}{{ end }}
       </div>
     </main>
-<script type="module">
-  import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
 
-  // Use your real values:
-  const supabase = createClient(
-    'https://jqfodlzcsgfocyuawzyx.supabase.co',
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA'
-  )
+    {{ partial "footer.html" . }}
+    {{ partial "scripts.html" . }}
 
-  // If we arrive anywhere with a Supabase recovery hash, stash it and go to /reset/
-  const { hash } = window.location
-  if (hash && (hash.includes('type=recovery') || hash.includes('access_token='))) {
-    sessionStorage.setItem('sb-recovery-hash', hash)
-    window.location.replace('/reset/')
-  }
-</script>
-<!-- MailerLite Universal -->
-<script>
+    {{/* Image window: only binds to post/feature images; ML embed is wrapped with data-ml-embed and ignored */}}
+    {{ partial "image-window.html" . }}
+  </div>
+
+  <script type="module">
+    import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
+
+    // Use your real values:
+    const supabase = createClient(
+      'https://jqfodlzcsgfocyuawzyx.supabase.co',
+      'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA'
+    )
+
+    // If we arrive anywhere with a Supabase recovery hash, stash it and go to /reset/
+    const { hash } = window.location
+    if (hash && (hash.includes('type=recovery') || hash.includes('access_token='))) {
+      sessionStorage.setItem('sb-recovery-hash', hash)
+      window.location.replace('/reset/')
+    }
+  </script>
+
+  {{/* If you do NOT include MailerLite via the partial above, uncomment the block below and remove the partial call. */}}
+  {{/*
+  <script>
     (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
     .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
     n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
     (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
     ml('account', '1849787');
-</script>
-<!-- End MailerLite Universal -->
-    {{ partial "footer.html" . }}
-    {{ partial "scripts.html" . }}
-  </div>
-{{ partial "image-window.html" . }}
+  </script>
+  */}}
 </body>
 </html>
-
-</body>
-</html>
-
-

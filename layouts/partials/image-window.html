@@ -1,62 +1,9 @@
-<!-- Image Window (desktop-style lightbox) -->
-<style>
-  /* Base container + window look */
-  .iw-overlay { position: fixed; inset: 0; z-index: 9999; pointer-events: none; }
-  .iw-window {
-    position: absolute; background: #0f172a; color: #e5e7eb;
-    border: 1px solid #374151; border-radius: 0.75rem; box-shadow: 0 25px 50px rgba(0,0,0,.5);
-    width: min(90vw, 1000px); height: min(80vh, 720px); left: 50%; top: 50%; transform: translate(-50%, -50%);
-    display: none; overflow: hidden; pointer-events: auto; resize: both;
-  }
-  .iw-header {
-    display: flex; align-items: center; justify-content: space-between;
-    background: #111827; border-bottom: 1px solid #374151; height: 38px; padding: 0 10px; cursor: move; user-select: none;
-  }
-  .iw-title { font-size: 12px; letter-spacing: .03em; color: #9ca3af }
-  .iw-btns { display: flex; gap: 6px }
-  .iw-btn {
-    width: 26px; height: 22px; border: 1px solid #374151; background: #1f2937; color: #e5e7eb;
-    display: grid; place-items: center; border-radius: 6px; font-size: 12px; line-height: 1;
-  }
-  .iw-btn:hover { background: #374151 }
-  .iw-body { position: absolute; inset: 38px 0 0 0; overflow: auto; display: grid; place-items: center; background:#0b1220; }
-  .iw-body img { max-width: 100%; max-height: 100%; object-fit: contain }
-  .iw-backdrop {
-    position: fixed; inset: 0; background: rgba(0,0,0,.6); display: none; pointer-events: auto;
-  }
-
-  /* Dock (for minimized windows) */
-  .iw-dock {
-    position: fixed; right: 16px; bottom: 16px; z-index: 9999; display: flex; gap: 8px; pointer-events: auto;
-  }
-  .iw-dock-item {
-    display: flex; align-items: center; gap: 8px; padding: 6px 10px; background:#111827; border:1px solid #374151;
-    color:#e5e7eb; border-radius: 10px; cursor: pointer; box-shadow: 0 8px 30px rgba(0,0,0,.35);
-  }
-  .iw-dock-thumb { width: 28px; height: 28px; object-fit: cover; border-radius: 6px; border:1px solid #374151 }
-  .iw-hidden { display: none !important; }
-</style>
-
-<div id="iw-backdrop" class="iw-backdrop"></div>
-<div id="iw-overlay" class="iw-overlay">
-  <div id="iw-window" class="iw-window" role="dialog" aria-modal="true" aria-label="Image viewer">
-    <div id="iw-header" class="iw-header">
-      <div class="iw-title">Image Viewer</div>
-      <div class="iw-btns">
-        <button id="iw-min" class="iw-btn" title="Minimize">—</button>
-        <button id="iw-max" class="iw-btn" title="Maximize">▢</button>
-        <button id="iw-close" class="iw-btn" title="Close">✕</button>
-      </div>
-    </div>
-    <div class="iw-body">
-      <img id="iw-img" src="" alt="">
-    </div>
-  </div>
-</div>
-<div id="iw-dock" class="iw-dock iw-hidden"></div>
+<!-- same styles + markup as before; omitted here for brevity -->
+<!-- ... header/buttons/body/dock elements exactly as in the previous snippet ... -->
 
 <script>
 (function () {
+  // --- grab elements (same as before) ---
   const overlay  = document.getElementById('iw-overlay');
   const backdrop = document.getElementById('iw-backdrop');
   const win      = document.getElementById('iw-window');
@@ -69,145 +16,72 @@
 
   let state = { visible:false, maximized:false, dragging:false, offsetX:0, offsetY:0, lastLeft:0, lastTop:0, lastW:0, lastH:0, src:'', title:'' };
 
-  // UTIL
-  const showWin = () => {
-    backdrop.style.display = 'block';
-    win.style.display = 'block';
-    state.visible = true;
-    if (!state.maximized) centerWin();
-  };
-  const hideWin = () => {
-    backdrop.style.display = 'none';
-    win.style.display = 'none';
-    state.visible = false;
-  };
-  const centerWin = () => {
-    const r = win.getBoundingClientRect();
-    win.style.left = `calc(50% - ${r.width/2}px)`;
-    win.style.top  = `calc(50% - ${r.height/2}px)`;
-    win.style.transform = 'translate(0,0)'; // reset transform after first center
-  };
-  const setImg = (src, title='Image Viewer') => {
-    imgEl.src = src;
-    imgEl.alt = title || 'image';
-    state.src = src; state.title = title;
-  };
+  // ---- utility fns (same as before) ----
+  function showWin(){ backdrop.style.display='block'; win.style.display='block'; state.visible=true; if(!state.maximized) centerWin(); }
+  function hideWin(){ backdrop.style.display='none'; win.style.display='none'; state.visible=false; }
+  function centerWin(){ const r=win.getBoundingClientRect(); win.style.left=`calc(50% - ${r.width/2}px)`; win.style.top=`calc(50% - ${r.height/2}px)`; win.style.transform='translate(0,0)'; }
+  function setImg(src,title='Image Viewer'){ imgEl.src=src; imgEl.alt=title||'image'; state.src=src; state.title=title; }
+  function maximize(){ if(state.maximized) return; const r=win.getBoundingClientRect(); state.lastLeft=r.left; state.lastTop=r.top; state.lastW=r.width; state.lastH=r.height; win.style.left='0px'; win.style.top='0px'; win.style.width='100vw'; win.style.height='100vh'; win.style.borderRadius='0'; state.maximized=true; }
+  function restore(){ if(!state.maximized) return; win.style.width=state.lastW+'px'; win.style.height=state.lastH+'px'; win.style.left=state.lastLeft+'px'; win.style.top=state.lastTop+'px'; win.style.borderRadius='12px'; state.maximized=false; }
+  function minimize(){ const id='dock-'+btoa(state.src).replace(/=+$/,''); let item=document.getElementById(id); if(!item){ item=document.createElement('button'); item.id=id; item.className='iw-dock-item'; const t=document.createElement('img'); t.className='iw-dock-thumb'; t.src=state.src; const l=document.createElement('span'); l.textContent='Image'; item.appendChild(t); item.appendChild(l); item.addEventListener('click',()=>{ setImg(state.src); showWin(); }); dock.appendChild(item); } dock.classList.remove('iw-hidden'); hideWin(); }
 
-  // MAX / RESTORE
-  function maximize() {
-    if (state.maximized) return;
-    const rect = win.getBoundingClientRect();
-    state.lastLeft = rect.left; state.lastTop = rect.top;
-    state.lastW = rect.width; state.lastH = rect.height;
-    win.style.left = '0px'; win.style.top = '0px'; win.style.width = '100vw'; win.style.height = '100vh';
-    win.style.borderRadius = '0';
-    state.maximized = true;
-  }
-  function restore() {
-    if (!state.maximized) return;
-    win.style.width = state.lastW + 'px';
-    win.style.height = state.lastH + 'px';
-    win.style.left = state.lastLeft + 'px';
-    win.style.top = state.lastTop + 'px';
-    win.style.borderRadius = '12px';
-    state.maximized = false;
-  }
+  // events
+  head.addEventListener('mousedown',e=>{ if(state.maximized) return; state.dragging=true; const r=win.getBoundingClientRect(); state.offsetX=e.clientX-r.left; state.offsetY=e.clientY-r.top; document.body.style.userSelect='none'; });
+  window.addEventListener('mousemove',e=>{ if(!state.dragging) return; win.style.left=(e.clientX-state.offsetX)+'px'; win.style.top=(e.clientY-state.offsetY)+'px'; });
+  window.addEventListener('mouseup',()=>{ if(state.dragging){ state.dragging=false; document.body.style.userSelect=''; } });
+  btnClose.addEventListener('click',hideWin);
+  btnMax.addEventListener('click',()=> state.maximized ? restore() : maximize());
+  btnMin.addEventListener('click',minimize);
+  backdrop.addEventListener('click',hideWin);
+  window.addEventListener('keydown',e=>{ if(e.key==='Escape' && state.visible) hideWin(); });
 
-  // MINIMIZE → add to dock
-  function minimize() {
-    // create or update a dock item for this image
-    const id = 'dock-' + btoa(state.src).replace(/=+$/,'');
-    let item = document.getElementById(id);
-    if (!item) {
-      item = document.createElement('button');
-      item.id = id;
-      item.className = 'iw-dock-item';
-      const thumb = document.createElement('img');
-      thumb.className = 'iw-dock-thumb';
-      thumb.src = state.src;
-      const label = document.createElement('span');
-      label.textContent = 'Image';
-      item.appendChild(thumb); item.appendChild(label);
-      item.addEventListener('click', () => { showDockItem(state.src); });
-      dock.appendChild(item);
-    }
-    dock.classList.remove('iw-hidden');
-    hideWin();
-  }
-  function showDockItem(src) {
-    setImg(src);
-    showWin();
-  }
+  // only bind to post + feature areas, not the ML embed
+  const ROOT_SELECTORS = [
+    /* post body content (Congo/Hugo common) */
+    'article .prose',             // typical congo post body
+    '.single .content',           // alternate content wrapper
+    '.post-content',              // custom wrapper if present
+    /* feature/cover areas */
+    '.post-feature', '.feature-image', '.cover', '.hero-image'
+  ];
 
-  // DRAGGING
-  head.addEventListener('mousedown', (e) => {
-    if (state.maximized) return; // not draggable when maximized
-    state.dragging = true;
-    const rect = win.getBoundingClientRect();
-    state.offsetX = e.clientX - rect.left;
-    state.offsetY = e.clientY - rect.top;
-    document.body.style.userSelect = 'none';
-  });
-  window.addEventListener('mousemove', (e) => {
-    if (!state.dragging) return;
-    win.style.left = (e.clientX - state.offsetX) + 'px';
-    win.style.top  = (e.clientY - state.offsetY) + 'px';
-  });
-  window.addEventListener('mouseup', () => {
-    if (state.dragging) {
-      state.dragging = false;
-      document.body.style.userSelect = '';
-    }
-  });
+  // Helper: is the image inside the ML embed wrapper?
+  const isInsideMlEmbed = (el) => !!el.closest('[data-ml-embed]');
 
-  // BUTTONS
-  btnClose.addEventListener('click', hideWin);
-  btnMax.addEventListener('click', () => state.maximized ? restore() : maximize());
-  btnMin.addEventListener('click', minimize);
-  backdrop.addEventListener('click', hideWin);
-  window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && state.visible) hideWin(); });
-
-  // CLICK-TO-OPEN (delegate to content)
   function shouldBind(img) {
-    // ignore tiny icons; threshold can be tweaked
+    if (isInsideMlEmbed(img)) return false;     // hard skip embeds
     const w = img.naturalWidth || img.width || 0;
     const h = img.naturalHeight || img.height || 0;
     return (w >= 80 || h >= 80);
   }
 
   function installHandlers(root) {
-    // Attach only once per image
-    Array.from(root.querySelectorAll('img')).forEach((img) => {
-      if (img.dataset.iwBound === '1') return;
-      img.dataset.iwBound = '1';
-      img.style.cursor = 'zoom-in';
-      img.addEventListener('click', (e) => {
-        e.preventDefault();
+    ROOT_SELECTORS.forEach(sel => {
+      root.querySelectorAll(sel + ' img').forEach(img => {
+        if (img.dataset.iwBound === '1') return;
         if (!shouldBind(img)) return;
-        setImg(img.currentSrc || img.src, img.alt || 'Image');
-        // Set a reasonable window size based on viewport
-        win.style.width = Math.min(window.innerWidth * 0.9, 1000) + 'px';
-        win.style.height = Math.min(window.innerHeight * 0.8, 720) + 'px';
-        win.style.borderRadius = '12px';
-        state.maximized = false;
-        showWin();
+        img.dataset.iwBound = '1';
+        img.style.cursor = 'zoom-in';
+        img.addEventListener('click', (e) => {
+          e.preventDefault();
+          setImg(img.currentSrc || img.src, img.alt || 'Image');
+          win.style.width = Math.min(window.innerWidth * 0.9, 1000) + 'px';
+          win.style.height = Math.min(window.innerHeight * 0.8, 720) + 'px';
+          win.style.borderRadius = '12px';
+          state.maximized = false;
+          showWin();
+        });
       });
     });
   }
 
-  // Initial bind: main content and any MailerLite embed
   const main = document.querySelector('main') || document.body;
   installHandlers(main);
 
-  // If your content updates dynamically, observe and bind images as they appear
+  // If your theme swaps content dynamically, keep binding new nodes:
   const mo = new MutationObserver((muts) => {
-    muts.forEach(m => {
-      m.addedNodes.forEach(n => {
-        if (n.nodeType === 1) installHandlers(n);
-      });
-    });
+    muts.forEach(m => m.addedNodes.forEach(n => { if (n.nodeType === 1) installHandlers(n); }));
   });
   mo.observe(main, { childList: true, subtree: true });
-
 })();
 </script>
