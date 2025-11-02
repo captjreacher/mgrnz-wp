@@ -9,7 +9,7 @@ draft: true
 This file tests if GitHub webhooks trigger GitHub Pages builds.
 
 ### Expected Behavior:
-1. Commit this file to GitHub
+1. Commit this file to GitHub.
 2. GitHub webhook should trigger the GitHub Pages build workflow
 3. Site should update within 3-5 minutes
 
