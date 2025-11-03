@@ -5,22 +5,16 @@ on:
     branches: [ main, alt_wordpress ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch: {}   # <-- add this
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
-
-      - name: Use Node 22.x
-        uses: actions/setup-node@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: 'npm'
-
-      - name: Install deps
-        run: npm ci
-
-      - name: Build
-        run: npm run build
+          cache: npm
+      - run: npm ci
+      - run: npm run build
