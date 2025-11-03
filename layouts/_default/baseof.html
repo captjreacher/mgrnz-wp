@@ -2,8 +2,6 @@
 <html lang="{{ .Site.Language.Lang }}" dir="{{ .Site.Language.LanguageDirection | default "ltr" }}" class="dark">
 <head>
   {{ partial "head.html" . }}
-  {{/* Keep MailerLite in one place only. If this partial includes the Universal script, we don't also inline it below. */}}
-  {{ partial "mailerlite.html" . }}
 </head>
 
 <body class="flex min-h-screen bg-neutral-900 text-neutral-100">
@@ -20,23 +18,17 @@
 
     {{ partial "footer.html" . }}
     {{ partial "scripts.html" . }}
-{{ partial "subscribe-handler.html" . }}
-
-
-    {{/* Image window: only binds to post/feature images; ML embed is wrapped with data-ml-embed and ignored */}}
+    {{ partial "subscribe-handler.html" . }}
     {{ partial "image-window.html" . }}
   </div>
 
   <script type="module">
     import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-
-    // Use your real values:
     const supabase = createClient(
       'https://jqfodlzcsgfocyuawzyx.supabase.co',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA'
     )
 
-    // If we arrive anywhere with a Supabase recovery hash, stash it and go to /reset/
     const { hash } = window.location
     if (hash && (hash.includes('type=recovery') || hash.includes('access_token='))) {
       sessionStorage.setItem('sb-recovery-hash', hash)
@@ -44,114 +36,6 @@
     }
   </script>
 
-  {{/* If you do NOT include MailerLite via the partial above, uncomment the block below and remove the partial call. */}}
-  {{/*
-  <script>
-    (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[])
-    .push(arguments);},l=d.createElement(e),l.async=1,l.src=u,
-    n=d.getElementsByTagName(e)[0],n.parentNode.insertBefore(l,n);})
-    (window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-    ml('account', '1849787');
-  </script>
-<script>
-  // Force navigation to /subscribe/ even if another script intercepts the click
-  document.addEventListener('click', function (e) {
-    var t = e.target.closest && e.target.closest('a[href$="/subscribe/"], a[href="/subscribe/"]');
-    if (!t) return;
-    if (e.defaultPrevented) {
-      window.location.href = t.href;
-    }
-  }, true); // capture phase
-</script>
-<style>
-<!-- MailerLite Universal + popup opener (site-wide, once) -->
-<script>
-(function (w, d, e, u, f, l, n) {
-  w[f] = w[f] || function () { (w[f].q = w[f].q || []).push(arguments); };
-  l = d.createElement(e); l.async = 1; l.src = u;
-  n = d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l, n);
-})(window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
-
-// Your account id
-ml('account', '1849787');
-
-// Try to open the popup for your form id; fall back to /subscribe/
-(function () {
-  var FORM_ID = '169453382423020905'; // <-- your ML form id
-
-  function openMlPopup(ev) {
-    if (ev) ev.preventDefault();
-    try {
-      // Try common popup variants; if any work, stop here
-      if (typeof ml === 'function') {
-        // Many sites use one of these forms to show a popup:
-        // 1) ml('form', '<FORM_ID>', 'show')
-        // 2) ml('show', '<FORM_ID>')
-        // 3) ml('show')
-        try { ml('form', FORM_ID, 'show'); return; } catch (_) {}
-        try { ml('show', FORM_ID); return; } catch (_) {}
-        try { ml('show'); return; } catch (_) {}
-      }
-    } catch (err) {
-      // swallow and fallback
-    }
-    // Fallback: navigate to the subscribe page so the user can still subscribe
-    window.location.href = '/subscribe/';
-  }
-
-  // Intercept clicks on links with data-ml-popup (hero/sidebar)
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[data-ml-popup]');
-    if (!a) return;
-    openMlPopup(e);
-  }, true);
-
-  // Also expose a global function if you want to call from onclick
-  window.triggerSubscribePopup = openMlPopup;
-})();
-</script>
-<!-- MailerLite Universal + robust popup opener (load once site-wide) -->
-<script>
-(function (w, d, e, u, f, l, n) {
-  w[f] = w[f] || function () { (w[f].q = w[f].q || []).push(arguments); };
-  l = d.createElement(e); l.async = 1; l.src = u;
-  n = d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l, n);
-})(window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
-
-// Your account id
-ml('account', '1849787');
-
-(function () {
-  var FORM_ID = '169453382423020905'; // use your ML popup form ID if different
-
-  function openMlPopup(ev) {
-    if (ev) ev.preventDefault();
-    try {
-      if (typeof ml === 'function') {
-        try { ml('form', FORM_ID, 'show'); return; } catch(_) {}
-        try { ml('show', FORM_ID);        return; } catch(_) {}
-        try { ml('show');                 return; } catch(_) {}
-      }
-    } catch (_) {}
-    // fallback: always let people subscribe
-    window.location.href = '/subscribe/';
-  }
-
-  // Intercept clicks on any link marked for popup
-  document.addEventListener('click', function (e) {
-    var a = e.target.closest && e.target.closest('a[data-ml-popup]');
-    if (!a) return;
-    openMlPopup(e);
-  }, true);
-
-  // Optional: global function in case you want inline onclick somewhere
-  window.triggerSubscribePopup = openMlPopup;
-})();
-</script>
-
-  #iw-backdrop { display: none !important; pointer-events: none !important; }
-</style>
-
-  */}}
+  <!-- Single MailerLite include moved to head.html, removing duplicates from here -->
 </body>
 </html>
