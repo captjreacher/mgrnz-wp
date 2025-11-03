@@ -126,6 +126,9 @@ theme = "congo"
   # google = "your-google-verification-code"
   # bing = "your-bing-verification-code"
 
+[params.admin]
+  access_codes = ["mgrnz-secret-access"]
+
 [markup.goldmark.renderer]
   unsafe = true
 
