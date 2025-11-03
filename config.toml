@@ -2,3 +2,138 @@ baseURL = "https://mgrnz.com/"
 title = "Welcome to the Personal Blog of Mike G Robinson"
 languageCode = "en-nz"
 theme = "congo"
+
+[params]
+  colorScheme = "congo"
+  defaultAppearance = "dark"
+  enableSearch = true
+  enableCodeCopy = true
+  mainSections = ["posts"]
+  autoSwitchAppearance = false
+  layout = "page"
+  showBreadcrumbs = true
+  showReadingTime = true
+  showTableOfContents = false
+  showTaxonomies = true
+  showWordCount = false
+  showSummary = true
+  sharingLinks = false
+
+[params.header]
+  layout = "basic"
+  logo = "/images/mgrnz-blog.png"
+  logoDark = "/images/BLOG-LOGO.png"
+  showTitle = true
+
+[params.footer]
+  showCopyright = true
+  showThemeAttribution = false
+  showAppearanceSwitcher = false
+  showScrollToTop = true
+
+[params.homepage]
+  layout = "page"
+  homepageImage = "/images/home-banner.webp"
+  showRecent = true
+  showRecentItems = 6
+  showMoreLink = true
+  showMoreLinkDest = "/posts"
+  cardView = false
+  cardViewScreenWidth = false
+  layoutBackgroundBlur = true
+
+[params.article]
+  showDate = true
+  showViews = false
+  showLikes = false
+  showDateUpdated = true
+  showAuthor = true
+  showHero = true
+  heroStyle = "background"
+  layoutBackgroundBlur = true
+  showBreadcrumbs = true
+  showDraftLabel = true
+  showEdit = false
+  editURL = ""
+  editAppendPath = true
+  seriesOpened = false
+  showHeadingAnchors = true
+  showPagination = true
+  invertPagination = false
+  showReadingTime = true
+  showTableOfContents = false
+  showRelatedContent = false
+  relatedContentLimit = 3
+  showTaxonomies = true
+  showAuthorsBadges = false
+  showWordCount = false
+  showSummary = true
+  sharingLinks = false
+
+[params.list]
+  showHero = true
+  heroStyle = "background"
+  layoutBackgroundBlur = true
+  showBreadcrumbs = true
+  showSummary = true
+  showViews = false
+  showLikes = false
+  showTableOfContents = false
+  showCards = true
+  groupByYear = true
+  cardView = false
+  cardViewScreenWidth = false
+  constrainItemsWidth = false
+
+[params.sitemap]
+  excludedKinds = ["taxonomy", "term"]
+
+[params.taxonomy]
+  showTermCount = true
+  showHero = true
+  heroStyle = "background"
+  showBreadcrumbs = false
+  showViews = false
+  showLikes = false
+  showTableOfContents = true
+  cardView = false
+
+[params.term]
+  showHero = true
+  heroStyle = "background"
+  showBreadcrumbs = false
+  showViews = false
+  showLikes = false
+  showTableOfContents = true
+  groupByYear = false
+  cardView = false
+  cardViewScreenWidth = false
+
+[params.author]
+  name = "Mike G Robinson"
+  image = "/images/mgrnz-logo.webp"
+  headline = "Demystifying Technology to Build Better Businesses"
+  bio = "Mike is an unashamed evangelist of AI, ricidivous vibe-coder, and lifelong learner based in Auckland, New Zealand. Mike is a seasoned technology professional and entrepreneur. Mike has over 30 years of experience spanning IT security, SAP configuration, data migration, and business consulting. In early 2025, Mike founded Maximised AI after several months deep diving AI. Mike has since developed a string of successful AI-powered products and services aimed at helping businesses leverage the power of AI to drive productivity and growth."
+
+[[params.author.links]]
+  email = "mailto:mike@mgrnz.com"
+
+[[params.author.links]]
+  link = "https://mgrnz.com"
+  text = "Website"
+
+[params.verification]
+  # google = "your-google-verification-code"
+  # bing = "your-bing-verification-code"
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[markup.highlight]
+  noClasses = false
+  guessSyntax = true
+  codeFences = true
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+  section = ["HTML", "RSS"]
