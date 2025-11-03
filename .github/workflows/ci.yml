@@ -20,7 +20,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      GITHUB_PAGES: "true"   # tells Vite to set base to /<repo>/
+      GITHUB_PAGES: "true"   # tells Vite to set base to /<repo>/.
     steps:
       - name: Checkout
         uses: actions/checkout@v4
