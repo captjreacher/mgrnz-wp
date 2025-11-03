@@ -1,57 +1,181 @@
 # Deployment Guide
 
-## Fixed Issues
+## Pre-Deployment Checklist
 
-### 1. Build Configuration
-- ✅ Added GitHub Pages workflow (`.github/workflows/deploy-gh-pages.yml`)
-- ✅ Added `netlify.toml` as backup
-- ✅ Specified Hugo version 0.147.8 extended
+### Code Quality
+- [ ] All tests passing (unit and integration)
+- [ ] Linting passes without errors
+- [ ] No console errors or warnings
+- [ ] Code reviewed and approved
+- [ ] No hardcoded secrets or credentials
 
-### 2. Theme Configuration
-- ✅ Re-enabled Congo theme in `config.yaml`
-- ✅ Fixed CSS asset processing in `layouts/partials/head.html`
-- ✅ Custom CSS now uses Hugo Pipes for proper minification
+### Security
+- [ ] Admin credentials changed from defaults
+- [ ] CORS properly configured
+- [ ] API endpoints secured
+- [ ] Environment variables properly set
+- [ ] GitHub Actions secrets configured
 
-### 3. Missing Elements Fixed
-- ✅ Admin link in sidebar footer
-- ✅ Logo in header (BLOG-LOGO.png)
-- ✅ Header navigation menu (Home, Blog Posts, My CV)
-- ✅ Custom brand colors (orange/yellow/blue)
-- ✅ Mobile menu functionality
+### Performance
+- [ ] Bundle size acceptable
+- [ ] Images optimized
+- [ ] No memory leaks
+- [ ] Load times meet targets
 
-### 4. Build Commands
-```bash
-# Local development
-hugo server -D
+### Documentation
+- [ ] README updated
+- [ ] API documentation complete
+- [ ] Deployment process documented
+- [ ] Known issues documented
 
-# Production build
-hugo --gc --minify
-```
+## Deployment Steps
 
-### 5. Deployment Settings for GitHub Pages
-- **Build command**: `hugo --gc --minify`
-- **Build output directory**: `public`
-- **Hugo version**: `0.147.8`
-- **Node version**: `18`
-- **Workflow**: `.github/workflows/deploy-gh-pages.yml` (builds and publishes to `gh-pages` branch)
+### 1. Prepare WordPress Branch
 
-### 6. Deployment Metadata Refresh
-- Run `npm run deploy:metadata` before committing to refresh deployment timestamp,
-  cache buster, and deployment notes.
-- The script writes `static/deployment-timestamp.txt`, `static/build-info.txt`,
-  `static/CACHE-BUSTER.txt`, `FORCE-DEPLOY-NOW.md`, and `DEPLOYMENT-MISSING-COMMITS.md`
-  so the live site highlights any missing commits.
+\`\`\`bash
+# Ensure on wordpress branch
+git checkout wordpress
 
-## Next Steps
-1. Commit these changes to your repository
-2. Push to the `work` branch (or `main` if used) to trigger a new deployment
-3. Verify the GitHub Pages workflow completes without errors
-4. Visit https://mgrnz.com after the workflow finishes to confirm updates
+# Pull latest changes
+git pull origin wordpress
 
-## Files Modified/Added
-- `.github/workflows/deploy-gh-pages.yml` - GitHub Pages build + deploy
-- `netlify.toml` - Backup build config
-- `config.yaml` - Re-enabled theme
-- `layouts/partials/head.html` - Fixed CSS processing
-- `layouts/_default/baseof.html` - Added deployment timestamp
-- `static/_redirects` - Admin routing
+# Verify branch is up to date
+git log --oneline -5
+\`\`\`
+
+### 2. Run Final Tests
+
+\`\`\`bash
+# Install dependencies
+npm install
+
+# Run unit tests
+npm run test
+
+# Build locally
+npm run build
+
+# Check for errors
+npm run lint
+\`\`\`
+
+### 3. Merge to Main
+
+\`\`\`bash
+# Switch to main branch
+git checkout main
+
+# Merge wordpress branch
+git merge wordpress
+
+# Push to GitHub
+git push origin main
+\`\`\`
+
+### 4. Verify Deployment
+
+- [ ] GitHub Actions workflow triggered
+- [ ] All checks passing
+- [ ] Site deployed to GitHub Pages
+- [ ] Homepage loads correctly
+- [ ] Admin login works
+- [ ] No console errors
+
+### 5. Post-Deployment Verification
+
+\`\`\`bash
+# Test in different browsers:
+# - Chrome
+# - Firefox
+# - Safari
+# - Edge
+
+# Test on different devices:
+# - Desktop (1920px)
+# - Tablet (768px)
+# - Mobile (320px)
+
+# Test functionality:
+# - Homepage loads
+# - Subscribe button works
+# - Admin login works
+# - Posts can be created
+# - Settings accessible
+\`\`\`
+
+## Environment Variables
+
+### Required Variables
+
+Set these in GitHub repository secrets:
+
+\`\`\`
+NEXT_PUBLIC_SUPABASE_URL=https://jqfodlzcsgfocyuawzyx.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=[YOUR_ANON_KEY]
+SUPABASE_SERVICE_KEY=[YOUR_SERVICE_KEY]
+\`\`\`
+
+### Optional Variables
+
+For future integrations:
+\`\`\`
+MAILERLITE_API_KEY=[KEY]
+GITHUB_TOKEN=[TOKEN]
+\`\`\`
+
+## Rollback Procedure
+
+If issues occur after deployment:
+
+\`\`\`bash
+# Option 1: Revert to previous commit
+git revert [commit-hash]
+git push origin main
+
+# Option 2: Reset to previous state
+git reset --hard [previous-commit]
+git push origin main --force
+
+# Option 3: Manual revert on GitHub Pages
+# Rebuild from previous wordpress branch state
+git checkout wordpress
+git reset --hard [previous-commit]
+git push origin wordpress --force
+git merge wordpress into main
+\`\`\`
+
+## Post-Launch Tasks
+
+### Week 1
+- [ ] Monitor error logs
+- [ ] Check performance metrics
+- [ ] Gather user feedback
+- [ ] Fix critical bugs
+
+### Week 2-4
+- [ ] Optimize based on usage data
+- [ ] Add missing integrations
+- [ ] Enhance documentation
+- [ ] Plan next features
+
+## Support & Monitoring
+
+### Error Tracking
+- Check browser console for errors
+- Review GitHub Actions logs
+- Monitor site uptime
+
+### Performance Monitoring
+- Check page load times
+- Monitor bundle size
+- Track user interactions
+
+## Contacts & Resources
+
+- **GitHub Repo:** mgrnz-blog
+- **Supabase Project:** jqfodlzcsgfocyuawzyx
+- **GitHub Pages:** [deployed-url]
+- **Main Branch:** Production
+- **WordPress Branch:** Staging/Development
+
+\`\`\`

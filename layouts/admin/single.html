@@ -1,7 +1,0 @@
-{{ if eq .Title "Create New Post" }}
-  {{ partial "admin-create.html" . }}
-{{ else if eq .Title "Manage Posts" }}
-  {{ partial "admin-posts.html" . }}
-{{ else }}
-  {{ .Content }}
-{{ end }}
