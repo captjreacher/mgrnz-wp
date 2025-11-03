@@ -30,7 +30,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true # Fetch any Git submodules (like themes)
+          submodules: false # Do not fetch submodules initially
+
+      - name: Manually clone Congo submodule
+        run: git clone https://github.com/jpanther/congo.git themes/congo
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
