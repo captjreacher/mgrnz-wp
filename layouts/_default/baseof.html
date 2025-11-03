@@ -18,8 +18,7 @@
 
     {{ partial "footer.html" . }}
     {{ partial "scripts.html" . }}
-    {{ partial "subscribe-handler.html" . }}
-    {{ partial "image-window.html" . }}
+        {{ partial "image-window.html" . }}
   </div>
 
   <script type="module">
@@ -36,6 +35,39 @@
     }
   </script>
 
-  <!-- Single MailerLite include moved to head.html, removing duplicates from here -->
+  <!-- MailerLite Universal (single include) -->
+  <script>
+  (function (w, d, e, u, f, l, n) {
+    w[f] = w[f] || function () { (w[f].q = w[f].q || []).push(arguments); };
+    l = d.createElement(e); l.async = 1; l.src = u;
+    n = d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l, n);
+  })(window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+
+  ml('account', '1849787');
+
+  (function () {
+    var FORM_ID = '169453382423020905';
+    function openMlPopup(ev) {
+      if (ev) ev.preventDefault();
+      try {
+        if (typeof ml === 'function') {
+          try { ml('form', FORM_ID, 'show'); return; } catch(_) {}
+          try { ml('show', FORM_ID);        return; } catch(_) {}
+          try { ml('show');                 return; } catch(_) {}
+        }
+      } catch (_) {}
+      // fallback: ensure users can still subscribe
+      window.location.href = '/subscribe/';
+    }
+    // any <a data-ml-popup> will try to open the popup first
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-ml-popup]');
+      if (!a) return;
+      openMlPopup(e);
+    }, true);
+    // optional: global helper
+    window.triggerSubscribePopup = openMlPopup;
+  })();
+  </script>
 </body>
 </html>
