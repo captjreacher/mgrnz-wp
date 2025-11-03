@@ -5,16 +5,35 @@ on:
     branches: [ main, alt_wordpress ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch: {}   # <-- add this
+  workflow_dispatch: {}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          node-version: 22
-          cache: npm
-      - run: npm ci
-      - run: npm run build
+          node-version: '20.12.2'
+          cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+
+      - name: Install dependencies
+        run: npm ci --legacy-peer-deps
+
+      - name: Build project
+        env:
+          NODE_OPTIONS: --openssl-legacy-provider
+        run: npm run build --if-present
+
+      - name: Upload build artifact (optional)
+        if: success() && (hashFiles('dist/**') != '')
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-dist
+          path: dist/**
+
+
