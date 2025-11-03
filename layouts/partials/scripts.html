@@ -67,15 +67,17 @@
     }, 10);
     
     // Inject MailerLite form if not already loaded
-    try {
-      const container = document.getElementById('popup-form-container');
-      if (container && !container.dataset.loaded) {
-        ml('form', '169453382423020905', 'popup-form-container');
-        container.dataset.loaded = 'true';
+    setTimeout(() => {
+      try {
+        const container = document.getElementById('popup-form-container');
+        if (container && !container.dataset.loaded) {
+          ml('form', '169453382423020905', 'popup-form-container');
+          container.dataset.loaded = 'true';
+        }
+      } catch (err) {
+        console.error('Failed to load MailerLite form:', err);
       }
-    } catch (err) {
-      console.error('Failed to load MailerLite form:', err);
-    }
+    }, 50); // Small delay to ensure container is visible
     
     popupShown = true;
     localStorage.setItem('subscribePopupShown', 'true');
