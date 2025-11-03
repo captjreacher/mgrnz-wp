@@ -21,22 +21,8 @@
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="/images/BLOG-LOGO.png">
 
-<!-- Tailwind CSS -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-  tailwind.config = {
-    darkMode: 'class',
-    theme: {
-      extend: {
-        colors: {
-          'brand-orange': '#ff4f00',
-          'brand-yellow': '#ffcf00',
-          'brand-blue': '#89bbfe'
-        }
-      }
-    }
-  }
-</script>
+{{ $styles := resources.Get "css/main.css" | postCSS }}
+<link rel="stylesheet" href="{{ $styles.Permalink }}">
 
 <!-- CSS -->
 {{ $customCSS := resources.Get "css/custom.css" | resources.Minify }}
