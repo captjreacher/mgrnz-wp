@@ -4,7 +4,7 @@ on:
   push:
     branches: [ alt_wordpress ]
   pull_request:
-    branches: [ alt_wordpress ]
+    branches: [ main ]
   workflow_dispatch:
 
 permissions:
