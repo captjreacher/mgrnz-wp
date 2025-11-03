@@ -1,4 +1,4 @@
-name: Build & Test
+﻿name: Build & Test
 
 on:
   push:
@@ -29,7 +29,4 @@ jobs:
         run: npm ci --legacy-peer-deps
 
       - name: Build
-        env:
-          # set if you need a subpath on Pages
-          # VITE_BASE: /mgrnz-wp/
         run: npm run build
