@@ -2,58 +2,34 @@ name: Build & Test
 
 on:
   push:
-    branches: [ main, alt_wordpress ]
+    branches: [ alt_wordpress ]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch: {}
+    branches: [ alt_wordpress ]
+  workflow_dispatch:
 
 permissions:
   contents: read
   pages: write
   id-token: write
 
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      GITHUB_PAGES: "true"   # tells Vite to set base to /<repo>/
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Use Node 22.12+
         uses: actions/setup-node@v4
         with:
-          node-version: '20.12.2'
+          node-version: '22.12.0'
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
+          cache-dependency-path: ./package-lock.json
 
       - name: Install deps
         run: npm ci --legacy-peer-deps
 
       - name: Build
         env:
-          NODE_OPTIONS: --openssl-legacy-provider
-        run: npm run build --if-present
-
-      - name: Upload Pages artifact
-        if: success() && (hashFiles('dist/**') != '')
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: build
-    if: needs.build.result == 'success'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+          # set if you need a subpath on Pages
+          # VITE_BASE: /mgrnz-wp/
+        run: npm run build
