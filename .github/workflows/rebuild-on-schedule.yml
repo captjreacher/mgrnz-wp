@@ -52,7 +52,7 @@ jobs:
           npx postcss-cli themes/congo/assets/css/tailwind.css -o assets/css/compiled/main.css
 
       - name: Build Hugo site
-        run: hugo --gc --minify --buildFuture
+        run: hugo --gc --minify --buildFuture --config config.toml
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
