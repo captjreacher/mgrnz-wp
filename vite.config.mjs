@@ -1,5 +1,9 @@
 ﻿import { defineConfig } from 'vite';
 
 export default defineConfig({
-  // minimal baseline; add plugins/options later
+  root: 'scr',   // <-- change if your entry is elsewhere (must contain index.html)
+  build: {
+    outDir: '../dist',
+    emptyOutDir: true
+  }
 });
