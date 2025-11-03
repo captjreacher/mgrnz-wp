@@ -1,9 +1,11 @@
-﻿import { defineConfig } from 'vite';
+﻿// vite.config.mjs  (or .js if "type":"module")
+import { defineConfig } from 'vite'
+// import react from '@vitejs/plugin-react' // if you need it
 
 export default defineConfig({
-  root: 'scr',           // if your frontend lives elsewhere, change this
+  // plugins: [react()],
   build: {
-    outDir: '../dist',   // output at repo root /dist
-    emptyOutDir: true
-  }
-});
+    outDir: 'dist',
+  },
+})
+
