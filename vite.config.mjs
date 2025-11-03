@@ -1,9 +1,9 @@
 ﻿import { defineConfig } from 'vite';
 
 export default defineConfig({
-  root: 'scr',   // <-- change if your entry is elsewhere (must contain index.html)
+  root: 'scr',           // if your frontend lives elsewhere, change this
   build: {
-    outDir: '../dist',
+    outDir: '../dist',   // output at repo root /dist
     emptyOutDir: true
   }
 });
