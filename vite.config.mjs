@@ -1,11 +1,13 @@
-﻿// vite.config.mjs  (or .js if "type":"module")
+﻿// vite.config.mjs
 import { defineConfig } from 'vite'
-// import react from '@vitejs/plugin-react' // if you need it
+
+const repo = process.env.GITHUB_REPOSITORY?.split('/')[1]
+const isPages = process.env.GITHUB_PAGES === 'true'
+
+// For project pages, base must be "/<repo-name>/"
+const base = isPages && repo ? `/${repo}/` : '/'
 
 export default defineConfig({
-  // plugins: [react()],
-  build: {
-    outDir: 'dist',
-  },
+  base,
+  build: { outDir: 'dist' },
 })
-
