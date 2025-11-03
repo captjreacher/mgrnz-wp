@@ -1,5 +1,6 @@
-﻿// vite.config.ts
+import { defineConfig } from "vite";
+
 export default defineConfig({
-  base: "/REPO/",  // <-- set if NOT using custom domain / user site
-  plugins: [react()]
-})
+  // Use "/" if you’ll bind a custom domain; otherwise "/" for project pages
+  base: "/"
+});
