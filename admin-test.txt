@@ -1,1 +1,0 @@
-Admin system test - checking if admin pages are accessible
