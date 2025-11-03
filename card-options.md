@@ -14,7 +14,7 @@
 </div>
 ```
 
-## Option 3: Magazine Style Cards
+## Option 3: Magazine Style Cards.
 ```html
 <div class="grid gap-6 lg:grid-cols-2">
   <!-- First card: Large featured card (spans 2 columns) -->
