@@ -30,30 +30,13 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: false # Do not fetch submodules initially
-
-      - name: Update submodules to latest
-        run: |
-          git submodule update --init --recursive --remote
+          submodules: true # Fetch any Git submodules (like themes)
 
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
           hugo-version: '0.150.1' # Match the local development version
           extended: true
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Tailwind CSS
-        run: |
-          mkdir -p assets/css/compiled
-          npx postcss-cli themes/congo/assets/css/tailwind.css -o assets/css/compiled/main.css
 
       - name: Build Hugo site
         run: hugo --gc --minify --buildFuture --config config.toml
