@@ -6,8 +6,15 @@
     <description>Recent content in Technology on Welcome to the Personal Blog of Mike G Robinson</description>
     <generator>Hugo</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 28 Oct 2025 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 02 Nov 2025 00:00:00 +0000</lastBuildDate>
     <atom:link href="http://localhost:1313/categories/technology/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test Post</title>
+      <link>http://localhost:1313/2025/11/test-post/</link>
+      <pubDate>Sun, 02 Nov 2025 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/2025/11/test-post/</guid>
+      <description>Test post</description>
+    </item>
     <item>
       <title>Embedded ChatGPT Assistant by email</title>
       <link>http://localhost:1313/2025/10/embedded-chatgpt-assistant-by-email/</link>

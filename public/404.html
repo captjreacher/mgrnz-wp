@@ -45,7 +45,7 @@
 
 <link rel="stylesheet" href="/css/custom.min.css">
 
-<link rel="stylesheet" href="/css/custom.css?v=1762083858">
+<link rel="stylesheet" href="/css/custom.css?v=1762140786">
 
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,33 +53,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 
-<script>
-  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments)};
-    l=d.createElement(e);l.async=1;l.src=u;n=d.getElementsByTagName(e)[0];n.parentNode.insertBefore(l,n);
-  })(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-
-  
-  ml('account', '1849787', 'mgrnz.com');
-</script>
-
-
-
-
-
-  
-  
-<div id="subscription-form-container"></div>
-
-<script async src="https://assets.mailerlite.com/js/universal.js"></script>
-<script>
-  (function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments)};
-    l=d.createElement(e);l.async=1;l.src=u;n=d.getElementsByTagName(e)[0];n.parentNode.insertBefore(l,n);
-  })(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-
-  
-  ml('account', '1849787');
-  ml('form', '169453382423020905', 'subscription-form-container');
-</script>
 
 </head>
 
@@ -91,7 +64,7 @@
     <div class="mb-8">
       
       <div style="padding-left: 2rem;">
-        <img src="/images/mgrnz-logo.webp?v=1762083858" alt="Mike G Robinson" class="mb-4 h-60 w-60 rounded-full object-contain" style="display: block;">
+        <img src="/images/mgrnz-logo.webp?v=1762140786" alt="Mike G Robinson" class="mb-4 h-60 w-60 rounded-full object-contain" style="display: block;">
       </div>
       
       <div class="text-center">
@@ -192,7 +165,7 @@
     
     
     <div class="flex-shrink-0 border-t border-neutral-700 p-4 text-center text-xs text-neutral-400">
-      © 2025 Welcome to the Personal Blog of Mike G Robinson - Build 2025-11-03 00:44
+      © 2025 Welcome to the Personal Blog of Mike G Robinson - Build 2025-11-03 16:33
       
       <div class="mt-2">
         
@@ -488,7 +461,7 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="/js/mobile-menu.js?v=1762083858"></script>
+<script src="/js/mobile-menu.js?v=1762140786"></script>
 
 
 <script>
@@ -615,33 +588,7 @@
 
 <script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2025/10/31/00/20251031000555-2CX1VKR7.js" defer></script>
-<script>
-
-(function(w,d,e,u,f,l,n){w[f]=w[f]||function(){(w[f].q=w[f].q||[]).push(arguments);};
-  l=d.createElement(e); l.async=1; l.src=u;
-  n=d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l,n);
-})(window,document,'script','https://assets.mailerlite.com/js/universal.js','ml');
-
-
-ml && ml('account','1849787');
-
-
-
-window.triggerSubscribePopup = function () {
-  try {
-    
-    
-    if (typeof ml === 'function') { ml('show'); return; }
-  } catch (e) {}
-  
-  window.location.href = '/subscribe/';
-};
-</script>
-
-
-
-    
-    
+        
 
 
 <script>
@@ -733,14 +680,11 @@ window.triggerSubscribePopup = function () {
 
   <script type="module">
     import { createClient } from 'https://esm.sh/@supabase/supabase-js@2'
-
-    
     const supabase = createClient(
       'https://jqfodlzcsgfocyuawzyx.supabase.co',
       'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpxZm9kbHpjc2dmb2N5dWF3enl4Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjExNjEzNTUsImV4cCI6MjA3NjczNzM1NX0.LLdRTNerb3J6WxQUg3tXUbKt7wDhOpm--nSlWAhYYqA'
     )
 
-    
     const { hash } = window.location
     if (hash && (hash.includes('type=recovery') || hash.includes('access_token='))) {
       sessionStorage.setItem('sb-recovery-hash', hash)
@@ -749,6 +693,38 @@ window.triggerSubscribePopup = function () {
   </script>
 
   
-  
+  <script>
+  (function (w, d, e, u, f, l, n) {
+    w[f] = w[f] || function () { (w[f].q = w[f].q || []).push(arguments); };
+    l = d.createElement(e); l.async = 1; l.src = u;
+    n = d.getElementsByTagName(e)[0]; n.parentNode.insertBefore(l, n);
+  })(window, document, 'script', 'https://assets.mailerlite.com/js/universal.js', 'ml');
+
+  ml('account', '1849787');
+
+  (function () {
+    var FORM_ID = '169453382423020905';
+    function openMlPopup(ev) {
+      if (ev) ev.preventDefault();
+      try {
+        if (typeof ml === 'function') {
+          try { ml('form', FORM_ID, 'show'); return; } catch(_) {}
+          try { ml('show', FORM_ID);        return; } catch(_) {}
+          try { ml('show');                 return; } catch(_) {}
+        }
+      } catch (_) {}
+      
+      window.location.href = '/subscribe/';
+    }
+    
+    document.addEventListener('click', function (e) {
+      var a = e.target.closest && e.target.closest('a[data-ml-popup]');
+      if (!a) return;
+      openMlPopup(e);
+    }, true);
+    
+    window.triggerSubscribePopup = openMlPopup;
+  })();
+  </script>
 </body>
 </html>
