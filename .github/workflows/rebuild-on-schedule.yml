@@ -38,6 +38,19 @@ jobs:
           hugo-version: '0.150.1' # Match the local development version
           extended: true
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Tailwind CSS
+        run: |
+          mkdir -p assets/css/compiled
+          npx postcss-cli themes/congo/assets/css/tailwind.css -o assets/css/compiled/main.css
+
       - name: Build Hugo site
         run: hugo --gc --minify --buildFuture
 
