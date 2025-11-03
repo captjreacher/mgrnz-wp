@@ -1,16 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    ignoreBuildErrors: true,
-  },
+  // eslint config via .eslintrc.* instead of here
   images: {
-    unoptimized: true,
-    domains: ['hebbkx1anhila5yf.public.blob.vercel-storage.com'],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'example.com' },
+      // add more hosts as needed
+    ],
   },
-};
+}
+export default nextConfig
 
-export default nextConfig;
