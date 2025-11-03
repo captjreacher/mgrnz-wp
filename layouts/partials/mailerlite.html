@@ -25,52 +25,62 @@
 </div>
 
 <script>
-document.addEventListener('DOMContentLoaded', function () {
-  // Only run on pages that actually include the form
-  const form = document.getElementById('subscription-form');
-  const btn  = document.getElementById('subscribe-btn');
-  const box  = document.getElementById('form-status');
-  if (!form || !btn || !box) return;
+(() => {
+  // Call fn when DOM is ready (works with cached/async loads too)
+  const ready = (fn) =>
+    document.readyState !== 'loading'
+      ? fn()
+      : document.addEventListener('DOMContentLoaded', fn);
 
-  // Your deployed Edge Function endpoint (from Supabase)
-  const SUBSCRIBE_URL = 'https://jqfodlzcsgfocyuawzyx.functions.supabase.co/subscribe';
+  ready(() => {
+    // Find elements safely (don’t crash if they’re missing)
+    const form = document.getElementById('subscription-form');
+    const btn  = document.getElementById('subscribe-btn');
+    const box  = document.getElementById('form-status');
 
-  function status(msg, ok) {
-    box.textContent = msg;
-    box.style.display = 'block';
-    box.style.background = ok ? 'rgba(16,185,129,.15)' : 'rgba(239,68,68,.15)';
-    box.style.color = ok ? '#a7f3d0' : '#fecaca';
-    box.style.border = ok ? '1px solid #065f46' : '1px solid #7f1d1d';
-  }
+    // If the form isn’t on this page, quietly bail (prevents the error you’re seeing)
+    if (!form || !btn || !box) return;
 
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const first = (document.getElementById('first-name')?.value || '').trim();
-    const last  = (document.getElementById('last-name')?.value || '').trim();
-    const email = (document.getElementById('email')?.value || '').trim();
+    const SUBSCRIBE_URL = 'https://jqfodlzcsgfocyuawzyx.functions.supabase.co/subscribe';
 
-    if (!email) { status('Please enter your email address.', false); return; }
-
-    btn.disabled = true; btn.style.opacity = '0.7'; status('Subscribing…', true);
-
-    try {
-      const res = await fetch(SUBSCRIBE_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, name: first, last_name: last })
-      });
-      const data = await res.json().catch(() => ({}));
-      if (res.ok && (data.ok || data.message)) {
-        status(data.message || "You're in! Please check your inbox. ✅", true);
-        form.reset();
-      } else {
-        status(data.error || 'Something went wrong. Please try again.', false);
-      }
-    } catch {
-      status('Network error. Please try again.', false);
-    } finally {
-      btn.disabled = false; btn.style.opacity = '1';
+    function status(msg, ok) {
+      box.textContent = msg;
+      box.style.display = 'block';
+      box.style.background = ok ? 'rgba(16,185,129,.15)' : 'rgba(239,68,68,.15)';
+      box.style.color = ok ? '#a7f3d0' : '#fecaca';
+      box.style.border = ok ? '1px solid #065f46' : '1px solid #7f1d1d';
     }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const first = (document.getElementById('first-name')?.value || '').trim();
+      const last  = (document.getElementById('last-name')?.value || '').trim();
+      const email = (document.getElementById('email')?.value || '').trim();
+
+      if (!email) { status('Please enter your email address.', false); return; }
+
+      btn.disabled = true; btn.style.opacity = '0.7'; status('Subscribing…', true);
+
+      try {
+        const res = await fetch(SUBSCRIBE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, name: first, last_name: last })
+        });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && (data.ok || data.message)) {
+          status(data.message || "You're in! Please check your inbox. ✅", true);
+          form.reset();
+        } else {
+          status(data.error || 'Something went wrong. Please try again.', false);
+        }
+      } catch {
+        status('Network error. Please try again.', false);
+      } finally {
+        btn.disabled = false; btn.style.opacity = '1';
+      }
+    });
   });
-});
+})();
 </script>
+
