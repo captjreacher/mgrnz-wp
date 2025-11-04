@@ -1,5 +1,5 @@
-﻿// vite.config.ts
+import { defineConfig } from "vite";
+// Project Pages default (repo URL path):
 export default defineConfig({
-  base: "/REPO/",  // <-- set if NOT using custom domain / user site
-  plugins: [react()]
-})
+  base: "/mgrnz-wp/"
+});
