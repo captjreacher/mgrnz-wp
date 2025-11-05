@@ -1,0 +1,168 @@
+WordPress Canonical Setup Specification — MGRNZ (v1.1)
+Status Summary
+
+Writer UI (Custom Post Form) completed by agent.
+System and automation emails corrected.
+This version adds a new Review & Sign-off (UI/Content Ops) section.
+
+Purpose & Roles
+
+Defines the canonical WordPress environment for MGRNZ.com as the headless content source, providing mirrored delivery via webhook and Supabase integration to Maximised AI and related properties.
+
+Environment Baseline
+
+PHP ≥ 8.2
+
+WordPress ≥ 6.4
+
+HTTPS enforced
+
+Minimal/headless theme active
+
+JSON REST API enabled
+
+CORS enabled for mgrnz.com and API consumers
+
+Status: ⚠️ Partial — confirm live versions and HTTPS configuration.
+
+Required Plugins
+
+Advanced Custom Fields (ACF Pro)
+
+Yoast or RankMath SEO
+
+WP Webhooks Pro
+
+Media Regenerate/Optimize tool
+
+Status: ⚠️ Partial — confirm installation and configuration.
+
+Auth & Security
+
+Uses App Passwords or JWT for API access.
+
+Secrets stored in Supabase environment variables.
+
+Email References (Corrected):
+
+System Emails
+-------------
+• Admin (System): admin@mgrnz.com
+• Primary Admin User: mike@mgrnz.com
+• Automation / Integration Account: agent@mgrnz.com
+
+
+Status: ✅ Corrected — replace any previous mgnrz.com references.
+
+REST API Routes
+
+Standard /wp-json/wp/v2/posts for create/update/delete.
+
+Custom endpoints exposed for media and ACF groups.
+
+CORS headers snippet applied.
+
+Status: ✅ Defined — verify CORS operational.
+
+Custom Fields (ACF)
+
+Field group: Post Meta (MGRNZ)
+
+byline
+
+publish_date_override
+
+keywords
+
+sources
+
+block_data (rich content JSON)
+
+Expose group via REST and confirm in endpoint payload.
+
+Status: ⚠️ Partial — ensure group exists and is REST-enabled.
+
+Sync Mechanism (MGRNZ ↔ MaxAI)
+
+Webhook directions defined for publish/update/delete.
+
+Payload template includes origin, sync_origin, and checksum.
+
+Status: ⚠️ Partial — endpoints must be stood up and tested.
+
+Custom Post Form (Writer UI)
+
+Delivered by agent.
+
+Connected to Supabase Edge Function.
+
+Transforms block_data → HTML and uploads media.
+
+Posts via authenticated REST API call.
+
+Status: ✅ Complete — functional; pending QA under review section.
+
+Media Handling Policy
+
+Featured images 1280×720 (minimum).
+
+Cached and resized via WordPress media tools.
+
+Status: ✅ Specified.
+
+Testing Checklist
+
+Run REST GET/POST
+
+Upload media
+
+Fire webhook triggers
+
+Validate ACF in REST output
+
+Verify CORS response
+
+Status: ⚠️ Pending — to be satisfied by Review & Sign-off step.
+
+Change Control
+
+Plugin and config changes logged in CHANGELOG.md.
+
+Tag spec version in repository with each major update.
+
+Status: ✅ Drafted.
+
+Review & Sign-off (UI/Content Ops)
+
+Goals
+Verify Writer UI ↔ ACF mapping, media policy, auth, and webhook safety before opening to contributors.
+
+Checks
+
+Field mapping: Writer UI fields map 1:1 to ACF (byline, publish_date_override, keywords, sources, block_data); ACF exposed in REST.
+
+Content validation: required fields enforced; length limits; HTML sanitisation for block_data.
+
+Media: featured image 1280×720 (or larger, cropped) enforced; alt text required; uploads associate to post.
+
+Auth & roles: App Password / JWT works with least-privilege role for publishing via API.
+
+CORS: OPTIONS/POST from mgrnz.com and tools host allowed; preflight passes.
+
+Webhooks: publish/update/delete fire to receivers; sync_origin guard prevents loops.
+
+Observability: log IDs of created posts/media; capture webhook responses; surface errors to admin.
+
+Owners
+
+Content: Mike (mike@mgrnz.com
+)
+
+Tech: Edge Functions / API
+
+Admin: WordPress/Webhooks
+
+Exit Criteria
+Two successful end-to-end publishes (with and without featured image) mirrored correctly and visible on site feeds.
+
+Version: 1.1 | Last Updated: November 2025 | Author: Mike G Robinson

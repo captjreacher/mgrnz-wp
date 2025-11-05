@@ -1,0 +1,52 @@
+Status of Plan (high-level)
+Area	Status	Notes / Gaps
+Purpose & Roles	✅ Complete	Canonical WP (mgrnz.com) defined as source; mirrors via webhooks.
+Environment Baseline	⚠️ Partial	Confirm PHP ≥8.2, WP ≥6.4, HTTPS, and a minimal/headless theme actually active.
+Required Plugins	⚠️ Partial	ACF Pro, Yoast/RankMath, WP Webhooks Pro: confirm installed + configured. Media tool (regen thumbs) ready.
+Auth & Security	⚠️ Partial	App Passwords/JWT pattern defined. Typo to fix: automation@mgnrz.com → automation@mgrnz.com. Store secrets in Supabase env.
+REST API routes	✅ Spec’d	Endpoints defined for posts/media; CORS headers snippet provided. Ensure CORS is live.
+Custom Fields (ACF)	⚠️ Partial	Field group listed (byline, keywords, block_data, etc.). Confirm the field group exists and is REST-exposed.
+Sync Mechanism (MGRNZ ↔ MaxAI)	⚠️ Partial	Webhook directions + payload template included. Need actual send/receive endpoints created & tested.
+Custom Post Form (Supabase Edge)	✅ Complete	Agent delivered “Writer UI.” Marked done. Wire it to the /wp-json/wp/v2/posts flow + image upload.
+Media Handling Policy	✅ Spec’d	Featured image size policy and caching approach defined. Verify 1280×720 workflow.
+Testing Checklist	⚠️ Pending	Need to actually run each test (REST GET/POST, media upload, webhook triggers, CORS).
+Change Control	✅ Drafted	Remember to log plugin changes and tag spec versions.
+Marking “Writer UI” as Complete
+
+✅ Writer UI (custom post form) delivered by agent and considered feature-complete.
+
+Next: connect it to the Supabase Edge Function that transforms block_data → HTML, authenticates via App Passwords, uploads media, and posts to /wp-json/wp/v2/posts.
+
+Add this Review Step to the Plan (new)
+
+11) Review & Sign-off (UI/Content Ops)
+
+UI/UX QA: sanity-check Writer UI fields map 1:1 to ACF (byline, publish_date_override, keywords, sources, block_data).
+
+Content validation: test required fields, max lengths, and HTML sanitisation.
+
+Media pathing: verify featured image 1280×720 enforcement and alt text capture.
+
+API audit: confirm App Password auth works with least-privilege role; check CORS.
+
+Ops checklist: ensure posts created via Writer UI correctly set origin_site, sync_origin, and don’t trigger looped webhooks.
+
+Sign-off owners: Mike (content), Tech (Edge Function), Admin (WP/Webhooks).
+
+Immediate Actions (fast wins)
+
+Fix the email typo: change automation@mgnrz.com → automation@mgrnz.com wherever referenced.
+
+Stand up the ACF group: create “Post Meta (MGRNZ)” with the fields listed in the spec and expose via REST.
+
+Install & configure plugins: ACF Pro, Yoast/RankMath, WP Webhooks Pro, Media tool (regenerate thumbnails).
+
+Create Webhook endpoints: “send on publish/update/delete” (MGRNZ → MaxAI) and matching receivers. Include sync_origin guard.
+
+Apply CORS headers snippet and verify with a curl/Insomnia probe.
+
+Supabase secrets: set WP_USER, WP_APP_PASS, WP_API_BASE (mgrnz.com) in Edge Function env.
+
+Run the Testing Checklist: tick through GET/POST, media upload, webhooks firing, ACF in REST, CORS ok.
+
+If you want, I can drop this review step into the spec as section 11 and produce a one-page QA script you can hand to anyone running the checks.
