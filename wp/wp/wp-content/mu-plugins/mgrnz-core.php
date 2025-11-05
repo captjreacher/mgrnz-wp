@@ -23,6 +23,8 @@ add_action('rest_api_init', function () {
     header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
     header('Access-Control-Allow-Headers: Authorization, Content-Type, X-Requested-With');
     header('Access-Control-Allow-Credentials: true');
+    header('X-MGRNZ-Core', 'active');
+
     return $value;
   });
 }, 15);
@@ -59,8 +61,8 @@ function mgrnz__send_webhook($event, $post_id, $status, $slug = null) {
     'post_id'        => $post_id,
     'slug'           => $slug ?: ($post ? $post->post_name : null),
     'status'         => $status,
-    'origin_site'    => parse_url(home_url(), PHP_URL_HOST) ?: 'mgrnz.com',
-    'sync_origin'    => 'mgrnz.com',
+    'origin_site'    => parse_url(home_url(), PHP_URL_HOST) ?: 'mgrnz.com/wp',
+    'sync_origin'    => 'mgrnz.com/wp',
     'modified_gmt'   => $post ? get_post_modified_time('c', true, $post) : gmdate('c'),
     'acf'            => $post ? mgrnz__acf_payload($post_id) : null,
     'featured_media' => $post ? mgrnz__featured_media_payload($post_id) : null,

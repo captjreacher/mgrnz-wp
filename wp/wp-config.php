@@ -5,7 +5,7 @@
  */
 
 // Example: if you want the mu-plugin to send to Supabase on post publish/update
-putenv('MGRNZ_WEBHOOK_URL=https://<SUPABASE_REF>.functions.supabase.co/wp-sync');
+putenv('MGRNZ_WEBHOOK_URL=https://jqfodlzcsgfocyuawzyx.functions.supabase.co/wp-sync');
 putenv('MGRNZ_WEBHOOK_SECRET=<random-32-char-secret>');
 
 define('AUTH_KEY',         'wMa,y[bUG+E4_:/-~x)=8G-L-de<3>Kql&@e>RI>1@1v)Vt7;E33mH/Th9f?[6zs');
@@ -21,11 +21,9 @@ define('NONCE_SALT',       't+f3|e|+BK,Q^bIdS_#}8W/8m8u:ZNqedc]X)%noKM_]LU*2mqLN
 putenv('MGRNZ_ALLOWED_ORIGIN=https://maximisedai.com');
 
 // Optional: WordPress REST API credentials (used by Supabase posting function)
-putenv('WP_API_BASE=https://mgrnz.com');
+putenv('WP_API_BASE=https://mgrnz.com/wp');
 putenv('WP_USER=agent@mgrnz.com');
 putenv('WP_APP_PASSWORD=hu86dnk@i*5snk!fgmk952vmmlj');
-
-
 
 define( 'DB_NAME',     'MGRNZ' );
 define( 'DB_USER',     'Admin' );
