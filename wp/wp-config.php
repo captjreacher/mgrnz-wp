@@ -6,7 +6,8 @@
 
 // Example: if you want the mu-plugin to send to Supabase on post publish/update
 putenv('MGRNZ_WEBHOOK_URL=https://jqfodlzcsgfocyuawzyx.functions.supabase.co/wp-sync');
-putenv('MGRNZ_WEBHOOK_SECRET=<random-32-char-secret>');
+putenv('MGRNZ_WEBHOOK_SECRET=aD7x@pK1tV9z#qM4nY6b!rE2cW8j^sH5
+');
 
 define('AUTH_KEY',         'wMa,y[bUG+E4_:/-~x)=8G-L-de<3>Kql&@e>RI>1@1v)Vt7;E33mH/Th9f?[6zs');
 define('SECURE_AUTH_KEY',  'u2ywE{GVi8YIn9-4ij)Pfv@ .)#&@~[50]XB:UB[jO:?|u+TjE)pkSPx1|m+Jq(O');

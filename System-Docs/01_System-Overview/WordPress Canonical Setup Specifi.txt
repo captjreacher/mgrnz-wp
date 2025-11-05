@@ -1,0 +1,110 @@
+# WordPress Canonical Setup Specification — MGRNZ (v1.0)
+
+## Overview
+This document defines the canonical WordPress configuration for the **MGRNZ** ecosystem.  
+It standardises how WordPress integrates with Supabase, the frontend (Vite/vanilla JS/Tailwind), and the content authoring process through the Writer UI.
+
+### Objectives
+- Define consistent WordPress REST endpoints, ACF meta, and authentication.
+- Provide a secure, reproducible baseline for all MGRNZ WordPress deployments.
+- Ensure compatibility with the Supabase Edge Functions proxy layer.
+- Serve as the single source of truth for integration, CI/CD, and automation.
+
+## 1. Architecture Summary
+| Component | Description |
+|------------|--------------|
+| **WordPress Core** | Canonical CMS at `https://mgrnz.com` |
+| **Supabase Edge** | Secure proxy for all writes (no browser direct calls) |
+| **Vite Frontend** | Reads posts via `/wp-json/wp/v2/` REST endpoints |
+| **Writer UI** | Creates/updates posts via Supabase `writer` functions |
+| **Storage** | WordPress Media Library + Supabase storage mirror |
+| **Auth** | WordPress JWT or Application Passwords used only server-side |
+
+## 2. Required Plugins
+| Plugin | Purpose |
+|---------|----------|
+| **Advanced Custom Fields (ACF)** | Provides custom meta: `byline`, `keywords`, `sources`, `subscribe_cta`, `buy_me_a_coffee`, `origin_site`, `origin_post_id` |
+| **WP REST API** | Core API (builtin) |
+| **JWT Auth / Application Passwords** | Headless auth for Supabase functions |
+| **Yoast SEO or RankMath (optional)** | Adds SEO fields mirrored by Writer UI |
+| **CORS Control Plugin** | Whitelist Supabase function domain |
+| **Media Library Assistant** | Enhanced media metadata handling |
+
+## 3. ACF Meta Fields
+| Field Name | Type | Notes |
+|-------------|------|-------|
+| `byline` | Text | Defaults to "By Mike G Robinson" |
+| `keywords` | Text | Comma-separated SEO keywords |
+| `sources` | Repeater/Textarea | Optional references |
+| `subscribe_cta` | True/False | Toggle for Subscribe section |
+| `buy_me_a_coffee` | True/False | Toggle for CTA button |
+| `origin_site` | Text | Used for sync loop prevention |
+| `origin_post_id` | Number | Cross-system identifier |
+
+## 4. REST Configuration
+- REST base URL: `https://mgrnz.com/wp-json/wp/v2/`
+- CORS must allow `https://<project>.functions.supabase.co`
+- Auth: Basic Auth via App Password (used only by Supabase Edge)
+- All custom meta fields exposed via ACF to REST:
+  ```php
+  add_filter('acf/rest_api/field_settings/show_in_rest', '__return_true');
+
+Tags endpoint used by Writer UI: /wp-json/wp/v2/tags
+
+Media endpoint used for uploads: /wp-json/wp/v2/media
+
+Posts endpoint: /wp-json/wp/v2/posts
+
+5. Security Baseline
+
+Disable XML-RPC if not required.
+
+Limit REST methods for unauthenticated users to GET.
+
+Use Application Passwords (per-user) instead of storing main credentials.
+
+All writes proxied through Supabase Edge with JWT verification.
+
+Sanitize all HTML before insertion (server-side in Edge Functions).
+
+6. CI/CD & Versioning
+
+Repository: captjreacher/mgrnz-wp
+
+Folder: /System-Docs/02_Specifications/wordpress-spec.md
+
+All environment keys pulled from .env in /03_Operations/env-template.env
+
+CI runs lint + syntax check on PHP and JSON schema of ACF fields.
+
+Tag WordPress releases as wp-v<major>.<minor>.<patch>.
+
+7. Synchronisation Rules
+Field	Direction	Notes
+content	Edge → WP	HTML serialized from blocks
+tags	Bidirectional	EnsureTags function resolves
+media	Edge → WP	Uploaded via uploadMedia
+meta	Edge → WP	ACF fields mirrored
+excerpt	Edge → WP	Provided by Writer UI
+8. Environment Keys
+
+See /System-Docs/03_Operations/env-template.env for required keys:
+
+WP_API_BASE
+WP_USER
+WP_APP_PASS
+SUPABASE_URL
+SERVICE_ROLE_KEY
+
+9. QA Checklist
+
+ Writer UI can create, update, and delete posts.
+
+ Media upload and tag resolution succeed.
+
+ HTML blocks are sanitized and rendered correctly.
+
+ Featured images display properly in WordPress and on frontend.
+
+ All ACF meta visible via REST /posts response.
+"@ | Set-Content System-Docs\02_Specifications\wordpress-spec.md -Encoding UTF8
