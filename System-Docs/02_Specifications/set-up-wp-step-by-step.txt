@@ -1,0 +1,133 @@
+Below is a clean, step-by-step setup plan tuned to your architecture (WordPress canonical → Supabase Edge Functions → Maximised AI web stack).
+
+⚙️ Goal
+
+Have WordPress (mgrnz.com) act as the content source (headless CMS),
+and Maximised AI (maximisedai.com / Supabase project) act as the automation + publishing hub.
+
+1️⃣ Create or confirm system accounts
+Role	Email	Notes
+System Admin	admin@mgrnz.com	Site owner address (WP Settings → General).
+Primary User	mike@mgrnz.com	Full admin access (for posts, ACF setup).
+Automation Service Account	agent@mgrnz.com	Used by Supabase functions to publish/edit via API.
+✅ In WordPress
+
+Go to Users → Add New
+
+Username: agent
+
+Email: agent@mgrnz.com
+
+Role: Author (or custom “API Publisher” role)
+
+Under Users → agent → Application Passwords, generate one and note it:
+
+WP_USER=agent@mgrnz.com
+WP_APP_PASSWORD=<that password>
+
+2️⃣ Install the required plugins
+
+Advanced Custom Fields Pro
+
+Create field group “Post Meta — MGRNZ” with fields:
+
+byline (text)
+publish_date_override (date)
+keywords (text, repeatable)
+sources (url, repeatable)
+block_data (textarea/json)
+
+
+Enable “Show in REST API.”
+
+WP Webhooks Pro
+
+Create three outgoing hooks:
+
+post_publish → https://<your-supabase-edge-function>/wp-sync
+
+post_update
+
+post_delete
+
+Payload should include:
+post_id, slug, status, origin_site, sync_origin, acf, featured_media.
+
+CORS & Auth helper (or functions.php code):
+
+add_action('rest_api_init', function() {
+  remove_filter('rest_pre_serve_request', 'rest_send_cors_headers');
+  add_filter('rest_pre_serve_request', function($value) {
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS');
+    header('Access-Control-Allow-Credentials: true');
+    return $value;
+  });
+}, 15);
+
+
+Optional: Regenerate Thumbnails / Optimole for image size policy.
+
+3️⃣ ️Configure Supabase environment (Maximised AI)
+
+In your Supabase project linked to Maximised AI (maximisedai.com backend):
+
+Set these in your Edge Function env vars:
+
+WP_API_BASE=https://mgrnz.com
+WP_USER=agent@mgrnz.com
+WP_APP_PASSWORD=<your-app-password>
+
+
+Deploy or update your function:
+
+supabase functions deploy wp-to-max
+
+4️⃣ Test the connection
+🧪 Test WordPress → Maximised AI (outbound)
+
+Publish a new post on WordPress and check your Supabase function logs:
+
+supabase functions logs --name wp-to-max
+
+
+You should see the JSON payload arriving.
+
+🧪 Test Maximised AI → WordPress (inbound)
+
+From Supabase CLI or API, run:
+
+curl -X POST https://mgrnz.com/wp-json/wp/v2/posts \
+  -u 'agent@mgrnz.com:<APP_PASSWORD>' \
+  -H 'Content-Type: application/json' \
+  -d '{ "title": "Integration test", "status": "draft" }'
+
+
+✅ Should return 201 Created with post ID.
+
+5️⃣ Wire the Writer UI
+
+Your Writer UI (already built by the agent) posts to Supabase → which posts to WordPress.
+Confirm the block_data → HTML conversion works and that featured image upload uses /wp-json/wp/v2/media.
+
+6️⃣ Media & review policies
+
+Minimum 1280×720 for featured images.
+
+Enforce alt text (UI validation or WP filter).
+
+After setup, run:
+
+wp media regenerate --yes
+
+7️⃣ Final sign-off checklist
+Task	Status
+ACF group visible in REST	☐
+REST API auth via App Password works	☐
+CORS returns correct headers	☐
+Webhooks (publish/update/delete) trigger Supabase	☐
+Writer UI successfully creates posts	☐
+Featured images attach & display	☐
+Two test posts synced end-to-end	☐
+
+When all those boxes tick ✅, your WordPress ↔ Maximised AI link is live.

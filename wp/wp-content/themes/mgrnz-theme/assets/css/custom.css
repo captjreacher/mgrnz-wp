@@ -1,0 +1,51 @@
+/* Layout */
+.container { max-width: 1100px; margin: 0 auto; padding: 0 1rem; }
+.home-grid { display: grid; grid-template-columns: 280px 1fr; gap: 2rem; }
+.home-main { grid-column: 2; }
+.sidebar   { grid-column: 1; position: sticky; top: 2rem; }
+
+@media (max-width: 1024px) {
+  .home-grid { grid-template-columns: 1fr; }
+  .home-main, .sidebar { grid-column: 1; }
+}
+
+/* Header */
+.site-header { background: #000; border-bottom: 1px solid #222; }
+.header-inner { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding: 0.8rem 0; }
+.brand-link { display:flex; align-items:center; text-decoration:none; color:#fff; }
+.brand-logo { height:36px; width:auto; }
+.brand-text { font-weight:700; color:#fff; }
+
+.main-nav ul { display:flex; gap:1rem; list-style:none; margin:0; padding:0; }
+.main-nav a { color:#fff; text-decoration:none; font-weight:600; }
+.main-nav a:hover { text-decoration:underline; }
+
+/* Mobile nav */
+.nav-toggle { display:none; }
+.nav-toggle-btn { display:none; color:#fff; font-size:24px; cursor:pointer; }
+@media (max-width: 768px) {
+  .nav-toggle-btn { display:block; }
+  .main-nav { display:none; }
+  .nav-toggle:checked ~ .main-nav { display:block; }
+  .main-nav ul { flex-direction:column; padding:0.5rem 0; }
+}
+
+/* Sidebar card */
+.card.profile { background:#0b0b0b; border:1px solid #1f1f1f; border-radius:16px; padding:1.25rem; }
+.avatar { width:120px; height:120px; border-radius:50%; display:block; margin:0 auto 0.75rem; object-fit:cover; }
+.name { text-align:center; color:#fff; margin:0; }
+.tagline { text-align:center; color:#cfcfcf; margin:0.5rem 0 1rem; }
+.btn { display:block; text-align:center; font-weight:700; padding:0.6rem 0.9rem; border-radius:999px; background:#ff4f00; color:#fff; text-decoration:none; }
+.btn:hover { filter:brightness(1.1); }
+.brands h4 { margin-top:1rem; color:#fff; }
+.brands a { color:#89bbfe; text-decoration:none; }
+.brands a:hover { text-decoration:underline; }
+
+/* Home */
+.home-title { color:#fff; margin: 0 0 0.4rem; }
+.home-subtitle { color:#cfcfcf; margin: 0 0 1.25rem; }
+.hero-banner { margin: 0 0 1.5rem; }
+.hero-banner img { width:100%; max-height:420px; object-fit:cover; border-radius:14px; display:block; }
+
+/* Congo dark background harmony */
+body { background:#000; }
