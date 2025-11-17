@@ -7,6 +7,15 @@ const OPENAI_API_KEY = Deno.env.get("OPENAI_API_KEY")!;
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
+// 🔥 Add CORS once at the top
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "https://mgrnz.com",       // your domain
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Max-Age": "86400",
+};
+
 interface IntakePayload {
   goal: string;
   workflow_description: string;
@@ -17,17 +26,36 @@ interface IntakePayload {
 }
 
 Deno.serve(async (req) => {
+  // 🔥 REQUIRED: Allow browser preflight
+  if (req.method === "OPTIONS") {
+    return new Response("ok", {
+      status: 200,
+      headers: CORS_HEADERS,
+    });
+  }
+
   try {
     if (req.method !== "POST") {
-      return new Response("Method not allowed", { status: 405 });
+      return new Response("Method not allowed", {
+        status: 405,
+        headers: CORS_HEADERS,
+      });
     }
 
     const body = (await req.json()) as Partial<IntakePayload>;
 
     if (!body.goal || !body.workflow_description) {
       return new Response(
-        JSON.stringify({ error: "goal and workflow_description are required" }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
+        JSON.stringify({
+          error: "goal and workflow_description are required",
+        }),
+        {
+          status: 400,
+          headers: {
+            ...CORS_HEADERS,
+            "Content-Type": "application/json",
+          },
+        },
       );
     }
 
@@ -40,7 +68,9 @@ Deno.serve(async (req) => {
       meta: body.meta || {},
     };
 
+    // ---------------------------
     // 1) Insert intake row
+    // ---------------------------
     const { data: intakeRow, error: intakeErr } = await supabase
       .from("ai_intake_requests")
       .insert({
@@ -62,18 +92,12 @@ Deno.serve(async (req) => {
 
     const intakeId = intakeRow.id as string;
 
-    // 2) Ask OpenAI for a structured blueprint
+    // ---------------------------
+    // 2) Generate AI blueprint
+    // ---------------------------
     const systemPrompt = `
 You are an AI workflow architect helping a small business owner.
-Return a JSON object with keys: summary, blueprint_markdown, blueprint_json, opportunities, risks, suggested_tools, estimated_time_saved.
-
-- summary: 2–3 sentence overview of the workflow and gains.
-- blueprint_markdown: Markdown with headings and steps (easy to show in a web page).
-- blueprint_json: JSON structure of the workflow (stages, steps, tools).
-- opportunities: bullet list (plain text) of extra ideas.
-- risks: bullet list (plain text) of gotchas / failure modes.
-- suggested_tools: bullet list of concrete tools or automations.
-- estimated_time_saved: short text estimate (e.g. "2–3 hours per week").
+Return a JSON object with: summary, blueprint_markdown, blueprint_json, opportunities, risks, suggested_tools, estimated_time_saved.
 `;
 
     const userPrompt = `
@@ -116,10 +140,9 @@ ${payload.pain_points || "Not specified"}
 
     let parsed: any;
     try {
-      // model should return raw JSON text
       parsed = JSON.parse(content);
     } catch (_e) {
-      console.error("Failed to parse AI JSON, content:", content);
+      console.error("AI returned non-JSON content:", content);
       throw new Error("AI returned invalid JSON");
     }
 
@@ -131,8 +154,11 @@ ${payload.pain_points || "Not specified"}
     const suggestedTools = parsed.suggested_tools ?? "";
     const estimatedTimeSaved = parsed.estimated_time_saved ?? "";
 
+    // ---------------------------
     // 3) Store blueprint
-    const { error: bpErr } = await supabase.from("ai_workflow_blueprints")
+    // ---------------------------
+    const { error: bpErr } = await supabase
+      .from("ai_workflow_blueprints")
       .insert({
         intake_id: intakeId,
         summary,
@@ -149,31 +175,43 @@ ${payload.pain_points || "Not specified"}
       throw new Error("Failed to save blueprint");
     }
 
-    // 4) update intake status
-    await supabase.from("ai_intake_requests")
+    // ---------------------------
+    // 4) Update intake status
+    // ---------------------------
+    await supabase
+      .from("ai_intake_requests")
       .update({ status: "awaiting_decision" })
       .eq("id", intakeId);
 
-    // 5) return to frontend
-    const responseBody = {
-      intake_id: intakeId,
-      summary,
-      blueprint_markdown: blueprintMarkdown,
-      opportunities,
-      risks,
-      suggested_tools: suggestedTools,
-      estimated_time_saved: estimatedTimeSaved,
-    };
-
-    return new Response(JSON.stringify(responseBody), {
-      status: 200,
-      headers: { "Content-Type": "application/json" },
-    });
+    // ---------------------------
+    // 5) Return to the frontend
+    // ---------------------------
+    return new Response(
+      JSON.stringify({
+        intake_id: intakeId,
+        summary,
+        blueprint_markdown: blueprintMarkdown,
+        opportunities,
+        risks,
+        suggested_tools: suggestedTools,
+        estimated_time_saved: estimatedTimeSaved,
+      }),
+      {
+        status: 200,
+        headers: {
+          ...CORS_HEADERS,
+          "Content-Type": "application/json",
+        },
+      },
+    );
   } catch (err) {
     console.error("ai-intake error", err);
-    return new Response(
-      JSON.stringify({ error: (err as Error).message ?? "Unknown error" }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
-    );
+    return new Response(JSON.stringify({ error: err.message }), {
+      status: 500,
+      headers: {
+        ...CORS_HEADERS,
+        "Content-Type": "application/json",
+      },
+    });
   }
 });

@@ -1,3 +1,4 @@
+// supabase/functions/ai-intake-decision/index.ts
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const SUPABASE_URL = Deno.env.get("SUPABASE_URL")!;
@@ -6,10 +7,30 @@ const NOTIFY_WEBHOOK = Deno.env.get("AI_INTAKE_WEBHOOK") || "";
 
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
+// 🔥 CORS configuration
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "https://mgrnz.com",
+  "Access-Control-Allow-Headers":
+    "authorization, x-client-info, apikey, content-type",
+  "Access-Control-Allow-Methods": "POST, OPTIONS",
+  "Access-Control-Max-Age": "86400",
+};
+
 Deno.serve(async (req) => {
+  // 1️⃣ Preflight
+  if (req.method === "OPTIONS") {
+    return new Response("ok", {
+      status: 200,
+      headers: CORS_HEADERS,
+    });
+  }
+
   try {
     if (req.method !== "POST") {
-      return new Response("Method not allowed", { status: 405 });
+      return new Response("Method not allowed", {
+        status: 405,
+        headers: CORS_HEADERS,
+      });
     }
 
     const body = await req.json().catch(() => ({}));
@@ -19,10 +40,17 @@ Deno.serve(async (req) => {
     if (!intakeId || !["subscribe", "consult"].includes(decision)) {
       return new Response(
         JSON.stringify({ error: "intake_id and valid decision are required" }),
-        { status: 400, headers: { "Content-Type": "application/json" } },
+        {
+          status: 400,
+          headers: {
+            ...CORS_HEADERS,
+            "Content-Type": "application/json",
+          },
+        },
       );
     }
 
+    // 2️⃣ Load intake
     const { data: intake, error: readErr } = await supabase
       .from("ai_intake_requests")
       .select("*")
@@ -34,6 +62,7 @@ Deno.serve(async (req) => {
       throw new Error("Intake not found");
     }
 
+    // 3️⃣ Update intake row
     const { error: updErr } = await supabase
       .from("ai_intake_requests")
       .update({
@@ -48,7 +77,7 @@ Deno.serve(async (req) => {
       throw new Error("Failed to update decision");
     }
 
-    // Optional: ping a webhook (email service, Make, Slack, etc.)
+    // 4️⃣ Optional webhook
     if (NOTIFY_WEBHOOK) {
       try {
         await fetch(NOTIFY_WEBHOOK, {
@@ -67,15 +96,26 @@ Deno.serve(async (req) => {
       }
     }
 
+    // 5️⃣ Return success WITH CORS
     return new Response(JSON.stringify({ ok: true }), {
       status: 200,
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        ...CORS_HEADERS,
+        "Content-Type": "application/json",
+      },
     });
+
   } catch (err) {
     console.error("ai-intake-decision error", err);
     return new Response(
-      JSON.stringify({ error: (err as Error).message ?? "Unknown error" }),
-      { status: 500, headers: { "Content-Type": "application/json" } },
+      JSON.stringify({ error: err.message ?? "Unknown error" }),
+      {
+        status: 500,
+        headers: {
+          ...CORS_HEADERS,
+          "Content-Type": "application/json",
+        },
+      },
     );
   }
 });
