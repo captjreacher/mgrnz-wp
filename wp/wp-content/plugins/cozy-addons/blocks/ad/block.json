@@ -1,0 +1,112 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/ad",
+  "title": "Advertisement",
+  "description": "'Advertisement' block seamlessly integrates custom ad scripts and clickable image links into your WordPress site, enhancing engagement and driving traffic.",
+  "category": "cozy-block/post-magazine",
+  "keywords": [
+    "category",
+    "post"
+  ],
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalSkipSerialization": [
+        "textDecoration"
+      ],
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "type": {
+      "type": "string",
+      "default": "default"
+    },
+    "media": {
+      "type": "object",
+      "default": {
+        "id": 0,
+        "url": "",
+        "link": "",
+        "openNewTab": true,
+        "dimensionType": "",
+        "width": "765px",
+        "height": "100px",
+        "radius": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "align": "center",
+        "objectFit": "contain",
+        "position": {
+          "x": 0.5,
+          "y": 0.5
+        }
+      }
+    },
+    "customScript": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

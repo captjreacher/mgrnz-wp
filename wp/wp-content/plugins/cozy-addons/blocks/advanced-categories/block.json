@@ -1,0 +1,358 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/advanced-categories",
+  "title": "Advanced Categories (Pro)",
+  "description": "Showcase your post categories with images in various layouts—grid, list, or carousel—for a visually engaging and navigable experience with our 'Advanced Categories' block.",
+  "category": "cozy-block/post-magazine",
+  "keywords": [
+    "category",
+    "post"
+  ],
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalSkipSerialization": [
+        "textDecoration"
+      ],
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "perPage": {
+      "type": "number",
+      "default": -1
+    },
+    "showNestedCategory": {
+      "type": "boolean",
+      "default": true
+    },
+    "categoryOptions": {
+      "type": "array",
+      "default": []
+    },
+    "display": {
+      "type": "string",
+      "default": "grid"
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
+    },
+    "layoutHover": {
+      "type": "boolean",
+      "default": false
+    },
+    "contentPosition": {
+      "type": "string",
+      "default": "center center"
+    },
+    "enableOptions": {
+      "type": "object",
+      "default": {
+        "linkCategory": true,
+        "openNewTab": true,
+        "image": true,
+        "name": true,
+        "icon": true,
+        "count": true
+      }
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "gridOptions": {
+      "type": "object",
+      "default": {
+        "columnCount": 3,
+        "gap": "26px"
+      }
+    },
+    "listOptions": {
+      "type": "object",
+      "default": {
+        "gap": "26px",
+        "height": "50px"
+      }
+    },
+    "categoryItem": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "shadow": {
+          "enabled": false,
+          "horizontal": 0,
+          "vertical": 0,
+          "blur": 0,
+          "spread": 0,
+          "color": "",
+          "position": ""
+        },
+        "bgColor": "",
+        "bgColorHover": "",
+        "borderColorHover": ""
+      }
+    },
+    "image": {
+      "type": "object",
+      "default": {
+        "hoverEffect": true,
+        "width": "",
+        "height": "430px",
+        "radius": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "overlayColor": "#090A0F57"
+      }
+    },
+    "title": {
+      "type": "object",
+      "default": {
+        "fontSize": "18px",
+        "fontFamily": "",
+        "fontWeight": "600",
+        "letterCase": "",
+        "decoration": "",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": "#5566ca",
+        "colorHover": "#f90"
+      }
+    },
+    "iconBox": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "5px",
+          "right": "5px",
+          "bottom": "5px",
+          "left": "5px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "bgColor": "#5566ca",
+        "bgColorHover": "",
+        "borderColorHover": ""
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "gap": "4px",
+        "view": "default",
+        "layout": "fill",
+        "path": "M5.40498 17.8C5.34498 17.8 5.26498 17.8 5.20498 17.78C4.84498 17.68 4.60498 17.38 4.60498 17C4.60498 16.88 4.62498 13.82 6.90498 11.54C8.36498 10.08 10.365 9.27995 12.885 9.13995V6.99995C12.885 6.67995 13.085 6.37995 13.385 6.25995C13.685 6.13995 14.025 6.19995 14.265 6.43995L19.185 11.44C19.485 11.76 19.485 12.2599 19.185 12.5599L14.265 17.5599C14.045 17.7999 13.685 17.86 13.385 17.74C13.085 17.62 12.885 17.32 12.885 17V14.84C11.285 14.8 7.48498 14.96 6.10498 17.4C5.96498 17.64 5.68498 17.8 5.40498 17.8ZM12.445 13.2199C13.185 13.2199 13.705 13.28 13.765 13.28C14.165 13.32 14.485 13.66 14.485 14.08V15.04L17.485 12L14.485 8.95995V9.91995C14.485 10.3599 14.125 10.7199 13.685 10.7199C11.225 10.7199 9.32498 11.38 8.04498 12.68C7.46498 13.26 7.06498 13.92 6.78498 14.54C8.64498 13.42 11.005 13.2199 12.445 13.2199Z",
+        "viewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 24,
+          "vh": 24
+        },
+        "size": "20px",
+        "opacity": 100,
+        "strokeWidth": 1,
+        "color": "",
+        "colorHover": ""
+      }
+    },
+    "contentBox": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "0px",
+          "right": "10px",
+          "bottom": "0px",
+          "left": "10px"
+        },
+        "fontSize": "18px",
+        "fontFamily": "",
+        "fontWeight": "500"
+      }
+    },
+    "postCount": {
+      "type": "object",
+      "default": {
+        "gap": "6px",
+        "labelBefore": "",
+        "labelAfter": "",
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "color": "",
+        "bgColor": ""
+      }
+    },
+    "sliderOptions": {
+      "type": "object",
+      "default": {
+        "direction": "horizontal",
+        "height": "430px",
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "pauseOnMouseEnter": true,
+          "reverseDirection": false,
+          "delay": 2500
+        },
+        "centeredSlides": false,
+        "slidesPerView": 3,
+        "spaceBetween": 26,
+        "speed": 1500
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "default": {
+          "width": "10px",
+          "height": "10px",
+          "radius": "10px",
+          "color": "#6a6a6a",
+          "colorHover": ""
+        },
+        "active": {
+          "width": "10px",
+          "height": "10px",
+          "radius": "10px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": "1px",
+          "color": "#f90",
+          "colorHover": ""
+        },
+        "align": "center",
+        "verticalPosition": 0,
+        "left": "0px",
+        "right": "0px",
+        "gap": "4px"
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "hoverShow": true,
+        "size": "15px",
+        "boxWidth": "35px",
+        "boxHeight": "35px",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "borderColorHover": "",
+        "bgColor": "#007cba",
+        "bgColorHover": "#f90",
+        "color": "#fff",
+        "colorHover": ""
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "viewScript": [
+    "cozy-block--advanced-categories--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

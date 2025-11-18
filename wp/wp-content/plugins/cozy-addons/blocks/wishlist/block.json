@@ -1,0 +1,360 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/wishlist",
+  "title": "Wishlist (Pro)",
+  "description": "'Wishlist' block allows you to add and view your favorite products in a convenient, accessible sidebar for easy management and quick access.",
+  "category": "cozy-block/woocommerce",
+  "textdomain": "cozy-addons",
+  "usesContext": [
+    "postId",
+    "postType",
+    "queryId"
+  ],
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "postType": {
+      "type": "string",
+      "default": ""
+    },
+    "variation": {
+      "type": "string",
+      "default": "wishlist"
+    },
+    "wishlist": {
+      "type": "object",
+      "default": {
+        "icon": {
+          "size": "16px",
+          "align": "right",
+          "path": "M8.00068 3.01933C8.76254 2.33777 9.75642 1.97375 10.7783 2.00201C11.8001 2.03028 12.7723 2.44869 13.4953 3.17133C14.2176 3.89346 14.6362 4.86449 14.6655 5.88539C14.6947 6.90628 14.3324 7.8997 13.6527 8.662L7.99935 14.3233L2.34735 8.662C1.66685 7.8993 1.30415 6.90503 1.33371 5.88332C1.36326 4.8616 1.78283 3.88996 2.50628 3.16788C3.22972 2.4458 4.20215 2.02807 5.22392 2.00044C6.24569 1.97281 7.23927 2.33739 8.00068 3.01933ZM12.5513 4.11333C12.0696 3.63237 11.4221 3.35388 10.7416 3.33492C10.0611 3.31595 9.39916 3.55795 8.89135 4.01133L8.00135 4.81L7.11068 4.012C6.60513 3.55992 5.94632 3.31746 5.26833 3.33394C4.59033 3.35043 3.94408 3.62462 3.4611 4.10073C2.97811 4.57683 2.69467 5.21908 2.66846 5.89677C2.64226 6.57446 2.87524 7.23668 3.32002 7.74866L8.00002 12.436L12.68 7.74933C13.1229 7.2396 13.3559 6.58082 13.3321 5.90598C13.3082 5.23113 13.0292 4.59048 12.5513 4.11333Z",
+          "viewBox": {
+            "vx": 0,
+            "vy": 0,
+            "vw": 16,
+            "vh": 16
+          },
+          "box": {
+            "width": "40px",
+            "height": "40px",
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": "100px"
+          },
+          "color": {
+            "text": "#5566ca",
+            "textHover": "#fff",
+            "bg": "#fff",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        },
+        "activeIcon": {
+          "box": {
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": "50px"
+          },
+          "color": {
+            "text": "#fff",
+            "textHover": "#fff",
+            "bg": "#5566ca",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        }
+      }
+    },
+    "sidebar": {
+      "type": "object",
+      "default": {
+        "icon": {
+          "size": "20px",
+          "path": "M8.00068 3.01933C8.76254 2.33777 9.75642 1.97375 10.7783 2.00201C11.8001 2.03028 12.7723 2.44869 13.4953 3.17133C14.2176 3.89346 14.6362 4.86449 14.6655 5.88539C14.6947 6.90628 14.3324 7.8997 13.6527 8.662L7.99935 14.3233L2.34735 8.662C1.66685 7.8993 1.30415 6.90503 1.33371 5.88332C1.36326 4.8616 1.78283 3.88996 2.50628 3.16788C3.22972 2.4458 4.20215 2.02807 5.22392 2.00044C6.24569 1.97281 7.23927 2.33739 8.00068 3.01933ZM12.5513 4.11333C12.0696 3.63237 11.4221 3.35388 10.7416 3.33492C10.0611 3.31595 9.39916 3.55795 8.89135 4.01133L8.00135 4.81L7.11068 4.012C6.60513 3.55992 5.94632 3.31746 5.26833 3.33394C4.59033 3.35043 3.94408 3.62462 3.4611 4.10073C2.97811 4.57683 2.69467 5.21908 2.66846 5.89677C2.64226 6.57446 2.87524 7.23668 3.32002 7.74866L8.00002 12.436L12.68 7.74933C13.1229 7.2396 13.3559 6.58082 13.3321 5.90598C13.3082 5.23113 13.0292 4.59048 12.5513 4.11333Z",
+          "viewBox": {
+            "vx": 0,
+            "vy": 0,
+            "vw": 16,
+            "vh": 16
+          },
+          "box": {
+            "width": "40px",
+            "height": "40px",
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": "50px"
+          },
+          "color": {
+            "text": "",
+            "textHover": "#fff",
+            "bg": "#fff",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        },
+        "count": {
+          "enabled": true,
+          "margin": {
+            "top": 2,
+            "right": 0
+          },
+          "padding": {
+            "top": "2px",
+            "right": "6px",
+            "bottom": "2px",
+            "left": "6px"
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "100px",
+          "font": {
+            "size": "10px",
+            "weight": "400",
+            "family": ""
+          },
+          "color": {
+            "text": "#fff",
+            "bg": "#5566ca"
+          }
+        },
+        "closeIcon": {
+          "size": "20px",
+          "position": "right",
+          "top": "10px",
+          "left": "10px",
+          "right": "10px",
+          "box": {
+            "width": "40px",
+            "height": "40px",
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": "100px"
+          },
+          "color": {
+            "text": "",
+            "textHover": "#fff",
+            "bg": "#fff",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        },
+        "selectedTypography": "title",
+        "productImage": {
+          "width": "80px",
+          "height": "80px",
+          "radius": ""
+        },
+        "productTitle": {
+          "font": {
+            "size": "16px",
+            "weight": "600",
+            "family": ""
+          },
+          "letterCase": "none",
+          "color": {
+            "text": "#000",
+            "textHover": "#f90"
+          }
+        },
+        "productSummary": {
+          "font": {
+            "size": "14px",
+            "weight": "400",
+            "family": ""
+          },
+          "letterCase": "none",
+          "color": {
+            "text": "#6a6a6a"
+          }
+        },
+        "productPrice": {
+          "font": {
+            "size": "14px",
+            "weight": "500",
+            "family": ""
+          },
+          "letterCase": "none",
+          "color": {
+            "text": "#090b10"
+          }
+        },
+        "button": {
+          "padding": {
+            "top": "6px",
+            "right": "12px",
+            "bottom": "6px",
+            "left": "12px"
+          },
+          "font": {
+            "size": "12px",
+            "weight": "500",
+            "family": ""
+          },
+          "letterCase": "none",
+          "cart": {
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": "100px",
+            "color": {
+              "text": "#fff",
+              "textHover": "",
+              "bg": "#5566ca",
+              "bgHover": "#f90",
+              "borderHover": ""
+            }
+          },
+          "remove": {
+            "border": {
+              "width": "",
+              "style": "",
+              "color": ""
+            },
+            "radius": "100px",
+            "color": {
+              "text": "#fff",
+              "textHover": "",
+              "bg": "#cf2e2e",
+              "bgHover": "#f90",
+              "borderHover": ""
+            }
+          }
+        },
+        "width": "30%",
+        "position": "right",
+        "contentGap": "26px",
+        "padding": {
+          "top": "20px",
+          "right": "20px",
+          "bottom": "20px",
+          "left": "20px"
+        },
+        "color": {
+          "bg": "#fff",
+          "overlay": "#282828d6",
+          "cartText": "#fff",
+          "cartTextHover": "#fff",
+          "cartBg": "#5566ca",
+          "cartBgHover": "#f90"
+        }
+      }
+    },
+    "itemStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "0px",
+        "color": {
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        },
+        "shadow": {
+          "enabled": false,
+          "horizontal": 0,
+          "vertical": 0,
+          "blur": 0,
+          "spread": 0,
+          "color": "",
+          "position": ""
+        },
+        "shadowHover": {
+          "enabled": false,
+          "horizontal": 0,
+          "vertical": 0,
+          "blur": 0,
+          "spread": 0,
+          "color": "",
+          "position": ""
+        }
+      }
+    },
+    "toast": {
+      "type": "object",
+      "default": {
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": ""
+        },
+        "color": {
+          "text": "#fff",
+          "bg": "#28a745"
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--wishlist--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

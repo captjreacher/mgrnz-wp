@@ -1,0 +1,72 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/news-ticker",
+  "title": "News Ticker (Pro)",
+  "description": "Stay informed with our 'News Ticker' block, delivering real-time headlines in a scrolling format for an engaging and dynamic user experience.",
+  "category": "cozy-block/post-magazine",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "hoverShow": {
+      "type": "boolean",
+      "default": false
+    },
+    "height": {
+      "type": "number",
+      "default": 200
+    },
+    "carouselOptions": {
+      "type": "object",
+      "default": {
+        "navigation": {
+          "enabled": true,
+          "verticalGap": 0,
+          "horizontalGap": 60,
+          "iconSize": 15,
+          "iconBoxWidth": 35,
+          "iconBoxHeight": 35,
+          "borderRadius": 50,
+          "backgroundColor": "#fff",
+          "color": "#007cba",
+          "backgroundColorHover": "#007cba",
+          "colorHover": "#fff"
+        },
+        "sliderOptions": {
+          "loop": false,
+          "autoplay": false,
+          "slidesPerView": 1,
+          "spaceBetween": 30,
+          "speed": 700
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--news-ticker--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

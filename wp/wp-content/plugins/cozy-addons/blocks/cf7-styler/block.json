@@ -1,0 +1,371 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/cf7-styler",
+  "title": "Contact Form 7 Styler(Pro)",
+  "description": "Effortlessly customize and style your Contact Form 7 forms with unique designs using the Contact Form 7 Styler block.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "shortcode": {
+      "type": "string",
+      "default": ""
+    },
+    "gap": {
+      "type": "string",
+      "default": "20px"
+    },
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
+    "label": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "bg": ""
+        }
+      }
+    },
+    "textStyles": {
+      "type": "object",
+      "default": {
+        "textareaHeight": "",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "borderFocus": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "textFocus": "",
+          "bg": "",
+          "bgFocus": ""
+        }
+      }
+    },
+    "dropdownStyles": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "bg": ""
+        }
+      }
+    },
+    "dateStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "bg": ""
+        }
+      }
+    },
+    "buttonStyles": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "display": "inline",
+        "align": "left",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "textHover": "",
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "checkboxStyles": {
+      "type": "object",
+      "default": {
+        "itemGap": "1em",
+        "size": "",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": ""
+        }
+      }
+    },
+    "radioStyles": {
+      "type": "object",
+      "default": {
+        "itemGap": "1em",
+        "size": "",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": ""
+        }
+      }
+    },
+    "acceptanceStyles": {
+      "type": "object",
+      "default": {
+        "size": "",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": ""
+        }
+      }
+    },
+    "fileStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "color": {
+          "text": "",
+          "textHover": "",
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": ""
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "bottom": ""
+      }
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "style": "",
+        "color": ""
+      }
+    },
+    "radius": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": ""
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "horizontal": "0px",
+        "vertical": "0px",
+        "blur": "0px",
+        "spread": "0px",
+        "color": "",
+        "position": ""
+      }
+    },
+    "font": {
+      "type": "object",
+      "default": {
+        "size": "",
+        "weight": "",
+        "family": ""
+      }
+    },
+    "color": {
+      "type": "object",
+      "default": {
+        "text": "",
+        "bg": ""
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

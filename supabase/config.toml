@@ -1,2 +1,95 @@
+# Supabase Local Development Configuration
+# This file configures the local Supabase instance
+# Documentation: https://supabase.com/docs/reference/cli/config
+
+# ============================================
+# Project Settings
+# ============================================
+[project]
+# A string used to distinguish different Supabase projects on the same host
+project_id = "mgrnz-local"
+
+# ============================================
+# API Settings
+# ============================================
+[api]
+# Port to use for the API URL
+port = 54321
+# Schemas to expose in your API
+schemas = ["public", "storage", "graphql_public"]
+# Extra schemas to add to the search_path of every request
+extra_search_path = ["public", "extensions"]
+# The maximum number of rows returns from a view, table, or stored procedure
+max_rows = 1000
+
+# ============================================
+# Database Settings
+# ============================================
+[db]
+# Port to use for the local database URL
+port = 54322
+# The database major version to use
+major_version = 15
+
+# ============================================
+# Studio Settings
+# ============================================
+[studio]
+# Port to use for Supabase Studio
+port = 54323
+
+# ============================================
+# Inbucket Settings (Email Testing)
+# ============================================
+[inbucket]
+# Port to use for the email testing server
+port = 54324
+
+# ============================================
+# Auth Settings
+# ============================================
+[auth]
+# The base URL of your website
+site_url = "http://mgrnz.local"
+# A list of *exact* URLs that auth providers are permitted to redirect to post authentication
+additional_redirect_urls = ["http://localhost:3000", "http://mgrnz.local"]
+# How long tokens are valid for, in seconds
+jwt_expiry = 3600
+# Allow/disallow new user signups to your project
+enable_signup = true
+
+[auth.email]
+# Allow/disallow new user signups via email to your project
+enable_signup = true
+# If enabled, a user will be required to confirm any email change on both the old, and new email addresses
+double_confirm_changes = true
+# If enabled, users need to confirm their email address before signing in
+enable_confirmations = false
+
+# ============================================
+# Edge Functions Configuration
+# ============================================
+
+# AI Intake Function
 [functions.ai-intake]
+# Disable JWT verification for webhook calls
 verify_jwt = false
+
+# AI Intake Decision Function
+[functions.ai-intake-decision]
+verify_jwt = false
+
+# WordPress Sync Function
+[functions.wp-sync]
+verify_jwt = false
+
+# MailerLite to Hugo Function
+[functions.ml-to-hugo]
+verify_jwt = false
+
+# ============================================
+# Storage Settings
+# ============================================
+[storage]
+# The maximum file size allowed (e.g. "5MB", "500KB")
+file_size_limit = "50MiB"

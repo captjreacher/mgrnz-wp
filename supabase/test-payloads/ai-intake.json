@@ -1,0 +1,12 @@
+{
+  "goal": "Automate customer onboarding process",
+  "workflow_description": "Currently manually sending welcome emails and setting up accounts. Takes 30 minutes per customer. Steps: 1) Receive signup form, 2) Create account in CRM, 3) Send welcome email, 4) Set up billing in Stripe, 5) Schedule onboarding call",
+  "tools": "Gmail, Google Sheets, Stripe, Calendly",
+  "pain_points": "Time-consuming, prone to errors, inconsistent customer experience, difficult to scale",
+  "email": "test@example.com",
+  "meta": {
+    "source": "test-script",
+    "timestamp": "2025-11-18T00:00:00Z",
+    "test_mode": true
+  }
+}

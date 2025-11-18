@@ -1,0 +1,261 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/mega-menu",
+  "title": "Advanced Mega Menu",
+  "description": "Our user-friendly 'Advanced Mega Menu Block' is the ultimate solution for effortlessly organizing your site's content into stylish and efficient multi-column layouts, enhancing navigation for your visitors.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "namespace": {
+      "type": "string",
+      "default": "cozy-block/mega-menu"
+    },
+    "menuDisplay": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "menuWidth": {
+      "type": "number",
+      "default": 200
+    },
+    "displayEvent": {
+      "type": "string",
+      "default": "hover"
+    },
+    "dropdownWidth": {
+      "type": "number",
+      "default": 980
+    },
+    "menuGap": {
+      "type": "number",
+      "default": 30
+    },
+    "contentGap": {
+      "type": "number",
+      "default": 40
+    },
+    "megaMenuContentGap": {
+      "type": "number",
+      "default": 20
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "viewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 14,
+          "vh": 25
+        },
+        "activeViewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 14,
+          "vh": 25
+        },
+        "path": "M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z",
+        "activePath": "",
+        "view": "default",
+        "layout": "fill",
+        "size": 10,
+        "gap": 0,
+        "rotate": 90,
+        "rotateActive": 0,
+        "opacity": 1,
+        "color": "#5566ca"
+      }
+    },
+    "template": {
+      "type": "object",
+      "default": {}
+    },
+    "megaMenuTemplates": {
+      "type": "object",
+      "default": {}
+    },
+    "responsive": {
+      "type": "object",
+      "default": {
+        "width": 768,
+        "slide": "left",
+        "padding": {
+          "top": 20,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "iconPosition": "right",
+        "iconTop": 15,
+        "gap": 10,
+        "bgColor": "#e2e2e2",
+        "openIcon": {
+          "viewBox": {
+            "vx": 0,
+            "vy": 0,
+            "vw": 22,
+            "vh": 20
+          },
+          "path": "M0.78125 3.51562H21.0938C21.5252 3.51562 21.875 3.16587 21.875 2.73438V0.78125C21.875 0.349756 21.5252 0 21.0938 0H0.78125C0.349756 0 0 0.349756 0 0.78125V2.73438C0 3.16587 0.349756 3.51562 0.78125 3.51562ZM0.78125 11.3281H21.0938C21.5252 11.3281 21.875 10.9784 21.875 10.5469V8.59375C21.875 8.16226 21.5252 7.8125 21.0938 7.8125H0.78125C0.349756 7.8125 0 8.16226 0 8.59375V10.5469C0 10.9784 0.349756 11.3281 0.78125 11.3281ZM0.78125 19.1406H21.0938C21.5252 19.1406 21.875 18.7909 21.875 18.3594V16.4062C21.875 15.9748 21.5252 15.625 21.0938 15.625H0.78125C0.349756 15.625 0 15.9748 0 16.4062V18.3594C0 18.7909 0.349756 19.1406 0.78125 19.1406Z",
+          "boxWidth": "30px",
+          "boxHeight": "30px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "100px",
+          "size": "14px",
+          "color": {
+            "icon": "#fff",
+            "iconHover": "",
+            "bg": "#0c50ff",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        },
+        "closeIcon": {
+          "viewBox": {
+            "vx": 0,
+            "vy": 0,
+            "vw": 12,
+            "vh": 12
+          },
+          "path": "M10.9449 9.66003C11.3049 10.02 11.3049 10.58 10.9449 10.94C10.7649 11.12 10.5449 11.2 10.3049 11.2C10.0649 11.2 9.84493 11.12 9.66493 10.94L6.00492 7.28004L2.34491 10.94C2.16491 11.12 1.94492 11.2 1.70492 11.2C1.46492 11.2 1.24493 11.12 1.06493 10.94C0.704932 10.58 0.704932 10.02 1.06493 9.66003L4.72492 6.00004L1.06493 2.34004C0.704932 1.98004 0.704932 1.42004 1.06493 1.06004C1.42493 0.700037 1.98491 0.700037 2.34491 1.06004L6.00492 4.72003L9.66493 1.06004C10.0249 0.700037 10.5849 0.700037 10.9449 1.06004C11.3049 1.42004 11.3049 1.98004 10.9449 2.34004L7.2849 6.00004L10.9449 9.66003Z",
+          "horizontalSpacing": 15,
+          "boxWidth": "30px",
+          "boxHeight": "30px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "",
+          "size": "14px",
+          "color": {
+            "icon": "#fff",
+            "iconHover": "",
+            "bg": "#0c50ff",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        }
+      }
+    },
+    "menuStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 16,
+          "right": 5,
+          "bottom": 16,
+          "left": 5
+        },
+        "itemPadding": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderRadius": 10,
+        "itemBorderRadius": 10,
+        "bgColor": "#fff",
+        "bgColorActive": "",
+        "colorActive": "",
+        "textHoverColor": "",
+        "itemHoverColor": ""
+      }
+    },
+    "submenuStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "minWidth": 150,
+        "itemSpacing": 10,
+        "boxShadow": {
+          "enabled": false,
+          "color": "#000",
+          "marginTop": 0,
+          "horizontal": 0,
+          "vertical": 0,
+          "blur": 10,
+          "spread": 0,
+          "position": ""
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderRadius": 10,
+        "bgColor": "#fff",
+        "textHoverColor": "",
+        "itemHoverColor": ""
+      }
+    },
+    "iconBoxStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "width": "20px",
+        "height": "20px",
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "borderRadius": 50,
+        "bgColor": "",
+        "bgColorHover": ""
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "Public Sans",
+        "fontSize": 16,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": "#000",
+        "bgColorActive": "",
+        "colorActive": "",
+        "fontWeight": 400
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js"
+  ],
+  "editorStyle": [
+    "file:./index.css"
+  ],
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--mega-menu--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

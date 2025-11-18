@@ -1,0 +1,56 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/counter",
+  "title": "Counter",
+  "description": "Highlight achievements and statistics with our 'Counter' block, a sleek number counter that elegantly displays numbers and stats to captivate your audience.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "endNumber": {
+      "type": "string",
+      "default": "10000"
+    },
+    "animationDuration": {
+      "type": "number",
+      "default": 1000
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "center"
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "fontFamily": "Public Sans",
+        "fontSize": "64px",
+        "color": "#5566CA",
+        "fontWeight": 700
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--counter--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

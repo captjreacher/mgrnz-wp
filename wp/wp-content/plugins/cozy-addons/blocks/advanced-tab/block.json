@@ -1,0 +1,229 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/advanced-tab",
+  "title": "Advanced Tabs",
+  "description": "Elevate your site’s navigation with the Advanced Tabs block — a sleek, interactive tabbed layout that organizes content beautifully and enhances user engagement.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "tabAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "columnGap": {
+      "type": "number",
+      "default": 0
+    },
+    "rowGap": {
+      "type": "number",
+      "default": 10
+    },
+    "iconLayout": {
+      "type": "string",
+      "default": "fill"
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 16
+    },
+    "iconSpacing": {
+      "type": "number",
+      "default": 10
+    },
+    "enableTabAfter": {
+      "type": "boolean",
+      "default": true
+    },
+    "enableTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "title": {
+      "type": "string",
+      "default": "Advanced Tabs"
+    },
+    "titleStyles": {
+      "type": "object",
+      "default": {
+        "gap": "0px",
+        "flexWrap": true
+      }
+    },
+    "innerBlocks": {
+      "type": "array",
+      "default": []
+    },
+    "parentAttributes": {
+      "type": "object",
+      "default": {}
+    },
+    "containerStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "border": {
+          "width": {
+            "top": 1,
+            "right": 1,
+            "bottom": 1,
+            "left": 1
+          },
+          "type": "none",
+          "color": "#000"
+        },
+        "borderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "bgColor": ""
+      }
+    },
+    "separatorStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "border": {
+          "width": {
+            "top": 0,
+            "right": 0,
+            "bottom": 1,
+            "left": 0
+          },
+          "type": "solid",
+          "color": "#e2e2e2"
+        }
+      }
+    },
+    "tabStyles": {
+      "type": "object",
+      "default": {
+        "width": 60,
+        "padding": {
+          "top": 5,
+          "right": 10,
+          "bottom": 5,
+          "left": 10
+        },
+        "border": {
+          "width": {
+            "top": 1,
+            "right": 1,
+            "bottom": 1,
+            "left": 1
+          },
+          "type": "none",
+          "color": "",
+          "colorActive": "#E6E8F4"
+        },
+        "borderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "bgColor": "#5566ca",
+        "bgColorActive": "#EFEAF7"
+      }
+    },
+    "contentStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 10,
+          "right": 10,
+          "bottom": 10,
+          "left": 10
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": {
+            "top": 1,
+            "right": 1,
+            "bottom": 1,
+            "left": 1
+          },
+          "type": "none",
+          "color": "#000"
+        },
+        "borderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "bgColor": "#EFEAF7"
+      }
+    },
+    "titleTypography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "Public Sans",
+        "fontSize": 16,
+        "color": "#000",
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "Public Sans",
+        "fontSize": 16,
+        "color": "#fff",
+        "colorActive": "#5566ca",
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--advanced-tab--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

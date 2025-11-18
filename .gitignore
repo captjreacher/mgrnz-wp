@@ -1,21 +1,96 @@
-﻿# Node/Next
-node_modules/
-.next/
-dist/
-out/
-coverage/
-*.log
+﻿# WordPress Core
+wp/wp-admin/
+wp/wp-includes/
+wp/*.php
+!wp/wp-config.php
+!wp/wp-config-sample.php
 
-# Env
-.env*
+# WordPress Configuration
+wp-config.php
+wp-config-local.php
+
+# Environment Files
+.env
 .env.local
-.env.*.local
+.env.production
 
-# Hugo build/cache
-public/
-resources/
+# Uploads and Media
+wp/wp-content/uploads/
+wp-content/uploads/
 
-# OS/Editor
-.DS_Store
-Thumbs.db
+# Cache
+wp/wp-content/cache/
+wp-content/cache/
+wp/wp-content/upgrade/
+wp-content/upgrade/
+*.cache
+
+# Backups and Logs
+backups/
+logs/
+temp/
+*.log
+*.sql
+*.sql.gz
+
+# Node Modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Composer
+vendor/
+composer.lock
+
+# IDE and Editors
 .vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS Files
+Thumbs.db
+desktop.ini
+.DS_Store
+._*
+
+# SSH Keys and Credentials
+*.pem
+*.key
+*-key
+*-key.pub
+github-actions-key*
+.ssh/
+*.ppk
+
+# Deployment
+.deploy/
+deploy.log
+
+# Local by Flywheel
+local-*.sql
+local-backup-*.sql
+
+# Temporary Files
+*.tmp
+*.temp
+~*
+
+# WordPress Specific
+.htaccess
+sitemap.xml
+sitemap.xml.gz
+wp-content/advanced-cache.php
+wp-content/backup-db/
+wp-content/backups/
+wp-content/blogs.dir/
+wp-content/cache/
+wp-content/upgrade/
+wp-content/uploads/
+wp-content/wp-cache-config.php
+wp-content/plugins/hello.php
+
+# WP-CLI
+wp-cli.local.yml

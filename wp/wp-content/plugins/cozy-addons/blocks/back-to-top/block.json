@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/back-to-top",
+  "title": "Back to Top",
+  "description": "Improve user experience with a convenient 'Back to Top' button, enabling effortless return to the page's top for smooth and easy navigation.",
+  "category": "cozy-block",
+  "supports": {
+    "html": false
+  },
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "position": {
+      "type": "object",
+      "default": {
+        "right": 25,
+        "bottom": 25
+      }
+    },
+    "styles": {
+      "type": "object",
+      "default": {
+        "boxWidth": 50,
+        "boxHeight": 50,
+        "borderRadius": 50,
+        "iconSize": 18,
+        "iconColor": "#fff",
+        "iconColorHover": "#fff",
+        "bgColor": "#5566CA",
+        "bgColorHover": "#5566CA"
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--back-to-top--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

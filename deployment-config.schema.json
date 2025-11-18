@@ -1,0 +1,558 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://mgrnz.com/schemas/deployment-config.json",
+  "title": "MGRNZ Deployment Configuration",
+  "description": "Configuration schema for MGRNZ WordPress deployment scripts",
+  "type": "object",
+  "required": ["version", "environments", "local", "exclusions", "transfer"],
+  "properties": {
+    "$schema": {
+      "type": "string",
+      "description": "JSON schema reference"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Configuration file version (semver)"
+    },
+    "description": {
+      "type": "string",
+      "description": "Brief description of the configuration"
+    },
+    "environments": {
+      "type": "object",
+      "description": "Environment-specific configurations",
+      "patternProperties": {
+        "^[a-z]+$": {
+          "$ref": "#/definitions/environment"
+        }
+      },
+      "minProperties": 1
+    },
+    "local": {
+      "$ref": "#/definitions/localConfig"
+    },
+    "exclusions": {
+      "$ref": "#/definitions/exclusions"
+    },
+    "transfer": {
+      "$ref": "#/definitions/transfer"
+    },
+    "safety": {
+      "$ref": "#/definitions/safety"
+    },
+    "logging": {
+      "$ref": "#/definitions/logging"
+    },
+    "notifications": {
+      "$ref": "#/definitions/notifications"
+    },
+    "database": {
+      "$ref": "#/definitions/database"
+    },
+    "performance": {
+      "$ref": "#/definitions/performance"
+    },
+    "hooks": {
+      "$ref": "#/definitions/hooks"
+    }
+  },
+  "definitions": {
+    "environment": {
+      "type": "object",
+      "required": ["name", "enabled", "url", "paths"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "description": "Environment name"
+        },
+        "description": {
+          "type": "string",
+          "description": "Environment description"
+        },
+        "enabled": {
+          "type": "boolean",
+          "description": "Whether this environment is enabled"
+        },
+        "url": {
+          "type": "string",
+          "format": "uri",
+          "description": "Environment URL"
+        },
+        "paths": {
+          "type": "object",
+          "required": ["remotePath"],
+          "properties": {
+            "remotePath": {
+              "type": "string",
+              "description": "Root path on remote server"
+            },
+            "wpContent": {
+              "type": "string",
+              "description": "WordPress content directory"
+            },
+            "themes": {
+              "type": "string",
+              "description": "Themes directory"
+            },
+            "plugins": {
+              "type": "string",
+              "description": "Plugins directory"
+            },
+            "muPlugins": {
+              "type": "string",
+              "description": "Must-use plugins directory"
+            },
+            "uploads": {
+              "type": "string",
+              "description": "Uploads directory"
+            },
+            "backups": {
+              "type": "string",
+              "description": "Backup directory"
+            }
+          }
+        },
+        "sync": {
+          "type": "object",
+          "properties": {
+            "includeUploads": {
+              "type": "boolean",
+              "description": "Include uploads directory in sync"
+            },
+            "changedFilesOnly": {
+              "type": "boolean",
+              "description": "Only sync modified files"
+            },
+            "preserveTimestamps": {
+              "type": "boolean",
+              "description": "Preserve file modification times"
+            },
+            "followSymlinks": {
+              "type": "boolean",
+              "description": "Follow symbolic links"
+            }
+          }
+        },
+        "backup": {
+          "$ref": "#/definitions/backupConfig"
+        },
+        "verification": {
+          "type": "object",
+          "properties": {
+            "testConnectionBeforeDeploy": {
+              "type": "boolean"
+            },
+            "verifySiteAccessibility": {
+              "type": "boolean"
+            },
+            "checkDiskSpace": {
+              "type": "boolean"
+            },
+            "requireConfirmation": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "localConfig": {
+      "type": "object",
+      "required": ["paths"],
+      "properties": {
+        "paths": {
+          "type": "object",
+          "required": ["root"],
+          "properties": {
+            "root": {
+              "type": "string"
+            },
+            "wpPath": {
+              "type": "string"
+            },
+            "wpContent": {
+              "type": "string"
+            },
+            "backups": {
+              "type": "string"
+            },
+            "logs": {
+              "type": "string"
+            },
+            "scripts": {
+              "type": "string"
+            }
+          }
+        },
+        "backup": {
+          "$ref": "#/definitions/backupConfig"
+        }
+      }
+    },
+    "backupConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "createBeforeDeploy": {
+          "type": "boolean"
+        },
+        "createBeforePull": {
+          "type": "boolean"
+        },
+        "retentionDays": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 365
+        },
+        "maxBackups": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100
+        },
+        "compressionLevel": {
+          "type": "string",
+          "enum": ["fast", "normal", "best"]
+        }
+      }
+    },
+    "exclusions": {
+      "type": "object",
+      "properties": {
+        "global": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "wpContent": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "cache": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "uploads": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "themes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "plugins": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "transfer": {
+      "type": "object",
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "enum": ["scp", "sftp", "rsync"]
+        },
+        "compression": {
+          "type": "boolean"
+        },
+        "retryAttempts": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 10
+        },
+        "retryDelaySeconds": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "timeout": {
+          "type": "integer",
+          "minimum": 10,
+          "maximum": 3600
+        },
+        "batchSize": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "parallelTransfers": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 10
+        },
+        "preservePermissions": {
+          "type": "boolean"
+        },
+        "verboseLogging": {
+          "type": "boolean"
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "properties": {
+        "requireConfirmation": {
+          "type": "boolean"
+        },
+        "dryRunByDefault": {
+          "type": "boolean"
+        },
+        "backupBeforeDeploy": {
+          "type": "boolean"
+        },
+        "verifyBeforeDeploy": {
+          "type": "boolean"
+        },
+        "maxFileSizeMB": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "maxTotalSizeMB": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "allowedFileExtensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^\\."
+          }
+        },
+        "blockedFileExtensions": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^\\."
+          }
+        }
+      }
+    },
+    "logging": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "level": {
+          "type": "string",
+          "enum": ["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]
+        },
+        "logDirectory": {
+          "type": "string"
+        },
+        "logFilePrefix": {
+          "type": "string"
+        },
+        "logRotation": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "maxSizeMB": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "maxFiles": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "includeTimestamps": {
+          "type": "boolean"
+        },
+        "includeStackTraces": {
+          "type": "boolean"
+        },
+        "logTransfers": {
+          "type": "boolean"
+        }
+      }
+    },
+    "notifications": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "onSuccess": {
+          "type": "boolean"
+        },
+        "onFailure": {
+          "type": "boolean"
+        },
+        "onWarning": {
+          "type": "boolean"
+        },
+        "methods": {
+          "type": "object",
+          "properties": {
+            "email": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "to": {
+                  "type": "string",
+                  "format": "email"
+                },
+                "from": {
+                  "type": "string",
+                  "format": "email"
+                }
+              }
+            },
+            "slack": {
+              "type": "object",
+              "properties": {
+                "enabled": {
+                  "type": "boolean"
+                },
+                "webhookUrl": {
+                  "type": "string",
+                  "format": "uri"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "database": {
+      "type": "object",
+      "properties": {
+        "sync": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "backupBeforeImport": {
+              "type": "boolean"
+            },
+            "searchReplace": {
+              "type": "boolean"
+            },
+            "resetLocalAdminPassword": {
+              "type": "boolean"
+            }
+          }
+        },
+        "searchReplace": {
+          "type": "object",
+          "patternProperties": {
+            "^[a-z]+$": {
+              "type": "object",
+              "required": ["from", "to"],
+              "properties": {
+                "from": {
+                  "type": "string"
+                },
+                "to": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "backup": {
+          "$ref": "#/definitions/backupConfig"
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "properties": {
+        "compression": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "level": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 9
+            },
+            "algorithm": {
+              "type": "string",
+              "enum": ["gzip", "bzip2", "xz"]
+            }
+          }
+        },
+        "caching": {
+          "type": "object",
+          "properties": {
+            "enabled": {
+              "type": "boolean"
+            },
+            "cacheDuration": {
+              "type": "integer",
+              "minimum": 0
+            }
+          }
+        },
+        "optimization": {
+          "type": "object",
+          "properties": {
+            "skipUnchangedFiles": {
+              "type": "boolean"
+            },
+            "useIncrementalSync": {
+              "type": "boolean"
+            },
+            "calculateChecksums": {
+              "type": "boolean"
+            }
+          }
+        }
+      }
+    },
+    "hooks": {
+      "type": "object",
+      "properties": {
+        "preDeployment": {
+          "$ref": "#/definitions/hookConfig"
+        },
+        "postDeployment": {
+          "$ref": "#/definitions/hookConfig"
+        },
+        "prePull": {
+          "$ref": "#/definitions/hookConfig"
+        },
+        "postPull": {
+          "$ref": "#/definitions/hookConfig"
+        }
+      }
+    },
+    "hookConfig": {
+      "type": "object",
+      "properties": {
+        "enabled": {
+          "type": "boolean"
+        },
+        "scripts": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

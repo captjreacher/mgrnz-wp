@@ -1,0 +1,519 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/featured-post",
+  "title": "Featured Post (Pro)",
+  "description": "'Featured Post' block allows you to handpick from your latest posts and showcase them in versatile display options such as grid, list, and carousel, enhancing your site's visual appeal and user engagement.",
+  "category": "cozy-block/post-magazine",
+  "keywords": [
+    "magazine",
+    "post"
+  ],
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalSkipSerialization": [
+        "textDecoration"
+      ],
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "display": {
+      "type": "string",
+      "default": "grid"
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "typography": {
+          "fontSize": "14px"
+        }
+      }
+    },
+    "enableOptions": {
+      "type": "object",
+      "default": {
+        "heading": true,
+        "subHeading": true,
+        "postImage": true,
+        "imgLinkPost": true,
+        "imgOpenNewTab": false,
+        "titleLinkPost": true,
+        "titleOpenNewTab": false,
+        "postCategories": true,
+        "linkCat": true,
+        "catOpenNewTab": false,
+        "postContent": true,
+        "postAuthor": true,
+        "postComments": true,
+        "postDate": true,
+        "linkPostMeta": true,
+        "postMetaOpenNewTab": false,
+        "postExcerpt": 20,
+        "readMore": true,
+        "readMoreNewTab": false
+      }
+    },
+    "headingLabel": {
+      "type": "string",
+      "default": "Featured"
+    },
+    "headingTag": {
+      "type": "string",
+      "default": "h2"
+    },
+    "headingGap": {
+      "type": "string",
+      "default": "16px"
+    },
+    "headerBox": {
+      "type": "object",
+      "default": {
+        "tabAlign": "space-between",
+        "padding": {
+          "top": "6px",
+          "right": "6px",
+          "bottom": "6px",
+          "left": "6px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "12px"
+        },
+        "border": {
+          "top": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "right": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "bottom": {
+            "width": "1px",
+            "style": "solid",
+            "color": "#e2e2e2"
+          },
+          "left": {
+            "width": "",
+            "style": "",
+            "color": ""
+          }
+        },
+        "radius": "0px",
+        "color": {
+          "bg": ""
+        }
+      }
+    },
+    "headingStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "clipPath": "",
+        "font": {
+          "size": "18px",
+          "weight": "600",
+          "family": "Public Sans"
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "bg": "",
+          "text": ""
+        }
+      }
+    },
+    "subHeading": {
+      "type": "object",
+      "default": {
+        "label": "View All",
+        "tag": "h3",
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "0px",
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": "Public Sans"
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "textHover": "",
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "selectedPosts": {
+      "type": "array",
+      "default": []
+    },
+    "postBoxStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "0px",
+        "color": {
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        },
+        "shadow": {
+          "enabled": false,
+          "horizontal": 0,
+          "vertical": 0,
+          "blur": 0,
+          "spread": 0,
+          "color": "",
+          "position": ""
+        },
+        "shadowHover": {
+          "enabled": false,
+          "horizontal": 0,
+          "vertical": 0,
+          "blur": 0,
+          "spread": 0,
+          "color": "",
+          "position": ""
+        },
+        "hoverEffect": true
+      }
+    },
+    "postOptions": {
+      "type": "object",
+      "default": {
+        "column": 3,
+        "gap": "16px",
+        "masonry": false,
+        "rowReverse": false,
+        "imageOverlay": false,
+        "textAlign": "left",
+        "image": {
+          "margin": {
+            "top": "0px",
+            "bottom": "10px"
+          },
+          "position": "left",
+          "width": "",
+          "height": "200px",
+          "radius": "0px",
+          "hoverEffect": true
+        },
+        "content": {
+          "gap": "10px",
+          "padding": {
+            "top": "0px",
+            "right": "0px",
+            "bottom": "0px",
+            "left": "0px"
+          }
+        },
+        "title": {
+          "className": "",
+          "margin": {
+            "top": "4px",
+            "bottom": "6px"
+          },
+          "font": {
+            "size": "18px",
+            "weight": "600",
+            "family": "Public Sans"
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
+          "color": {
+            "text": "#090b10",
+            "textHover": "#f90"
+          }
+        }
+      }
+    },
+    "postCategories": {
+      "type": "object",
+      "default": {
+        "gap": "12px",
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "margin": {
+          "top": "6px",
+          "bottom": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "0px",
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": "Public Sans"
+        },
+        "hoverEffect": true,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "textHover": "",
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "postMeta": {
+      "type": "object",
+      "default": {
+        "enableIcon": true,
+        "margin": {
+          "top": "8px",
+          "bottom": "8px"
+        },
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": "Public Sans"
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "#5566ca",
+          "textHover": "#f90"
+        }
+      }
+    },
+    "readMore": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "0px",
+          "right": "0px",
+          "bottom": "0px",
+          "left": "0px"
+        },
+        "margin": {
+          "top": "4px",
+          "bottom": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "0px",
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": "Public Sans"
+        },
+        "textAlign": "right",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "textHover": "",
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "sliderOptions": {
+      "type": "object",
+      "default": {
+        "effect": "slide",
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "pauseOnMouseEnter": true,
+          "reverseDirection": false,
+          "delay": 2500
+        },
+        "centeredSlides": false,
+        "slidesPerView": 3,
+        "spaceBetween": 26,
+        "speed": 1500
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "width": "10px",
+        "height": "10px",
+        "radius": "10px",
+        "active": {
+          "width": "10px",
+          "height": "10px",
+          "radius": "10px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": "1px"
+        },
+        "align": "center",
+        "bottom": 0,
+        "left": "0px",
+        "right": "0px",
+        "gap": "4px",
+        "color": {
+          "default": "#6a6a6a",
+          "defaultHover": "",
+          "active": "#f90",
+          "activeHover": ""
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "hoverShow": true,
+        "size": "15px",
+        "boxWidth": "35px",
+        "boxHeight": "35px",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "color": {
+          "borderHover": "",
+          "bg": "#007cba",
+          "bgHover": "#f90",
+          "icon": "#fff",
+          "iconHover": ""
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--featured-post--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

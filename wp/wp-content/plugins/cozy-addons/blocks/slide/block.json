@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/slide",
+  "version": "1.0.0",
+  "title": "Slide",
+  "description": "Support block for the slider block.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "focalPoint": {
+      "type": "object",
+      "default": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
+    "style": {
+      "type": "object",
+      "default": {
+        "background": {
+          "backgroundImage": {
+            "id": "",
+            "source": "",
+            "title": "",
+            "url": ""
+          }
+        }
+      }
+    }
+  },
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "background": {
+      "backgroundImage": true,
+      "__experimentalDefaultControls": {
+        "backgroundImage": true
+      }
+    }
+  },
+  "parent": [
+    "cozy-block/slider"
+  ],
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}

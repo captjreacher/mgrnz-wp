@@ -1,0 +1,1110 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "custom": true,
+      "customGradient": true,
+      "customDuotone": true,
+      "link": true,
+      "palette": [
+        {
+          "slug": "primary",
+          "color": "#4A3AFD",
+          "name": "Primary"
+        },
+        {
+          "slug": "secondary",
+          "color": "#4938FE",
+          "name": "Secondary"
+        },
+        {
+          "slug": "primary-shade-one",
+          "color": "#6F79FF",
+          "name": "Primary Shade 1"
+        },
+        {
+          "slug": "primary-shade-2",
+          "color": "#1A1452",
+          "name": "Primary Shade 2"
+        },
+        {
+          "slug": "secondary-shade-1",
+          "color": "#3C0AC6",
+          "name": "Secodnary Shade 1"
+        },
+        {
+          "slug": "secondary-shade-2",
+          "color": "#3B038F",
+          "name": "Secodnary Shade 2"
+        },
+        {
+          "slug": "light-color",
+          "color": "#FFFFFE",
+          "name": "Light Color"
+        },
+        {
+          "slug": "black-color",
+          "color": "#000000",
+          "name": "Black Color"
+        },
+        {
+          "slug": "dark-shade",
+          "color": "#02010C",
+          "name": "Dark Shade"
+        },
+
+        {
+          "slug": "heading-color",
+          "color": "#FFFFFD",
+          "name": "Heading Color"
+        },
+        {
+          "slug": "background",
+          "color": "##292373",
+          "name": "Background"
+        },
+        {
+          "slug": "background-alt",
+          "color": "##292373",
+          "name": "Background Alt"
+        },
+        {
+          "slug": "foreground",
+          "color": "#F4F6F8",
+          "name": "Foreground"
+        },
+        {
+          "slug": "foreground-alt",
+          "color": "#E3E7EA",
+          "name": "Foreground Alternative"
+        },
+        {
+          "slug": "meta-color",
+          "color": "#B9B5BD",
+          "name": "Meta Color"
+        },
+        {
+          "slug": "border-color",
+          "color": "#30303D",
+          "name": "Border Color"
+        },
+        {
+          "slug": "sticky-bg-color",
+          "color": "##292373",
+          "name": "Sticky Background Color"
+        },
+        {
+          "color": "#ffffff00",
+          "name": "Transparent",
+          "slug": "transparent"
+        }
+      ],
+      "duotone": [
+        {
+          "colors": ["#4A3AFD", "#ffffff"],
+          "slug": "primary-secondary",
+          "name": "Duo 1"
+        },
+        {
+          "colors": ["#4938FE", "#4A3AFD"],
+          "slug": "secondary-primary",
+          "name": "Duo 2"
+        },
+        {
+          "colors": ["#4A3AFD", "#000000"],
+          "slug": "primary-dark",
+          "name": "Duo 3"
+        },
+        {
+          "colors": ["##292373", "#4A3AFD"],
+          "slug": "dark-primary",
+          "name": "Duo 4"
+        },
+        {
+          "colors": ["#4A3AFD", "#ffffff"],
+          "slug": "primary-light",
+          "name": "Duo 5"
+        },
+        {
+          "colors": ["#ffffff", "#4A3AFD"],
+          "slug": "light-primary",
+          "name": "Duo 6"
+        },
+        {
+          "colors": ["#4938FE", "#000000"],
+          "slug": "secondary-dark",
+          "name": "Duo 7"
+        },
+        {
+          "colors": ["#000000", "#4938FE"],
+          "slug": "dark-secondary",
+          "name": "Duo 8"
+        },
+        {
+          "colors": ["#4938FE", "#ffffff"],
+          "slug": "secondary-light",
+          "name": "Duo 9"
+        },
+        {
+          "colors": ["#ffffff", "#4938FE"],
+          "slug": "light-secondary",
+          "name": "Duo 10"
+        }
+      ],
+      "gradients": [
+        {
+          "gradient": "radial-gradient(25.38% 41.96% at 3.49% 45.05%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 01",
+          "slug": "gradient-one"
+        },
+        {
+          "gradient": "radial-gradient(33.6% 47.05% at 96.71% 45.31%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 02",
+          "slug": "gradient-two"
+        },
+        {
+          "gradient": "radial-gradient(30% 50% at 100% 0%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 44%, var(--wp--preset--color--primary-shade-2) 89%, var(--wp--preset--color--dark-shade) 130%)",
+          "name": "Gradient 03",
+          "slug": "gradient-three"
+        },
+        {
+          "gradient": "radial-gradient(39.83% 51.22% at 7.05% 13.98%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 04",
+          "slug": "gradient-four"
+        },
+        {
+          "gradient": "radial-gradient(34.34% 24.21% at 50% -11%, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--primary-shade-one) 20%, var(--wp--preset--color--primary-shade-2) 22%, var(--wp--preset--color--black-color) 100%)",
+          "name": "Gradient 05",
+          "slug": "gradient-five"
+        },
+        {
+          "gradient": "radial-gradient(35.79% 50.26% at 50% 95.15%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 06",
+          "slug": "gradient-six"
+        },
+        {
+          "gradient": "radial-gradient(38.18% 60.36% at 6.37% 95.31%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 07",
+          "slug": "gradient-seven"
+        },
+        {
+          "gradient": "radial-gradient(37.77% 59.72% at 93.66% 90.51%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 08",
+          "slug": "gradient-eight"
+        },
+        {
+          "gradient": "radial-gradient(45.1% 63.32% at 50% 125%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 09",
+          "slug": "gradient-nine"
+        },
+        {
+          "gradient": "radial-gradient(38.18% 60.36% at 6.37% 95.31%, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--secondary-shade-1) 22%, var(--wp--preset--color--secondary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 10",
+          "slug": "gradient-ten"
+        },
+        {
+          "gradient": "radial-gradient(30.1% 47.59% at 95.55% 7.35%, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--secondary-shade-1) 22%, var(--wp--preset--color--secondary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 11",
+          "slug": "gradient-eleven"
+        },
+        {
+          "gradient": "linear-gradient(90deg, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary) 100%)",
+          "name": "Gradient 12",
+          "slug": "gradient-twelve"
+        },
+        {
+          "gradient": "linear-gradient(90deg, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--primary) 100%)",
+          "name": "Gradient 13",
+          "slug": "gradient-thirteen"
+        },
+        {
+          "gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 14",
+          "slug": "gradient-fourteen"
+        },
+        {
+          "gradient": "linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, var(--wp--preset--color--primary) 100%)",
+          "name": "Gradient 15",
+          "slug": "gradient-fifteen"
+        },
+        {
+          "gradient": "radial-gradient(45.93% 45.93% at 71.16% -2.38%, var(--wp--preset--color--primary) 0%, rgba(255, 255, 255, 0.4) 100%)",
+          "name": "Gradient 16",
+          "slug": "gradient-sixteen"
+        },
+        {
+          "gradient": "radial-gradient(64.28% 64.28% at 50% 81.63%, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--primary-shade-one) 100%)",
+          "name": "Gradient 17",
+          "slug": "gradient-seventeen"
+        },
+        {
+          "gradient": "radial-gradient(45% 45% at 50% 89.1%, var(--wp--preset--color--secondary) 0%, var(--wp--preset--color--primary-shade-one) 100%)",
+          "name": "Gradient 18",
+          "slug": "gradient-eighteen"
+        },
+        {
+          "gradient": "radial-gradient(64.28% 64.28% at 50% 81.63%, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary-shade-1) 100%)",
+          "name": "Gradient 19",
+          "slug": "gradient-nineteen"
+        },
+        {
+          "gradient": "radial-gradient(45% 45% at 50% 89.1%, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--secondary-shade-1) 100%)",
+          "name": "Gradient 20",
+          "slug": "gradient-twenty"
+        },
+        {
+          "gradient": "radial-gradient(30.75% 44.49% at 0% 0%, var(--wp--preset--color--primary-shade-one) 19%, var(--wp--preset--color--primary) 41.83%, rgba(0,0,0,0) 100%), radial-gradient(35.43% 53.33% at 89.62% 84.85%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 21",
+          "slug": "gradient-twentyone"
+        },
+        {
+          "gradient": "radial-gradient(25.82% 39.61% at 100% 0%, var(--wp--preset--color--primary-shade-one) 19%, var(--wp--preset--color--primary) 41.83%, rgba(0, 0, 0, 0) 100%), radial-gradient(41.2% 65.13% at 9.38% 87.14%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 22",
+          "slug": "gradient-twentytwo"
+        },
+        {
+          "gradient": "radial-gradient(30.86% 47.99% at 105.55% 46.12%, var(--wp--preset--color--primary) 0, var(--wp--preset--color--primary-shade-one) 15%, rgba(0, 0, 0, 0) 100%) , radial-gradient(41.2% 65.13% at 9.38% 87.14%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 23",
+          "slug": "gradient-twentythree"
+        },
+        {
+          "gradient": "radial-gradient(31.54% 48.32% at -4.42% 50%, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--primary-shade-one) 15%, rgba(0, 0, 0, 0) 100%), radial-gradient(41.4% 65.45% at 86.92% 82.5%, var(--wp--preset--color--primary-shade-one) 0%, var(--wp--preset--color--primary) 22%, var(--wp--preset--color--primary-shade-2) 44%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Gradient 24",
+          "slug": "gradient-twentyfour"
+        },
+        {
+          "gradient": "radial-gradient(75% 46% at 50% 60%, var(--wp--preset--color--primary-shade-one), var(--wp--preset--color--primary) 30%, var(--wp--preset--color--black-color) 70%)",
+          "name": "Center Gradient",
+          "slug": "center-gradient"
+        },
+        {
+          "gradient": "radial-gradient(35.48% 50.52% at 50% 105.04%, var(--wp--preset--color--primary-shade-2) 0%, var(--wp--preset--color--black-color) 100%)",
+          "name": "Center Bottom Gradient",
+          "slug": "center-bottom-gradient"
+        },
+        {
+          "gradient": "radial-gradient(30% 14% at 50% 0%, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Center top Gradient",
+          "slug": "center-top-gradient"
+        },
+        {
+          "gradient": "radial-gradient(48.39% 66.67% at 50% 0%, var(--wp--preset--color--primary) 0%, var(--wp--preset--color--dark-shade) 100%)",
+          "name": "Center top Large Gradient",
+          "slug": "center-top-large-gradient"
+        }
+      ]
+    },
+    "custom": {
+      "typography": {
+        "line-height": {
+          "tiny": 1.15,
+          "small": 1.2,
+          "medium": 1.4,
+          "normal": 1.6
+        }
+      }
+    },
+    "spacing": {
+      "blockGap": true,
+      "margin": true,
+      "padding": true,
+      "units": ["px", "em", "rem", "vh", "vw", "%"]
+    },
+    "border": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true
+    },
+    "layout": {
+      "contentSize": "1180px",
+      "wideSize": "1960px"
+    },
+    "typography": {
+      "dropCap": false,
+      "fluid": true,
+      "lineHeight": true,
+      "defaultFontSizes": false,
+      "customFontSize": true,
+      "fontSizes": [
+        {
+          "slug": "tiny",
+          "size": "12px",
+          "name": "Tiny"
+        },
+        {
+          "slug": "x-small",
+          "size": "14px",
+          "name": "Extra Small"
+        },
+        {
+          "slug": "small",
+          "size": "16px",
+          "name": "Small"
+        },
+        {
+          "slug": "normal",
+          "size": "18px",
+          "name": "Normal"
+        },
+        {
+          "slug": "medium",
+          "size": "20px",
+          "name": "Medium"
+        },
+        {
+          "slug": "big",
+          "size": "24px",
+          "name": "Large"
+        },
+        {
+          "slug": "large",
+          "size": "30px",
+          "name": "Extra Large"
+        },
+        {
+          "slug": "x-large",
+          "size": "40px",
+          "name": "2X Large"
+        },
+        {
+          "slug": "xx-large",
+          "size": "48px",
+          "name": "3X Large"
+        },
+        {
+          "slug": "xxx-large",
+          "size": "54px",
+          "name": "Jumbo"
+        },
+        {
+          "slug": "mega",
+          "size": "60px",
+          "name": "Mega"
+        },
+        {
+          "slug": "giga",
+          "size": "64px",
+          "name": "Giga"
+        }
+      ],
+      "fontFamilies": [
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Allura",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/allura/Allura-Regular.woff2"]
+            }
+          ],
+          "fontFamily": "\"Allura\", sans-serif",
+          "name": "Allura",
+          "slug": "allura"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Archivo",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/archivo/Archivo-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Archivo\", sans-serif",
+          "name": "Archivo",
+          "slug": "archivo"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Barlow",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "200",
+              "src": ["file:./assets/fonts/barlow/Barlow-ExtraLight.woff2"]
+            },
+            {
+              "fontFamily": "Barlow",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/barlow/Barlow-Regular.woff2"]
+            },
+            {
+              "fontFamily": "Barlow",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "500",
+              "src": ["file:./assets/fonts/barlow/Barlow-Medium.woff2"]
+            },
+            {
+              "fontFamily": "Barlow",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "600",
+              "src": ["file:./assets/fonts/barlow/Barlow-SemiBold.woff2"]
+            },
+            {
+              "fontFamily": "Barlow",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": ["file:./assets/fonts/barlow/Barlow-Bold.woff2"]
+            }
+          ],
+          "fontFamily": "\"Barlow\", sans-serif",
+          "name": "Barlow",
+          "slug": "barlow"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Big Shoulders",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/big_shoulders/BigShoulders-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Big Shoulders\", sans-serif",
+          "name": "Big Shoulders",
+          "slug": "big-shoulders"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Bricolage Grotesque",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/bricolage_grotesque/BricolageGrotesque-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Bricolage Grotesque\", sans-serif",
+          "name": "Bricolage Grotesque",
+          "slug": "bricolage-grotesque"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "DM Serif Display",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/dm_serif_display/DMSerifDisplay-Regular.woff2"]
+            }
+          ],
+          "fontFamily": "\"DM Serif Display\", sans-serif",
+          "name": "DM Serif Display",
+          "slug": "dm-serif-display"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Faculty Glyphic",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/faculty_glyphic/FacultyGlyphic-Regular.woff2"]
+            }
+          ],
+          "fontFamily": "\"Faculty Glyphic\", sans-serif",
+          "name": "Faculty Glyphic",
+          "slug": "faculty-glyphic"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Funnel Display",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/funnel_display/FunnelDisplay-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Funnel Display\", sans-serif",
+          "name": "Funnel Display",
+          "slug": "funnel-display"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Geist",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/geist/Geist-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Geist\", sans-serif",
+          "name": "Geist",
+          "slug": "geist"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Host Grotesk",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/host_grotesk/HostGrotesk-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Host Grotesk\", sans-serif",
+          "name": "Host Grotesk",
+          "slug": "host-grotesk"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Hubot Sans",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/hubot_sans/HubotSans-VariableFont_wght.ttf"]
+            }
+          ],
+          "fontFamily": "\"Hubot Sans\", sans-serif",
+          "name": "Hubot Sans",
+          "slug": "hubot-sans"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "IBM Plex Serif",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300",
+              "src": ["file:./assets/fonts/ibm_plex_serif/IBMPlexSerif-Light.woff2"]
+            },
+            {
+              "fontFamily": "IBM Plex Serif",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/ibm_plex_serif/IBMPlexSerif-Regular.woff2"]
+            },
+            {
+              "fontFamily": "IBM Plex Serif",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "500",
+              "src": ["file:./assets/fonts/ibm_plex_serif/IBMPlexSerif-Medium.woff2"]
+            },
+            {
+              "fontFamily": "IBM Plex Serif",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": ["file:./assets/fonts/ibm_plex_serif/IBMPlexSerif-Bold.woff2"]
+            }
+          ],
+          "fontFamily": "\"IBM Plex Serif\", sans-serif",
+          "name": "IBM Plex Serif",
+          "slug": "ibm-plex-serif"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Inter",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700",
+              "src": ["file:./assets/fonts/inter/Inter-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Inter\", sans-serif",
+          "name": "Inter",
+          "slug": "inter"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Libre Franklin",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700",
+              "src": ["file:./assets/fonts/libre_franklin/LibreFranklin-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Libre Franklin\", sans-serif",
+          "name": "Libre Franklin",
+          "slug": "libre-franklin"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Manrope",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/manrope/Manrope-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Manrope\", sans-serif",
+          "name": "Manrope",
+          "slug": "manrope"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Michroma",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/michroma/Michroma-Regular.woff2"]
+            }
+          ],
+          "fontFamily": "\"Michroma\", sans-serif",
+          "name": "Michroma",
+          "slug": "michroma"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Mona Sans",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/mona_sans/MonaSans-VariableFont_wdth.ttf"]
+            }
+          ],
+          "fontFamily": "\"Mona Sans\", sans-serif",
+          "name": "Mona Sans",
+          "slug": "mona-sans"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Montagu Slab",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/montagu_slab/MontaguSlab-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Montagu Slab\", sans-serif",
+          "name": "Montagu Slab",
+          "slug": "montagu-slab"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Open Sans",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/open_sans/OpenSans-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Open Sans\", sans-serif",
+          "name": "Open Sans",
+          "slug": "open-sans"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Oswald",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/oswald/Oswald-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Oswald\", sans-serif",
+          "name": "Oswald",
+          "slug": "oswald"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Outfit",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/outfit/Outfit-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Outfit\", sans-serif",
+          "name": "Outfit",
+          "slug": "outfit"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Playfair Display",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/playfair_display/PlayfairDisplay-VariableFont_wght.ttf"]
+            }
+          ],
+          "fontFamily": "\"Playfair Display\", sans-serif",
+          "name": "Playfair Display",
+          "slug": "playfair-display"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Plus Jakarta Sans",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/plus_jakarta_sans/PlusJakartaSans-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Plus Jakarta Sans\", sans-serif",
+          "name": "Plus Jakarta Sans",
+          "slug": "plus-jakarta-sans"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Public Sans",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/public-sans/PublicSans-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Public Sans\", sans-serif",
+          "name": "Public Sans",
+          "slug": "public-sans"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Quicksand",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/quicksand/Quicksand-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Quicksand\", sans-serif",
+          "name": "Quicksand",
+          "slug": "quicksand"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Rethink Sans",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/rethink_sans/RethinkSans-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Rethink Sans\", sans-serif",
+          "name": "Rethink Sans",
+          "slug": "rethink-sans"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Roboto",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/roboto/Roboto-Regular.woff2"]
+            },
+            {
+              "fontFamily": "Roboto",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "500",
+              "src": ["file:./assets/fonts/roboto/Roboto-Medium.woff2"]
+            },
+            {
+              "fontFamily": "Roboto",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": ["file:./assets/fonts/roboto/Roboto-Bold.woff2"]
+            }
+          ],
+          "fontFamily": "\"Roboto\", sans-serif",
+          "name": "Roboto",
+          "slug": "roboto"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Rubik",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/rubik/Rubik-VariableFont.woff2"]
+            }
+          ],
+          "fontFamily": "\"Rubik\", sans-serif",
+          "name": "Rubik",
+          "slug": "rubik"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Space Mono",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/space_mono/SpaceMono-Regular.woff2"]
+            },
+            {
+              "fontFamily": "Space Mono",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "700",
+              "src": ["file:./assets/fonts/space_mono/SpaceMono-Bold.woff2"]
+            }
+          ],
+          "fontFamily": "\"Space Mono\", sans-serif",
+          "name": "Space Mono",
+          "slug": "space-mono"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Syne",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "300 400 500 600 700 900",
+              "src": ["file:./assets/fonts/syne/Syne-VariableFont_wght.woff2"]
+            }
+          ],
+          "fontFamily": "\"Syne\", sans-serif",
+          "name": "Syne",
+          "slug": "syne"
+        },
+        {
+          "fontFace": [
+            {
+              "fontFamily": "Tenor Sans",
+              "fontStretch": "normal",
+              "fontStyle": "normal",
+              "fontWeight": "400",
+              "src": ["file:./assets/fonts/tenor_sans/TenorSans.woff2"]
+            }
+          ],
+          "fontFamily": "\"Tenor Sans\", sans-serif",
+          "name": "Tenor Sans",
+          "slug": "tenor-sans"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--inter)",
+      "fontSize": "var(--wp-preset--font-size--normal)",
+      "lineHeight": "1.5"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--primary)"
+        },
+        "typography": {
+          "textDecoration": "none"
+        },
+        ":hover": {
+          "color": {
+            "text": "var(--wp--preset--color--secondary)"
+          }
+        }
+      },
+      "button": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--small)",
+          "fontWeight": "var(--wp--preset--font-weight--bold)",
+          "lineHeight": "var(--wp--preset--line-height--initial)"
+        },
+        "color": {
+          "background": "var(--wp--preset--color--primary)",
+          "text": "var(--wp--preset--color--light-color)"
+        },
+        "border": {
+          "radius": "0.375em",
+          "color": "var(--wp--preset--color--tertiary)"
+        },
+        ":hover": {
+          "color": {
+            "background": "var(--wp--preset--color--secondary)"
+          }
+        }
+      },
+
+      "h1": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xx-large)",
+          "fontWeight": "700",
+          "lineHeight": "var(--wp--preset--line-height--normal)"
+        },
+        "spacing": {
+          "margin": {
+            "bottom": "var(--wp--preset--spacing--small)"
+          }
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--xx-large)",
+          "fontWeight": "700",
+          "lineHeight": "var(--wp--preset--line-height--normal)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "var(--wp--preset--spacing--medium)",
+            "bottom": "var(--wp--preset--spacing--x-small)"
+          }
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--x-large)",
+          "fontWeight": "700",
+          "lineHeight": "var(--wp--preset--line-height--x-small)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "var(--wp--preset--spacing--medium)",
+            "bottom": "var(--wp--preset--spacing--x-small)"
+          }
+        }
+      },
+      "h4": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--large)",
+          "fontWeight": "600",
+          "lineHeight": "var(--wp--preset--line-height--x-small)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "var(--wp--preset--spacing--small)",
+            "bottom": "var(--wp--preset--spacing--xx-small)"
+          }
+        }
+      },
+      "h5": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--medium)",
+          "fontWeight": "var(--wp--preset--font-weight--semi-bold)",
+          "lineHeight": "var(--wp--preset--line-height--medium)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "var(--wp--preset--spacing--small)",
+            "bottom": "var(--wp--preset--spacing--xx-small)"
+          }
+        }
+      },
+      "h6": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--small)"
+        },
+        "spacing": {
+          "margin": {
+            "top": "var(--wp--preset--spacing--x-small)",
+            "bottom": "var(--wp--preset--spacing--xx-small)"
+          }
+        }
+      },
+      "heading": {
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--funnel-display)",
+          "fontStyle": "normal",
+          "fontWeight": "var(--wp--preset--font-weight--medium)",
+          "lineHeight": "1.5"
+        },
+        "color": {
+          "text": "var(--wp--preset--color--heading-color)",
+          "background": "var(--wp--preset--color--transparent)"
+        }
+      }
+    },
+    "color": {
+      "background": "var(--wp--preset--color--background)",
+      "text": "var(--wp--preset--color--foreground)"
+    }
+  },
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Footer",
+      "area": "footer"
+    },
+    {
+      "name": "sidebar",
+      "title": "Sidebar",
+      "area": "uncategorized"
+    }
+  ],
+  "customTemplates": [
+    {
+      "title": "Single (With Left Sidebar)",
+      "name": "single-leftsidebar-template",
+      "postTypes": ["post"]
+    },
+    {
+      "title": "Single (with right sidebar)",
+      "name": "single-rightsidebar-template",
+      "postTypes": ["post"]
+    },
+    {
+      "title": "Page (Right Sidebar)",
+      "name": "page-right-sidebar-template",
+      "postTypes": ["page"]
+    },
+    {
+      "title": "Page (with left sidebar)",
+      "name": "page-leftsidebar-template",
+      "postTypes": ["page"]
+    },
+    {
+      "title": "Page (Sitemap)",
+      "name": "page-sitemap-template",
+      "postTypes": ["page"]
+    },
+    {
+      "title": "Blank With Header and Footer",
+      "name": "blank-with-header-footer",
+      "postTypes": ["page"]
+    },
+    {
+      "title": "Blank Page Template",
+      "name": "blank",
+      "postTypes": ["page"]
+    },
+
+    {
+      "name": "cart",
+      "title": "WooCommerce Cart Page",
+      "postTypes": ["product"]
+    },
+    {
+      "name": "checkout",
+      "title": "WooCommerce Checkout Page",
+      "postTypes": ["product"]
+    },
+    {
+      "name": "single-product",
+      "title": "WooCommerce Product Page",
+      "postTypes": ["product"]
+    },
+    {
+      "name": "archive-product",
+      "title": "WooCommerce Shop Page",
+      "postTypes": ["product"]
+    }
+  ]
+}

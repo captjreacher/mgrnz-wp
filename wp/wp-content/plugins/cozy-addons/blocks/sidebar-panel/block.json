@@ -1,0 +1,164 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/sidebar-panel",
+  "title": "Sidebar Panel",
+  "description": "Maximize versatility with our 'Sidebar Panel' block, seamlessly integrating a customizable sidebar drawer to display menus, latest posts, popular content, or any desired elements for a user-friendly and organized layout.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "iconView": {
+      "type": "string",
+      "default": "default"
+    },
+    "iconLayout": {
+      "type": "string",
+      "default": "fill"
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 16
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#5566ca"
+    },
+    "iconColorHover": {
+      "type": "string",
+      "default": "#36cfc6"
+    },
+    "iconOpacity": {
+      "type": "number",
+      "default": 1
+    },
+    "iconRotate": {
+      "type": "number",
+      "default": 0
+    },
+    "openIcon": {
+      "type": "object",
+      "default": {
+        "enableIcon": true,
+        "path": "M0.78125 3.51562H21.0938C21.5252 3.51562 21.875 3.16587 21.875 2.73438V0.78125C21.875 0.349756 21.5252 0 21.0938 0H0.78125C0.349756 0 0 0.349756 0 0.78125V2.73438C0 3.16587 0.349756 3.51562 0.78125 3.51562ZM0.78125 11.3281H21.0938C21.5252 11.3281 21.875 10.9784 21.875 10.5469V8.59375C21.875 8.16226 21.5252 7.8125 21.0938 7.8125H0.78125C0.349756 7.8125 0 8.16226 0 8.59375V10.5469C0 10.9784 0.349756 11.3281 0.78125 11.3281ZM0.78125 19.1406H21.0938C21.5252 19.1406 21.875 18.7909 21.875 18.3594V16.4062C21.875 15.9748 21.5252 15.625 21.0938 15.625H0.78125C0.349756 15.625 0 15.9748 0 16.4062V18.3594C0 18.7909 0.349756 19.1406 0.78125 19.1406Z",
+        "viewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 22,
+          "vh": 20
+        },
+        "enableTitle": true,
+        "pulseEffect": false,
+        "title": "Menu",
+        "titlePosition": "after",
+        "gap": 10,
+        "color": {
+          "icon": "",
+          "iconHover": "",
+          "bg": "",
+          "bgHover": ""
+        }
+      }
+    },
+    "closeIcon": {
+      "type": "object",
+      "default": {
+        "alignment": "right",
+        "verticalSpacing": 10,
+        "horizontalSpacing": 0
+      }
+    },
+    "sidebarLayout": {
+      "type": "string",
+      "default": "custom"
+    },
+    "width": {
+      "type": "number",
+      "default": 380
+    },
+    "sidebarPadding": {
+      "type": "object",
+      "default": {
+        "top": 10,
+        "right": 20,
+        "bottom": 20,
+        "left": 20
+      }
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "position": {
+      "type": "string",
+      "default": "left"
+    },
+    "overlayBgColor": {
+      "type": "string",
+      "default": "#22222257"
+    },
+    "zIndex": {
+      "type": "number",
+      "default": 9999
+    },
+    "overlayZIndex": {
+      "type": "number",
+      "default": 999
+    },
+    "iconBoxStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 7,
+          "right": 7,
+          "bottom": 7,
+          "left": 7
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "borderRadius": 50,
+        "bgColor": "#b2bcf9",
+        "bgColorHover": ""
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "Public Sans",
+        "fontSize": 16,
+        "color": "#000",
+        "colorHover": "",
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--sidebar-panel--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

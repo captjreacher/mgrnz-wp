@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/social-icon",
+  "title": "Social Icons",
+  "description": "Foster online connections effortlessly using our 'Social Icons' block, allowing you to effortlessly integrate and showcase your social media profiles directly on your website.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "view": {
+      "type": "string",
+      "default": "stacked"
+    },
+    "layout": {
+      "type": "string",
+      "default": "fill"
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 20
+    },
+    "iconColorLayout": {
+      "type": "string",
+      "default": "default"
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#fff"
+    },
+    "iconColorHover": {
+      "type": "string",
+      "default": ""
+    },
+    "iconOpacity": {
+      "type": "number",
+      "default": 1
+    },
+    "gap": {
+      "type": "number",
+      "default": 10
+    },
+    "boxStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 10,
+          "right": 10,
+          "bottom": 10,
+          "left": 10
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "borderRadius": 50,
+        "bgColor": "#b2bcf9",
+        "bgColorHover": ""
+      }
+    }
+  },
+  "providesContext": {
+    "view": "view",
+    "layout": "layout",
+    "iconColorLayout": "iconColorLayout"
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

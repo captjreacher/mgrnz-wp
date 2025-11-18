@@ -1,0 +1,171 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/social-share",
+  "title": "Social Shares",
+  "description": "Encourage seamless content sharing with our 'Social Shares' block, featuring eye-catching social media icons for enhanced engagement and wider reach.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "display": {
+      "type": "object",
+      "default": {
+        "layout": "default",
+        "orientation": "horizontal",
+        "align": "center",
+        "position": "left",
+        "zIndex": 999
+      }
+    },
+    "socialList": {
+      "type": "array",
+      "default": [
+        "Facebook",
+        "X",
+        "Linkedin",
+        "Telegram"
+      ]
+    },
+    "socialOptions": {
+      "type": "array",
+      "default": [
+        {
+          "key": "Email",
+          "label": ""
+        },
+        {
+          "key": "Facebook",
+          "label": ""
+        },
+        {
+          "key": "Linkedin",
+          "label": ""
+        },
+        {
+          "key": "Pinterest",
+          "label": ""
+        },
+        {
+          "key": "Reddit",
+          "label": ""
+        },
+        {
+          "key": "Telegram",
+          "label": ""
+        },
+        {
+          "key": "Tumblr",
+          "label": ""
+        },
+        {
+          "key": "X",
+          "label": ""
+        },
+        {
+          "key": "Whatsapp",
+          "label": ""
+        }
+      ]
+    },
+    "wrapperStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "stackLayout": true,
+        "color": {
+          "bg": ""
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "enableIcon": true,
+        "enableLabel": false,
+        "labelGap": "4px",
+        "view": "stacked",
+        "gap": "10px",
+        "rowGap": "6px",
+        "boxWidth": "",
+        "boxHeight": "",
+        "padding": {
+          "top": "6px",
+          "right": "6px",
+          "bottom": "6px",
+          "left": "6px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "size": "16px",
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "useBrandColor": true,
+        "color": {
+          "svg": "",
+          "text": "",
+          "textHover": "",
+          "bg": "",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "openNewTab": {
+      "type": "boolean",
+      "default": true
+    },
+    "noFollow": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

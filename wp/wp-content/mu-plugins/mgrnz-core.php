@@ -2,8 +2,24 @@
 /**
  * Plugin Name: MGRNZ Core (CORS + Webhooks)
  * Description: CORS for REST; send post_publish/post_update/post_delete webhooks to Supabase.
- * Version: 0.2.0
+ * Version: 0.3.0
  * Author: MGRNZ
+ * 
+ * Environment Configuration:
+ * This plugin uses environment variables for configuration, allowing it to work
+ * seamlessly in both local and production environments without code changes.
+ * 
+ * Required Environment Variables:
+ * - MGRNZ_WEBHOOK_URL: Supabase edge function URL (e.g., http://localhost:54321/functions/v1/wp-sync)
+ * - MGRNZ_WEBHOOK_SECRET: Secret key for webhook authentication
+ * - MGRNZ_ALLOWED_ORIGINS: Comma-separated list of allowed CORS origins
+ * 
+ * Local Development:
+ * Set these in .env.local to point to your local Supabase instance.
+ * See supabase/LOCAL_DEVELOPMENT.md for setup instructions.
+ * 
+ * Production:
+ * Set these in .env.production or server environment variables.
  */
 
 add_action('rest_api_init', function () {

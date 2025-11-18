@@ -1,0 +1,20 @@
+# security.txt for Cozy Blocks – Page Builder for Gutenberg & Site Editor, Post Blocks, WooCommerce Blocks, Magazine Blocks, WordPress Gutenberg Blocks, Patterns and Templates Library
+Contact: support@cozythemes.com
+Encryption: https://patchstack.com/database/vdp/cozy-addons
+Acknowledgements: https://patchstack.com/database/vulnerability/cozy-addons
+Preferred-Languages: en
+Policy: https://patchstack.com/database/vdp/cozy-addons
+Expires: 2026-01-30T06:00:00.000Z
+SBOM: not applicable
+
+# Reporting Instructions  
+If you discover a security vulnerability, please report it directly to us at support@cozythemes.com.  
+We do not delegate responsibility to any third-party organizations that mishandle vulnerabilities or mislead reporters.  
+All reports will be acknowledged within 48 hours, with a resolution timeline communicated shortly thereafter.  
+
+# Third-Party Partnerships  
+We carefully vet any third parties we collaborate with, such as bug bounty providers. Currently, we use **[PatchStack](https://patchstack.com/database/vdp/cozy-addons)** for managed security reports.  
+However, **we retain ownership of all security decisions** to ensure issues are addressed transparently and effectively.  
+
+# Trust and Transparency  
+Your security matters to us. If you encounter any problems with our vulnerability disclosure process, please contact our security team immediately to escalate the matter.

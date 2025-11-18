@@ -1,0 +1,292 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/countdown-timer",
+  "title": "Countdown Timer (Pro)",
+  "description": "The Countdown Timer Block creates urgency with a customizable timer for promotions or events, featuring automatic hiding after the offer ends.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
+    },
+    "enableOptions": {
+      "type": "object",
+      "default": {
+        "day": true,
+        "dayLabel": "Days",
+        "hour": true,
+        "hourLabel": "Hours",
+        "minute": true,
+        "minuteLabel": "Minutes",
+        "second": true,
+        "secondLabel": "Seconds"
+      }
+    },
+    "beforeLabel": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "content": "Hurry up! Sale ends in:"
+      }
+    },
+    "afterLabel": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "content": ""
+      }
+    },
+    "beforeAfterStyles": {
+      "type": "object",
+      "default": {
+        "width": "full",
+        "gap": "12px",
+        "font": {
+          "size": "22px",
+          "weight": "500",
+          "family": "Poppins"
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "1.2em",
+        "letterSpacing": "",
+        "color": {
+          "text": "#333"
+        }
+      }
+    },
+    "endOptions": {
+      "type": "object",
+      "default": {
+        "type": "default",
+        "label": "The offer ended!",
+        "width": "full",
+        "align": "center",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "font": {
+          "size": "16px",
+          "weight": "500",
+          "family": "Poppins"
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "#333",
+          "bg": ""
+        }
+      }
+    },
+    "startDate": {
+      "type": "string",
+      "default": ""
+    },
+    "endDate": {
+      "type": "string",
+      "default": ""
+    },
+    "separator": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "content": ":",
+        "margin": {
+          "top": "-6px",
+          "left": "-20px"
+        },
+        "size": "48px",
+        "color": {
+          "text": ""
+        }
+      }
+    },
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
+    "gap": {
+      "type": "string",
+      "default": "26px"
+    },
+    "label": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "display": "block",
+        "position": "bottom",
+        "align": "center",
+        "gap": "4px",
+        "font": {
+          "size": "15px",
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "1em",
+        "letterSpacing": "",
+        "color": {
+          "text": "#858585"
+        }
+      }
+    },
+    "itemStyles": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "height": "",
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "shadow": {
+          "enabled": "",
+          "horizontal": "0",
+          "vertical": "0",
+          "blur": "0",
+          "spread": "0",
+          "color": "",
+          "position": ""
+        },
+        "color": {
+          "text": "",
+          "bg": ""
+        }
+      }
+    },
+    "timerStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "font": {
+          "size": "44px",
+          "weight": "600",
+          "family": ""
+        },
+        "lineHeight": "1.2em",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "bg": ""
+        }
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": ""
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "bottom": ""
+      }
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "style": "",
+        "color": ""
+      }
+    },
+    "radius": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": ""
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "horizontal": "0",
+        "vertical": "0",
+        "blur": "0",
+        "spread": "0",
+        "color": "",
+        "position": ""
+      }
+    },
+    "font": {
+      "type": "object",
+      "default": {
+        "size": "",
+        "weight": "",
+        "family": ""
+      }
+    },
+    "color": {
+      "type": "object",
+      "default": {
+        "text": "",
+        "bg": ""
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--countdown-timer--frontend-script",
+    "cozy-dep-luxon"
+  ],
+  "render": "file:./render.php"
+}

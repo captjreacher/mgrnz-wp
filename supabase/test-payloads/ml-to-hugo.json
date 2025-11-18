@@ -1,0 +1,14 @@
+{
+  "type": "subscriber.created",
+  "data": {
+    "email": "test@example.com",
+    "id": "12345678901234567",
+    "status": "active",
+    "subscribed_at": "2025-11-18T00:00:00Z",
+    "fields": {
+      "name": "Test User",
+      "company": "Test Company",
+      "city": "San Francisco"
+    }
+  }
+}

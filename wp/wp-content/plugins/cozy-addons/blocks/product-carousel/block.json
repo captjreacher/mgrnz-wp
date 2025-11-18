@@ -1,0 +1,308 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/product-carousel",
+  "title": "Product Grid/Carousel",
+  "description": "Engage your audience with our 'Product Grid/Carousel' block, offering a visually appealing and interactive way to display WooCommerce products in a carousel format for an enhanced browsing experience.",
+  "category": "cozy-block/woocommerce",
+  "keywords": [
+    "product",
+    "grid",
+    "carousel"
+  ],
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalSkipSerialization": [
+        "textDecoration"
+      ],
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    },
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "namespace": {
+      "type": "string",
+      "default": ""
+    },
+    "currencySymbol": {
+      "type": "string",
+      "default": ""
+    },
+    "currencyPosition": {
+      "type": "string",
+      "default": ""
+    },
+    "quickView": {
+      "type": "boolean",
+      "default": false
+    },
+    "layout": {
+      "type": "string",
+      "default": "grid"
+    },
+    "template": {
+      "type": "string",
+      "default": "default"
+    },
+    "buttonHoverColor": {
+      "type": "object",
+      "default": {
+        "background": "#5566ca",
+        "text": "#fff"
+      }
+    },
+    "productGroup": {
+      "type": "string",
+      "default": "latest"
+    },
+    "productCategory": {
+      "type": "array",
+      "default": []
+    },
+    "imageScale": {
+      "type": "boolean",
+      "default": true
+    },
+    "saleBadge": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "display": "flex",
+        "position": "left",
+        "top": 16,
+        "right": 12,
+        "left": 12,
+        "marginBottom": 0,
+        "gap": 0,
+        "labelBefore": "",
+        "contentType": "default",
+        "labelAfter": "",
+        "padding": {
+          "top": 4,
+          "right": 10,
+          "bottom": 4,
+          "left": 10
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderRadius": 5,
+        "rotate": 0,
+        "bgColor": "#5566ca",
+        "typography": {
+          "fontFamily": "",
+          "fontSize": 10,
+          "fontWeight": 400,
+          "letterCase": "",
+          "lineHeight": "",
+          "letterSpacing": "",
+          "color": "#fff"
+        },
+        "labelTypography": {
+          "fontFamily": "",
+          "fontSize": 10,
+          "color": "",
+          "fontWeight": 400,
+          "letterCase": "",
+          "lineHeight": "",
+          "letterSpacing": ""
+        }
+      }
+    },
+    "enableOptions": {
+      "type": "object",
+      "default": {
+        "productImage": true,
+        "productTitle": true,
+        "productCategories": true,
+        "productSummary": true,
+        "productRating": true,
+        "productPrice": true,
+        "cartButton": true,
+        "cart": true,
+        "wishlist": true,
+        "quickView": true
+      }
+    },
+    "hoverShow": {
+      "type": "boolean",
+      "default": true
+    },
+    "gridOptions": {
+      "type": "object",
+      "default": {
+        "displayColumn": 3,
+        "columnGap": 30
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "width": 10,
+        "height": 10,
+        "borderRadius": 10,
+        "activeWidth": 10,
+        "activeHeight": 10,
+        "activeBorder": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "activeOffset": 0,
+        "gap": 4,
+        "activeBorderRadius": 10,
+        "activeColor": "#007cba",
+        "color": "#252525",
+        "activeColorHover": "#164861",
+        "colorHover": "#a5a5a5",
+        "align": "center",
+        "verticalPosition": 0,
+        "left": "0px",
+        "right": "0px"
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "iconSize": 15,
+        "iconBoxWidth": 35,
+        "iconBoxHeight": 35,
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "borderRadius": 50,
+        "backgroundColor": "#fff",
+        "color": "#007cba",
+        "backgroundColorHover": "#007cba",
+        "colorHover": "#fff",
+        "borderHover": ""
+      }
+    },
+    "sliderOptions": {
+      "type": "object",
+      "default": {
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "pauseOnMouseEnter": true,
+          "delay": 2500
+        },
+        "centeredSlides": false,
+        "slidesPerView": 3,
+        "spaceBetween": 30,
+        "speed": 700
+      }
+    },
+    "reviewStyles": {
+      "type": "object",
+      "default": {
+        "fontSize": 14,
+        "color": ""
+      }
+    },
+    "ajaxLoader": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "type": "default",
+        "label": "Load More",
+        "loadingText": "",
+        "minWidth": "95px",
+        "content": 10,
+        "padding": {
+          "top": "8px",
+          "right": "14px",
+          "bottom": "8px",
+          "left": "14px"
+        },
+        "margin": {
+          "top": "26px",
+          "bottom": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "textAlign": "center",
+        "color": {
+          "text": "#fff",
+          "textHover": "",
+          "spinnerPrimary": "#fff",
+          "spinnerSecondary": "#989898",
+          "bg": "#5566ca",
+          "bgHover": "#f90",
+          "borderHover": ""
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": [
+    "file:./index.css"
+  ],
+  "viewScript": [
+    "cozy-block--product-carousel--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

@@ -1,0 +1,137 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/progress-bar",
+  "title": "Progress Bar",
+  "description": "Keep your audience informed and intrigued with our 'Progress Bar' block, offering dynamic circular, horizontal, and vertical progress indicators for an interactive and visually engaging user experience.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
+    },
+    "width": {
+      "type": "number",
+      "default": 40
+    },
+    "height": {
+      "type": "number",
+      "default": 24
+    },
+    "layoutCircle": {
+      "type": "object",
+      "default": {
+        "circumference": 180,
+        "style": "outline",
+        "alignment": "center",
+        "width": 30,
+        "primaryColor": "#5566ca",
+        "secondaryColor": "#F4F5FF"
+      }
+    },
+    "progress": {
+      "type": "number",
+      "default": 50
+    },
+    "label": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "position": "inside",
+        "alignment": "center",
+        "gap": 10,
+        "marginBottom": 10,
+        "before": "",
+        "after": ""
+      }
+    },
+    "showSpiral": {
+      "type": "boolean",
+      "default": false
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "bgColor": {
+      "type": "string",
+      "default": "#5566ca"
+    },
+    "containerStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "border": {
+          "width": {
+            "top": 1,
+            "right": 1,
+            "bottom": 1,
+            "left": 1
+          },
+          "type": "none",
+          "color": "#F4F5FF"
+        },
+        "borderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "bgColor": "#dee0f3"
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": 16,
+        "color": "#fff",
+        "fontWeight": 400
+      }
+    },
+    "labelTypography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": 16,
+        "color": "",
+        "fontWeight": 400
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--progress-bar--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

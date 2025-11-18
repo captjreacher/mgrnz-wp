@@ -1,0 +1,75 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch: # Allows manual trigger from GitHub UI
+
+jobs:
+  deploy:
+    name: Deploy WordPress to Production
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.9.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          
+      - name: Add SSH host to known_hosts
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -p ${{ secrets.SSH_PORT }} ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+          
+      - name: Deploy WordPress files
+        run: |
+          echo "🚀 Starting deployment to production..."
+          
+          # Deploy wp-content (themes, plugins, mu-plugins)
+          rsync -avz --delete \
+            -e "ssh -p ${{ secrets.SSH_PORT }}" \
+            --exclude='uploads/' \
+            --exclude='cache/' \
+            --exclude='upgrade/' \
+            --exclude='node_modules/' \
+            --exclude='.git/' \
+            wp/wp-content/ \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/wp-content/
+          
+          echo "✅ WordPress files deployed successfully!"
+          
+      - name: Deploy configuration files
+        run: |
+          echo "📝 Deploying configuration files..."
+          
+          # Deploy wp-config-loader.php
+          scp -P ${{ secrets.SSH_PORT }} \
+            wp-config-loader.php \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/
+          
+          # Deploy .env.production as .env
+          scp -P ${{ secrets.SSH_PORT }} \
+            .env.production \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/.env
+          
+          echo "✅ Configuration files deployed!"
+          
+      - name: Clear WordPress cache
+        run: |
+          echo "🧹 Clearing WordPress cache..."
+          
+          ssh -p ${{ secrets.SSH_PORT }} \
+            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "cd ${{ secrets.PRODUCTION_PATH }} && wp cache flush"
+          
+          echo "✅ Cache cleared!"
+          
+      - name: Deployment summary
+        run: |
+          echo "🎉 Deployment completed successfully!"
+          echo "Site: https://mgrnz.com"
+          echo "Time: $(date)"

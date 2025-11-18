@@ -1,0 +1,296 @@
+{
+  "$schema": "./deployment-config.schema.json",
+  "version": "1.0.0",
+  "description": "Deployment configuration for MGRNZ WordPress site",
+  
+  "environments": {
+    "production": {
+      "name": "production",
+      "description": "Live production environment at mgrnz.com",
+      "enabled": true,
+      "url": "https://mgrnz.com",
+      "paths": {
+        "remotePath": "/home/username/public_html",
+        "wpContent": "wp-content",
+        "themes": "wp-content/themes",
+        "plugins": "wp-content/plugins",
+        "muPlugins": "wp-content/mu-plugins",
+        "uploads": "wp-content/uploads",
+        "backups": "backups"
+      },
+      "sync": {
+        "includeUploads": false,
+        "changedFilesOnly": false,
+        "preserveTimestamps": true,
+        "followSymlinks": false
+      },
+      "backup": {
+        "enabled": true,
+        "createBeforeDeploy": true,
+        "createBeforePull": false,
+        "retentionDays": 7,
+        "maxBackups": 10,
+        "compressionLevel": "fast"
+      },
+      "verification": {
+        "testConnectionBeforeDeploy": true,
+        "verifySiteAccessibility": true,
+        "checkDiskSpace": true,
+        "requireConfirmation": true
+      }
+    },
+    
+    "staging": {
+      "name": "staging",
+      "description": "Staging environment for testing before production",
+      "enabled": true,
+      "url": "https://staging.mgrnz.com",
+      "paths": {
+        "remotePath": "/home/username/staging",
+        "wpContent": "wp-content",
+        "themes": "wp-content/themes",
+        "plugins": "wp-content/plugins",
+        "muPlugins": "wp-content/mu-plugins",
+        "uploads": "wp-content/uploads",
+        "backups": "backups"
+      },
+      "sync": {
+        "includeUploads": true,
+        "changedFilesOnly": false,
+        "preserveTimestamps": true,
+        "followSymlinks": false
+      },
+      "backup": {
+        "enabled": true,
+        "createBeforeDeploy": true,
+        "createBeforePull": false,
+        "retentionDays": 3,
+        "maxBackups": 5,
+        "compressionLevel": "fast"
+      },
+      "verification": {
+        "testConnectionBeforeDeploy": true,
+        "verifySiteAccessibility": true,
+        "checkDiskSpace": false,
+        "requireConfirmation": false
+      }
+    }
+  },
+  
+  "local": {
+    "paths": {
+      "root": ".",
+      "wpPath": "wp",
+      "wpContent": "wp/wp-content",
+      "backups": "backups",
+      "logs": "logs",
+      "scripts": "scripts"
+    },
+    "backup": {
+      "enabled": true,
+      "createBeforePull": true,
+      "retentionDays": 7,
+      "maxBackups": 10,
+      "compressionLevel": "fast"
+    }
+  },
+  
+  "exclusions": {
+    "global": [
+      ".git",
+      ".gitignore",
+      ".env",
+      ".env.*",
+      "node_modules",
+      ".DS_Store",
+      "Thumbs.db",
+      "desktop.ini",
+      "*.log",
+      "*.tmp",
+      "*.temp",
+      ".vscode",
+      ".idea"
+    ],
+    "wpContent": [
+      "wp-config.php",
+      "wp-config-local.php",
+      "wp-config-production.php",
+      ".htaccess"
+    ],
+    "cache": [
+      "cache/**",
+      "*/cache/**",
+      "*.cache",
+      "upgrade/**",
+      "*/upgrade/**"
+    ],
+    "uploads": [
+      "uploads/cache/**",
+      "uploads/*/cache/**",
+      "uploads/*.tmp",
+      "uploads/*.temp"
+    ],
+    "themes": [
+      "themes/*/node_modules/**",
+      "themes/*/.git/**",
+      "themes/*/src/**",
+      "themes/*/*.map",
+      "themes/*/package.json",
+      "themes/*/package-lock.json",
+      "themes/*/webpack.config.js"
+    ],
+    "plugins": [
+      "plugins/*/node_modules/**",
+      "plugins/*/.git/**",
+      "plugins/*/tests/**",
+      "plugins/*/*.map"
+    ]
+  },
+  
+  "transfer": {
+    "protocol": "scp",
+    "compression": true,
+    "retryAttempts": 3,
+    "retryDelaySeconds": 5,
+    "timeout": 300,
+    "batchSize": 100,
+    "parallelTransfers": 1,
+    "preservePermissions": true,
+    "verboseLogging": false
+  },
+  
+  "safety": {
+    "requireConfirmation": true,
+    "dryRunByDefault": false,
+    "backupBeforeDeploy": true,
+    "verifyBeforeDeploy": true,
+    "maxFileSizeMB": 100,
+    "maxTotalSizeMB": 1000,
+    "allowedFileExtensions": [
+      ".php",
+      ".js",
+      ".css",
+      ".html",
+      ".htm",
+      ".json",
+      ".xml",
+      ".txt",
+      ".md",
+      ".jpg",
+      ".jpeg",
+      ".png",
+      ".gif",
+      ".svg",
+      ".webp",
+      ".ico",
+      ".woff",
+      ".woff2",
+      ".ttf",
+      ".eot",
+      ".otf"
+    ],
+    "blockedFileExtensions": [
+      ".exe",
+      ".dll",
+      ".so",
+      ".dylib",
+      ".sh",
+      ".bat",
+      ".cmd",
+      ".ps1"
+    ]
+  },
+  
+  "logging": {
+    "enabled": true,
+    "level": "INFO",
+    "logDirectory": "logs",
+    "logFilePrefix": "deployment",
+    "logRotation": {
+      "enabled": true,
+      "maxSizeMB": 10,
+      "maxFiles": 20
+    },
+    "includeTimestamps": true,
+    "includeStackTraces": true,
+    "logTransfers": true
+  },
+  
+  "notifications": {
+    "enabled": false,
+    "onSuccess": false,
+    "onFailure": true,
+    "onWarning": false,
+    "methods": {
+      "email": {
+        "enabled": false,
+        "to": "admin@mgrnz.com",
+        "from": "deployment@mgrnz.com"
+      },
+      "slack": {
+        "enabled": false,
+        "webhookUrl": ""
+      }
+    }
+  },
+  
+  "database": {
+    "sync": {
+      "enabled": true,
+      "backupBeforeImport": true,
+      "searchReplace": true,
+      "resetLocalAdminPassword": true
+    },
+    "searchReplace": {
+      "production": {
+        "from": "https://mgrnz.com",
+        "to": "http://mgrnz.local"
+      },
+      "staging": {
+        "from": "https://staging.mgrnz.com",
+        "to": "http://mgrnz.local"
+      }
+    },
+    "backup": {
+      "retentionDays": 7,
+      "maxBackups": 10,
+      "compressionEnabled": true
+    }
+  },
+  
+  "performance": {
+    "compression": {
+      "enabled": true,
+      "level": 6,
+      "algorithm": "gzip"
+    },
+    "caching": {
+      "enabled": false,
+      "cacheDuration": 3600
+    },
+    "optimization": {
+      "skipUnchangedFiles": true,
+      "useIncrementalSync": true,
+      "calculateChecksums": false
+    }
+  },
+  
+  "hooks": {
+    "preDeployment": {
+      "enabled": false,
+      "scripts": []
+    },
+    "postDeployment": {
+      "enabled": false,
+      "scripts": []
+    },
+    "prePull": {
+      "enabled": false,
+      "scripts": []
+    },
+    "postPull": {
+      "enabled": false,
+      "scripts": []
+    }
+  }
+}

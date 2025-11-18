@@ -1,0 +1,197 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/container",
+  "title": "Cozy Container",
+  "description": "Infuse life into your content with our 'Cozy Container' block, offering animation and customization options for a vibrant and personalized user experience.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": true,
+      "__experimentalDefaultControls": {
+        "backgroundImage": true
+      }
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "mediaId": {
+      "type": "number",
+      "default": 0
+    },
+    "mediaUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "imagePosition": {
+      "type": "string",
+      "default": "center"
+    },
+    "position": {
+      "type": "string",
+      "default": "inherit"
+    },
+    "fixedPlacement": {
+      "type": "string",
+      "default": "top"
+    },
+    "top": {
+      "type": "number",
+      "default": 0
+    },
+    "bottom": {
+      "type": "number",
+      "default": 0
+    },
+    "stickyStyles": {
+      "type": "object",
+      "default": {
+        "bgColor": ""
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "zIndex": {
+      "type": "string",
+      "default": "0"
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "type": "none",
+        "color": "#fff",
+        "widthDimension": {
+          "top": 1,
+          "right": 1,
+          "bottom": 1,
+          "left": 1
+        }
+      }
+    },
+    "borderHover": {
+      "type": "object",
+      "default": {
+        "type": "none",
+        "color": "",
+        "widthDimension": {
+          "top": 1,
+          "right": 1,
+          "bottom": 1,
+          "left": 1
+        }
+      }
+    },
+    "borderRadius": {
+      "type": "object",
+      "default": {
+        "topL": 6,
+        "topR": 6,
+        "bottomL": 6,
+        "bottomR": 6
+      }
+    },
+    "borderRadiusHover": {
+      "type": "object",
+      "default": {
+        "topL": "",
+        "topR": "",
+        "bottomL": "",
+        "bottomR": ""
+      }
+    },
+    "boxShadow": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "color": "#000",
+        "horizontal": 0,
+        "vertical": 0,
+        "blur": 10,
+        "spread": 0,
+        "position": ""
+      }
+    },
+    "boxShadowHover": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "color": "#000",
+        "horizontal": 0,
+        "vertical": 0,
+        "blur": 10,
+        "spread": 0,
+        "position": ""
+      }
+    },
+    "backgroundColorHover": {
+      "type": "string",
+      "default": ""
+    },
+    "animation": {
+      "type": "object",
+      "default": {
+        "effect": "none",
+        "direction": "left",
+        "gap": "50",
+        "duration": "1",
+        "delay": "0.5"
+      }
+    },
+    "shapeDivider": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "margin": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "height": 200,
+        "position": "bottom",
+        "flip": "right",
+        "svg": "<svg viewBox=\"0 0 519 134\" preserveAspectRatio=\"none\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 134H519V0L0 134Z\"/></svg>",
+        "color": "#fff"
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--container--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

@@ -1,0 +1,513 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/pricing-table",
+  "title": "Pricing Table",
+  "description": "Explore pricing options with this clean and organized pricing table. It includes a simple container displaying pricing elements, allowing users to view prices and features at a glance.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "enabled": {
+      "type": "object",
+      "default": {
+        "featured": false,
+        "icon": true,
+        "heading": true,
+        "subHeading": false,
+        "price": true,
+        "description": true,
+        "button": true,
+        "list": true
+      }
+    },
+    "order": {
+      "type": "array",
+      "default": [
+        "icon",
+        "heading",
+        "description",
+        "subHeading",
+        "price",
+        "list",
+        "button"
+      ]
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "featured": {
+      "type": "object",
+      "default": {
+        "tag": "div",
+        "content": "Best Seller",
+        "textAlign": "center",
+        "position": {
+          "type": "unset",
+          "align": "left",
+          "top": "",
+          "left": "",
+          "right": ""
+        },
+        "rotate": "",
+        "padding": {
+          "top": "8px",
+          "right": "0px",
+          "bottom": "8px",
+          "left": "0px"
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "shadow": {
+          "enabled": false,
+          "horizontal": "",
+          "vertical": "",
+          "blur": "",
+          "spread": "",
+          "color": "",
+          "position": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "uppercase",
+        "decoration": "none",
+        "lineHeight": "1.2em",
+        "letterSpacing": "",
+        "color": {
+          "text": "#fff",
+          "bg": "#0c50ff"
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "source": "default",
+        "id": "",
+        "url": "",
+        "alt": "",
+        "path": "",
+        "viewBox": {
+          "vx": "",
+          "vy": "",
+          "vw": "",
+          "vh": ""
+        },
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "size": "20px",
+        "boxWidth": "36px",
+        "boxHeight": "36px",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "",
+        "align": "center",
+        "color": {
+          "text": "#0c50ff",
+          "bg": ""
+        }
+      }
+    },
+    "heading": {
+      "type": "object",
+      "default": {
+        "tag": "h3",
+        "content": "Premium",
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "font": {
+          "size": "28px",
+          "weight": "600",
+          "family": "Poppins"
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "1.2em",
+        "letterSpacing": "",
+        "color": {
+          "text": "#0a0a0a"
+        }
+      }
+    },
+    "subHeading": {
+      "type": "object",
+      "default": {
+        "tag": "h5",
+        "content": "Sub Heading",
+        "margin": {
+          "top": "10px",
+          "bottom": "4px"
+        },
+        "font": {
+          "size": "18px",
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "1.2em",
+        "letterSpacing": "",
+        "color": {
+          "text": ""
+        }
+      }
+    },
+    "price": {
+      "type": "object",
+      "default": {
+        "tag": "p",
+        "content": "$99.99",
+        "display": "inline-block",
+        "separator": {
+          "tag": "p",
+          "content": "/month",
+          "margin": {
+            "top": "",
+            "bottom": ""
+          },
+          "font": {
+            "size": "14px",
+            "weight": "500",
+            "family": ""
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
+        },
+        "margin": {
+          "top": "10px",
+          "bottom": "10px"
+        },
+        "font": {
+          "size": "24px",
+          "weight": "600",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "#0a0a0a",
+          "separator": "#404040"
+        }
+      }
+    },
+    "description": {
+      "type": "object",
+      "default": {
+        "tag": "p",
+        "content": "Ideal for enterprises and large-scale projects."
+      }
+    },
+    "button": {
+      "type": "object",
+      "default": {
+        "tag": "a",
+        "textAlign": "center",
+        "content": "Upgrade to Pro",
+        "link": {
+          "url": "#",
+          "newtab": false,
+          "noFollow": false
+        },
+        "width": "100%",
+        "padding": {
+          "top": "12px",
+          "right": "26px",
+          "bottom": "12px",
+          "left": "26px"
+        },
+        "margin": {
+          "top": "26px",
+          "bottom": "16px"
+        },
+        "border": {
+          "style": "",
+          "width": "",
+          "color": ""
+        },
+        "radius": "10px",
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "#fff",
+          "textHover": "",
+          "bg": "#0a0a0a",
+          "bgHover": "#f90",
+          "borderHover": ""
+        }
+      }
+    },
+    "list": {
+      "type": "object",
+      "default": {
+        "content": [
+          "Role Based Permissions",
+          "Outcome Reporting",
+          "Service Level Agreement Rules",
+          "Live Chat for Support"
+        ],
+        "textAlign": "left",
+        "icon": {
+          "enabled": true,
+          "path": "M4.66668 7.11333L10.7947 0.986L11.7373 1.92867L4.66668 8.99933L0.424011 4.75667L1.36668 3.814L4.66668 7.11333Z",
+          "viewBox": {
+            "vx": "0",
+            "vy": "0",
+            "vw": "12",
+            "vh": "9"
+          },
+          "boxWidth": "12px",
+          "boxHeight": "12px",
+          "boxBorder": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "boxRadius": "50%",
+          "size": "12px",
+          "position": "left"
+        },
+        "gap": "10px",
+        "heading": {
+          "content": "Features",
+          "margin": {
+            "top": "",
+            "bottom": "-4px"
+          },
+          "font": {
+            "size": "16px",
+            "weight": "500",
+            "family": "Poppins"
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
+        },
+        "ajaxLoader": {
+          "enabled": false,
+          "label": "See more features >>",
+          "align": "center",
+          "showCount": 10,
+          "loadCount": 10,
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          },
+          "margin": {
+            "top": "16",
+            "bottom": ""
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "",
+          "font": {
+            "size": "16px",
+            "weight": "",
+            "family": ""
+          },
+          "letterCase": "none",
+          "decoration": "underline",
+          "lineHeight": "",
+          "letterSpacing": "",
+          "color": {
+            "text": "",
+            "textHover": "",
+            "bg": "",
+            "bgHover": "",
+            "borderHover": ""
+          }
+        },
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "item": {
+          "padding": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": {
+            "top": "",
+            "right": "",
+            "bottom": "",
+            "left": ""
+          }
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "icon": "#0a0a0a",
+          "iconBg": "",
+          "heading": "#0a0a0a",
+          "text": "#0a0a0a",
+          "wrapperBg": "",
+          "listBg": ""
+        }
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "40px",
+        "right": "28px",
+        "bottom": "44px",
+        "left": "28px"
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "0px",
+        "bottom": "0px"
+      }
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "style": "",
+        "color": ""
+      }
+    },
+    "radius": {
+      "type": "object",
+      "default": {
+        "top": "10px",
+        "right": "10px",
+        "bottom": "10px",
+        "left": "10px"
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "horizontal": "0",
+        "vertical": "0",
+        "blur": "10px",
+        "spread": "-8px",
+        "color": "#000",
+        "position": ""
+      }
+    },
+    "overflow": {
+      "type": "string",
+      "default": "auto"
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "font": {
+          "size": "14px",
+          "weight": "400",
+          "family": "Poppins"
+        },
+        "letterCase": "none"
+      }
+    },
+    "color": {
+      "type": "object",
+      "default": {
+        "text": "#404040",
+        "bg": "#fff"
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--pricing-table--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

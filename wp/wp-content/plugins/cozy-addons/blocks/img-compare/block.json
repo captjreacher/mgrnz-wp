@@ -1,0 +1,108 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/img-compare",
+  "title": "Before/After Image (Pro)",
+  "description": "Showcase stunning before-and-after images with a sleek, interactive Image Compare block for visual storytelling.",
+  "category": "cozy-block",
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "image": {
+      "type": "object",
+      "default": {
+        "url1": "",
+        "label1": "",
+        "alt1": "",
+        "url2": "",
+        "label2": "",
+        "alt2": "",
+        "height": "460px"
+      }
+    },
+    "label": {
+      "type": "object",
+      "default": {
+        "position": "top",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "left": ""
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "#fff",
+          "bg": ""
+        }
+      }
+    },
+    "direction": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "divider": {
+      "type": "object",
+      "default": {
+        "width": "6px",
+        "icon": {
+          "size": "28px",
+          "padding": {
+            "top": "12px",
+            "right": "12px",
+            "bottom": "12px",
+            "left": "12px"
+          },
+          "radius": "100px"
+        },
+        "color": {
+          "icon": "#333",
+          "iconBg": "#fff",
+          "bg": "#fff"
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--img-compare--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

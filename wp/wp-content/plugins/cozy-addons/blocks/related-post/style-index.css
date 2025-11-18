@@ -1,0 +1,1 @@
+:root{--cozyGridTemplateColumns:3;--cozyGridGap:30px}.cozy-block-wrapper{position:relative}.cozy-block-related-posts-wrapper .wp-block-post{margin-block-start:0!important}.cozy-block-related-posts-wrapper ul{display:grid;gap:var(--cozyGridGap);grid-template-columns:repeat(var(--cozyGridTemplateColumns),1fr)}

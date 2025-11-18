@@ -38,8 +38,15 @@ Modern WordPress site built with Next.js, featuring a public homepage with subsc
 - Node.js 18+
 - npm or yarn
 - Git
+- **For WordPress Local Development:**
+  - PHP 8.2+
+  - MySQL 8.0+ or MariaDB 10.6+
+  - Local WordPress environment (Local by Flywheel, XAMPP, or Docker)
+  - Composer (recommended, for dependency management)
 
 ### Installation
+
+#### Next.js Frontend Setup
 
 1. Clone repository:
 \`\`\`bash
@@ -69,6 +76,216 @@ npm run dev
 \`\`\`
 
 6. Open browser to `http://localhost:3000`
+
+#### WordPress Local Development Setup
+
+The MGRNZ site uses WordPress as the backend, hosted on Spaceship.com in production.
+
+**📚 Complete Documentation:** See [LOCAL_DEV_DEPLOYMENT_GUIDE.md](LOCAL_DEV_DEPLOYMENT_GUIDE.md) for comprehensive setup and deployment instructions.
+
+**Quick Start:**
+
+##### 1. Install Local WordPress Environment
+
+**Option A: Local by Flywheel (Recommended for Windows)**
+1. Download and install [Local by Flywheel](https://localwp.com/)
+2. Create a new site:
+   - Site name: `mgrnz`
+   - Local domain: `mgrnz.local`
+   - PHP version: 8.2+
+   - Web server: Nginx or Apache
+   - Database: MySQL 8.0+
+
+**Option B: Docker**
+\`\`\`bash
+# Use official WordPress Docker image
+docker run -d -p 8080:80 --name mgrnz-local \
+  -e WORDPRESS_DB_HOST=mysql \
+  -e WORDPRESS_DB_NAME=mgrnz_local \
+  -e WORDPRESS_DB_USER=root \
+  -e WORDPRESS_DB_PASSWORD=root \
+  wordpress:latest
+\`\`\`
+
+**Option C: XAMPP**
+1. Download and install [XAMPP](https://www.apachefriends.org/)
+2. Start Apache and MySQL
+3. Download WordPress and extract to `htdocs/mgrnz`
+
+##### 2. Configure Local Environment
+
+1. **Copy the environment template:**
+   - A `.env.local` file has been created in the repository root
+   - Update the values to match your local setup:
+
+\`\`\`env
+# Database Configuration
+DB_NAME=mgrnz_local
+DB_USER=root
+DB_PASSWORD=root
+DB_HOST=localhost
+
+# WordPress URLs
+WP_HOME=http://mgrnz.local
+WP_SITEURL=http://mgrnz.local
+
+# Supabase (use local or test project)
+SUPABASE_URL=http://localhost:54321
+MGRNZ_WEBHOOK_URL=http://localhost:54321/functions/v1/wp-sync
+MGRNZ_WEBHOOK_SECRET=local-test-secret
+
+# Third-party (use test credentials)
+MAILERLITE_API_KEY=test-key-local
+ML_INTAKE_GROUP_ID=test-group
+\`\`\`
+
+2. **Install PHP dependencies (recommended):**
+   \`\`\`bash
+   # Install Composer if not already installed
+   # Download from: https://getcomposer.org/download/
+   
+   # Install dependencies
+   composer install
+   \`\`\`
+   
+   Note: If Composer is not available, the system will use a fallback .env parser.
+
+3. **Set up WordPress configuration:**
+   - The repository includes `wp-config-local.php` for local development
+   - This file loads environment variables from `.env.local`
+   - Copy or symlink this file to your WordPress installation:
+
+\`\`\`bash
+# If using Local by Flywheel
+cp wp-config-local.php "C:/Users/YourName/Local Sites/mgrnz/app/public/wp-config.php"
+
+# Or create a symlink (requires admin privileges on Windows)
+mklink "C:/Users/YourName/Local Sites/mgrnz/app/public/wp-config.php" wp-config-local.php
+\`\`\`
+
+4. **Run the environment setup script (optional):**
+   \`\`\`powershell
+   # Verify your environment configuration
+   .\setup-environment.ps1
+   \`\`\`
+
+5. **Test your environment:**
+   \`\`\`bash
+   # Run the test script to verify configuration
+   php test-environment.php
+   \`\`\`
+
+For detailed information about the environment configuration system, see [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md).
+
+3. **Generate security keys:**
+   - Visit https://api.wordpress.org/secret-key/1.1/salt/
+   - Copy the generated keys
+   - Update the security key values in `.env.local`
+
+##### 3. Install WordPress
+
+1. Access your local site in a browser:
+   - Local by Flywheel: `http://mgrnz.local`
+   - Docker: `http://localhost:8080`
+   - XAMPP: `http://localhost/mgrnz`
+
+2. Complete the WordPress installation:
+   - Site title: `MGRNZ`
+   - Admin username: `admin`
+   - Admin password: (choose a secure password)
+   - Admin email: `mike@mgrnz.com`
+
+3. Install required plugins:
+   - Navigate to Plugins → Add New
+   - Install any custom plugins from `wp-content/plugins/`
+
+4. Install custom theme:
+   - Copy theme files to `wp-content/themes/`
+   - Activate the theme in Appearance → Themes
+
+##### 4. Set Up Local Supabase (Optional)
+
+For testing Supabase edge functions locally:
+
+1. **Install Supabase CLI:**
+\`\`\`bash
+npm install -g supabase
+\`\`\`
+
+2. **Install Docker Desktop:**
+   - Download from [docker.com](https://www.docker.com/products/docker-desktop)
+   - Required for local Supabase development
+
+3. **Start local Supabase:**
+\`\`\`bash
+supabase start
+\`\`\`
+
+4. **Deploy edge functions locally:**
+\`\`\`bash
+supabase functions serve
+\`\`\`
+
+5. **Update `.env.local` with local Supabase URLs:**
+\`\`\`env
+SUPABASE_URL=http://localhost:54321
+MGRNZ_WEBHOOK_URL=http://localhost:54321/functions/v1/wp-sync
+\`\`\`
+
+**Alternative:** Use a separate Supabase test project instead of local Docker setup.
+
+##### 5. Verify Local Setup
+
+1. **Check WordPress:**
+   - Visit your local site URL
+   - Verify the homepage loads
+   - Log in to wp-admin
+
+2. **Check environment variables:**
+   - In wp-admin, go to Tools → Site Health
+   - Verify WP_ENVIRONMENT_TYPE shows "local"
+   - Check that debug mode is enabled
+
+3. **Test webhook integration:**
+   - Create a test post
+   - Verify webhook is sent to local Supabase (check edge function logs)
+
+##### 6. Pull Production Data (Optional)
+
+To work with production content locally:
+
+\`\`\`powershell
+# Pull database and files from production
+.\pull-from-production.ps1
+\`\`\`
+
+This script will:
+- Export production database
+- Import to local environment
+- Replace production URLs with local URLs
+- Download themes, plugins, and uploads
+
+##### Troubleshooting Local Setup
+
+**Database connection errors:**
+- Verify MySQL/MariaDB is running
+- Check database credentials in `.env.local`
+- Ensure database `mgrnz_local` exists
+
+**URL issues:**
+- Run: `wp search-replace 'https://mgrnz.com' 'http://mgrnz.local' --all-tables`
+- Clear browser cache
+- Check WP_HOME and WP_SITEURL in `.env.local`
+
+**Supabase webhook not working:**
+- Verify Supabase CLI is running: `supabase status`
+- Check Docker is running
+- Test edge function directly: `curl http://localhost:54321/functions/v1/wp-sync`
+
+**File permissions:**
+- Ensure wp-content directory is writable
+- On Windows: Right-click → Properties → Security → Edit
+- On Linux/Mac: `chmod -R 755 wp-content`
 
 ## Usage
 
@@ -165,7 +382,43 @@ Tests cover:
 
 Follow [INTEGRATION_TESTING.md](INTEGRATION_TESTING.md) for end-to-end test scenarios.
 
+### Supabase Local Testing
+
+For testing WordPress + Supabase edge functions locally:
+
+**Quick Start:**
+1. Install Docker Desktop and Supabase CLI
+2. Start Supabase: `supabase start`
+3. Deploy functions: `supabase functions deploy`
+4. Serve functions: `supabase functions serve`
+5. Test configuration: `php test-supabase-config.php`
+
+**Documentation:**
+- [Quick Start Guide](./supabase/QUICK_START.md) - 5-minute setup
+- [Full Setup Guide](./supabase/LOCAL_DEVELOPMENT.md) - Comprehensive documentation
+- [Testing Guide](./SUPABASE_TESTING_GUIDE.md) - Testing workflows and troubleshooting
+
+**Test webhook integration:**
+```powershell
+# Monitor edge function logs
+supabase functions logs wp-sync --follow
+
+# Publish a post in WordPress and verify webhook is received
+```
+
 ## Deployment
+
+### Deployment Configuration
+
+The project uses a centralized deployment configuration file (`deployment-config.json`) that defines:
+- Environment-specific settings (production, staging)
+- Remote and local path configurations
+- File exclusion patterns
+- Backup settings
+- Transfer options and retry logic
+- Safety checks and verification
+
+See [DEPLOYMENT_CONFIG.md](DEPLOYMENT_CONFIG.md) for complete configuration documentation.
 
 ### Automated Deployment
 
@@ -177,6 +430,29 @@ Follow [INTEGRATION_TESTING.md](INTEGRATION_TESTING.md) for end-to-end test scen
 ### Manual Deployment
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
+
+### Deployment Scripts
+
+The project includes PowerShell scripts for WordPress deployment:
+
+```powershell
+# Deploy to production
+.\scripts\deploy.ps1 -Environment production
+
+# Pull from production to local
+.\scripts\pull-from-production.ps1
+
+# Push files to production
+.\scripts\file-push.ps1 -Environment production
+
+# Pull files from production
+.\scripts\file-pull.ps1 -Environment production
+
+# Test connection
+.\scripts\test-connection.ps1 -Environment production
+```
+
+For detailed script documentation, see [scripts/README.md](scripts/README.md).
 
 ## Integrations
 
@@ -194,6 +470,43 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions.
 - Version control
 - Automated workflows
 - Deployment pipeline
+
+## Documentation
+
+### Complete Guides
+
+| Guide | Description |
+|-------|-------------|
+| [LOCAL_DEV_DEPLOYMENT_GUIDE.md](LOCAL_DEV_DEPLOYMENT_GUIDE.md) | **Main guide** - Complete local development and deployment workflow |
+| [TROUBLESHOOTING.md](TROUBLESHOOTING.md) | Comprehensive troubleshooting for all common issues |
+| [WORKFLOW_BEST_PRACTICES.md](WORKFLOW_BEST_PRACTICES.md) | Best practices for development, deployment, and maintenance |
+| [ENVIRONMENT_SETUP.md](ENVIRONMENT_SETUP.md) | Detailed environment configuration guide |
+| [ENVIRONMENT_QUICK_START.md](ENVIRONMENT_QUICK_START.md) | Quick reference for environment setup |
+
+### Deployment Documentation
+
+| Document | Description |
+|----------|-------------|
+| [scripts/README.md](scripts/README.md) | Complete guide to all deployment scripts |
+| [DEPLOYMENT_CONFIG.md](DEPLOYMENT_CONFIG.md) | Deployment configuration reference |
+| [scripts/LOGGING.md](scripts/LOGGING.md) | Logging system documentation |
+| [DEPLOYMENT.md](DEPLOYMENT.md) | General deployment procedures |
+
+### Supabase Documentation
+
+| Document | Description |
+|----------|-------------|
+| [supabase/QUICK_START.md](supabase/QUICK_START.md) | 5-minute Supabase local setup |
+| [supabase/LOCAL_DEVELOPMENT.md](supabase/LOCAL_DEVELOPMENT.md) | Complete Supabase development guide |
+| [supabase/TESTING_EDGE_FUNCTIONS.md](supabase/TESTING_EDGE_FUNCTIONS.md) | Edge function testing guide |
+| [SUPABASE_TESTING_GUIDE.md](SUPABASE_TESTING_GUIDE.md) | Comprehensive testing guide |
+
+### Quick Links
+
+- **Getting Started:** [LOCAL_DEV_DEPLOYMENT_GUIDE.md](LOCAL_DEV_DEPLOYMENT_GUIDE.md#quick-start)
+- **Common Issues:** [TROUBLESHOOTING.md](TROUBLESHOOTING.md)
+- **Deployment:** [LOCAL_DEV_DEPLOYMENT_GUIDE.md](LOCAL_DEV_DEPLOYMENT_GUIDE.md#deployment-workflows)
+- **Best Practices:** [WORKFLOW_BEST_PRACTICES.md](WORKFLOW_BEST_PRACTICES.md)
 
 ## Configuration
 

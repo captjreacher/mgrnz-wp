@@ -1,0 +1,178 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/accordion",
+  "version": "1.0.0",
+  "title": "Accordion",
+  "category": "cozy-block",
+  "description": "Streamline content presentation with our 'Accordion' block, allowing you to organize information in a compact and user-friendly manner. Users can easily expand and collapse sections to access the details they desire, creating a clean and efficient user experience.",
+  "keywords": [
+    "accordion"
+  ],
+  "textdomain": "cozy-addons",
+  "example": {},
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "rowGap": {
+      "type": "number",
+      "default": 10
+    },
+    "titleTag": {
+      "type": "string",
+      "default": "h4"
+    },
+    "titleJustify": {
+      "type": "string",
+      "default": "space-between"
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "viewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 14,
+          "vh": 25
+        },
+        "gap": "6px",
+        "path": "M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z",
+        "activePath": "M10.8737 12.7121C10.9908 12.595 10.9908 12.405 10.8737 12.2879L1.00502 2.41924C0.887867 2.30208 0.887867 2.11213 1.00502 1.99497L1.99497 1.00502C2.11213 0.887867 2.30208 0.887867 2.41924 1.00502L13.7021 12.2879C13.8192 12.405 13.8192 12.595 13.7021 12.7121L2.41924 23.995C2.30208 24.1121 2.11213 24.1121 1.99497 23.995L1.00502 23.005C0.887867 22.8879 0.887868 22.6979 1.00503 22.5808L10.8737 12.7121Z",
+        "activeViewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 14,
+          "vh": 25
+        },
+        "view": "default",
+        "position": "right",
+        "layout": "fill",
+        "size": 22,
+        "color": "#5566ca",
+        "colorHover": "#36cfc6",
+        "opacity": 1,
+        "rotate": 90,
+        "rotateActive": 270
+      }
+    },
+    "iconBoxStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "borderRadius": 50,
+        "bgColor": "#b2bcf9",
+        "bgColorHover": ""
+      }
+    },
+    "containerStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "border": {
+          "width": {
+            "top": 1,
+            "right": 1,
+            "bottom": 1,
+            "left": 1
+          },
+          "type": "none",
+          "color": "#000"
+        },
+        "borderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "bgColor": ""
+      }
+    },
+    "accordionStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 16,
+          "right": 16,
+          "bottom": 16,
+          "left": 16
+        },
+        "border": {
+          "width": {
+            "top": 1,
+            "right": 1,
+            "bottom": 1,
+            "left": 1
+          },
+          "type": "none",
+          "color": "#000"
+        },
+        "borderRadius": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "bgColor": "#E6E8F4"
+      }
+    },
+    "titleTypography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": "",
+        "color": "#000",
+        "fontWeight": ""
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "",
+        "fontSize": 16,
+        "color": "#000",
+        "fontWeight": 400
+      }
+    }
+  },
+  "providesContext": {
+    "icon": "icon",
+    "titleTag": "titleTag",
+    "titleJustify": "titleJustify"
+  },
+  "supports": {
+    "html": false
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--accordion--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/date-time",
+  "title": "Date & Time",
+  "description": "Stay updated with our 'Date & Time' block, effortlessly displaying the current time and date to keep your audience informed and engaged.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "borderRadius": {
+          "topL": 6,
+          "topR": 6,
+          "bottomL": 6,
+          "bottomR": 6
+        },
+        "textAlign": "center",
+        "display": "flex",
+        "gap": 10,
+        "marginBottom": 10,
+        "styles": {
+          "fontFamily": "Public Sans",
+          "fontSize": 14,
+          "fontWeight": "400",
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
+          "color": "#000",
+          "bgColor": "#fff"
+        }
+      }
+    },
+    "abbr": {
+      "type": "boolean",
+      "default": false
+    },
+    "week": {
+      "type": "object",
+      "default": {
+        "enabled": true
+      }
+    },
+    "date": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "format": "m-d-y"
+      }
+    },
+    "time": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "timeFormat": true,
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "borderRadius": {
+          "topL": 0,
+          "topR": 0,
+          "bottomL": 0,
+          "bottomR": 0
+        },
+        "styles": {
+          "fontSize": "",
+          "fontWeight": "",
+          "fontFamily": "",
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
+          "color": "",
+          "bgColor": ""
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--current-time--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

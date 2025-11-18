@@ -1,0 +1,13 @@
+{
+  "event": "post_publish",
+  "post_id": 123,
+  "slug": "test-post-slug",
+  "title": "Test Post Title",
+  "status": "publish",
+  "author": "admin",
+  "content": "This is test post content",
+  "excerpt": "Test excerpt",
+  "categories": ["Technology", "AI"],
+  "tags": ["automation", "testing"],
+  "timestamp": "2025-11-18T00:00:00Z"
+}

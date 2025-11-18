@@ -1,0 +1,151 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/product-slider",
+  "title": "Product Slider (Pro)",
+  "description": "Highlight your WooCommerce products dynamically with the 'Product Slider' block, allowing smooth sliding to showcase your products in an attractive and interactive manner.",
+  "category": "cozy-block/woocommerce",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
+    },
+    "hoverShow": {
+      "type": "boolean",
+      "default": true
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "width": 10,
+        "height": 10,
+        "borderRadius": 10,
+        "activeWidth": 10,
+        "activeHeight": 10,
+        "activeBorder": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "activeOffset": 0,
+        "gap": 4,
+        "activeBorderRadius": 10,
+        "activeColor": "#007cba",
+        "color": "#252525",
+        "activeColorHover": "#164861",
+        "colorHover": "#a5a5a5",
+        "align": "center",
+        "verticalPosition": 0,
+        "left": "0px",
+        "right": "0px"
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "iconSize": 15,
+        "iconBoxWidth": 35,
+        "iconBoxHeight": 35,
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "borderRadius": 50,
+        "backgroundColor": "#fff",
+        "color": "#007cba",
+        "backgroundColorHover": "#007cba",
+        "colorHover": "#fff",
+        "borderHover": ""
+      }
+    },
+    "sliderOptions": {
+      "type": "object",
+      "default": {
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "pauseOnMouseEnter": true,
+          "reverseDirection": false,
+          "delay": 3000
+        },
+        "centeredSlides": false,
+        "slidesPerView": 1,
+        "spaceBetween": 30,
+        "speed": 2000
+      }
+    },
+    "thumbOptions": {
+      "type": "object",
+      "default": {
+        "loop": false,
+        "centeredSlides": false,
+        "responsive": {
+          "enabled": false,
+          "viewport": 768,
+          "width": "40px",
+          "height": "40px"
+        },
+        "width": "150px",
+        "height": "150px",
+        "horizontalSpacing": "0px",
+        "verticalSpacing": "0px",
+        "direction": "horizontal",
+        "horizontalJustify": "center",
+        "verticalJustify": "center",
+        "position": "left",
+        "gap": "0px",
+        "radius": "0px",
+        "default": {
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": 0,
+          "opacity": 100
+        },
+        "active": {
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": 0,
+          "opacity": 100
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--product-slider--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

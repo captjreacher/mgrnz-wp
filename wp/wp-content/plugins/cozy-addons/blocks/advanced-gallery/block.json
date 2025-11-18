@@ -1,0 +1,454 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/advanced-gallery",
+  "version": "1.0.0",
+  "title": "Advanced Gallery",
+  "category": "cozy-block",
+  "description": "'Advanced gallery' block with a grid, masonry and carousel layout that opens images in a lightbox for a sleek, full-screen viewing experience.",
+  "keywords": [
+    "gallery",
+    "image"
+  ],
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalSkipSerialization": [
+        "textDecoration"
+      ],
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "perPage": {
+      "type": "number",
+      "default": -1
+    },
+    "display": {
+      "type": "string",
+      "default": "grid"
+    },
+    "enableOptions": {
+      "type": "object",
+      "default": {
+        "isotopeFilter": false,
+        "hoverTitle": false,
+        "hoverIcon": true,
+        "lightbox": true,
+        "lightboxTitle": true
+      }
+    },
+    "tabOptions": {
+      "type": "object",
+      "default": {
+        "showDefaultTab": true,
+        "justifyTab": "center",
+        "gap": "4px"
+      }
+    },
+    "tabsList": {
+      "type": "array",
+      "default": []
+    },
+    "mediaCollection": {
+      "type": "array",
+      "default": []
+    },
+    "gridOptions": {
+      "type": "object",
+      "default": {
+        "column": 3,
+        "columnGap": "16px",
+        "masonry": false
+      }
+    },
+    "headerBox": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "6px",
+          "right": "6px",
+          "bottom": "6px",
+          "left": "6px"
+        },
+        "margin": {
+          "top": "0px",
+          "bottom": "12px"
+        },
+        "border": {
+          "top": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "right": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "bottom": {
+            "width": "1px",
+            "style": "solid",
+            "color": "#e2e2e2"
+          },
+          "left": {
+            "width": "",
+            "style": "",
+            "color": ""
+          }
+        },
+        "radius": "0px",
+        "color": {
+          "bg": ""
+        }
+      }
+    },
+    "tabStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": "2px",
+          "right": "6px",
+          "bottom": "2px",
+          "left": "6px"
+        },
+        "radius": "0px",
+        "default": {
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "shadow": {
+            "enabled": false,
+            "horizontal": 0,
+            "vertical": 0,
+            "blur": 0,
+            "spread": 0,
+            "color": "",
+            "position": ""
+          }
+        },
+        "active": {
+          "marginBottom": 0,
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "shadow": {
+            "enabled": false,
+            "horizontal": 0,
+            "vertical": 0,
+            "blur": 0,
+            "spread": 0,
+            "color": "",
+            "position": ""
+          }
+        },
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "bg": "",
+          "bgHover": "",
+          "bgActive": "",
+          "text": "",
+          "textHover": "#f90",
+          "textActive": "#5566ca"
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "height": "220px",
+        "radius": "0px",
+        "hoverEffect": true,
+        "title": {
+          "align": "center",
+          "bottom": "10px",
+          "left": "0px",
+          "right": "0px",
+          "font": {
+            "size": "14px",
+            "weight": "500",
+            "family": ""
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": ""
+        },
+        "color": {
+          "text": "#fff",
+          "overlay": "#090b1085"
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "size": "30px",
+        "path": "M17.3051 12.1C17.3051 12.6 16.9051 13 16.4051 13H12.8051V16.4C12.8051 16.9 12.4051 17.3 11.9051 17.3C11.4051 17.3 11.0051 16.9 11.0051 16.4V13H7.60511C7.10511 13 6.70511 12.6 6.70511 12.1C6.70511 11.6 7.10511 11.2 7.60511 11.2H11.0051V7.6C11.0051 7.1 11.4051 6.7 11.9051 6.7C12.4051 6.7 12.8051 7.1 12.8051 7.6V11.2H16.4051C16.9051 11.2 17.3051 11.6 17.3051 12.1Z",
+        "viewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 24,
+          "vh": 24
+        },
+        "box": {
+          "padding": {
+            "top": "6px",
+            "right": "6px",
+            "bottom": "6px",
+            "left": "6px"
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "50px"
+        },
+        "color": {
+          "text": "",
+          "textHover": "#fff",
+          "bg": "#fff",
+          "bgHover": "#f90"
+        }
+      }
+    },
+    "lightbox": {
+      "type": "object",
+      "default": {
+        "title": {
+          "align": "center",
+          "bottom": 0,
+          "left": "0px",
+          "right": "0px",
+          "font": {
+            "size": "16px",
+            "weight": "500",
+            "family": ""
+          },
+          "letterCase": "none",
+          "decoration": "none",
+          "lineHeight": "",
+          "letterSpacing": "",
+          "color": {
+            "text": "#fff"
+          }
+        },
+        "navigation": {
+          "enabled": true,
+          "hoverShow": true,
+          "size": "16px",
+          "boxWidth": "35px",
+          "boxHeight": "35px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "5px",
+          "color": {
+            "icon": "#fff",
+            "iconHover": "",
+            "bg": "#6a6a6a",
+            "bgHover": "#f90",
+            "borderHover": ""
+          }
+        }
+      }
+    },
+    "sliderOptions": {
+      "type": "object",
+      "default": {
+        "effect": "slide",
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "pauseOnMouseEnter": true,
+          "reverseDirection": false,
+          "delay": 2500
+        },
+        "centeredSlides": false,
+        "slidesPerView": 3,
+        "spaceBetween": 26,
+        "speed": 1500
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "width": "10px",
+        "height": "10px",
+        "radius": "10px",
+        "active": {
+          "width": "10px",
+          "height": "10px",
+          "radius": "10px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": "1px"
+        },
+        "align": "center",
+        "bottom": 0,
+        "left": "0px",
+        "right": "0px",
+        "gap": "4px",
+        "color": {
+          "default": "#6a6a6a",
+          "defaultHover": "",
+          "active": "#f90",
+          "activeHover": ""
+        }
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "hoverShow": true,
+        "size": "15px",
+        "boxWidth": "35px",
+        "boxHeight": "35px",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "color": {
+          "icon": "#fff",
+          "iconHover": "",
+          "bg": "#007cba",
+          "bgHover": "#f90",
+          "borderHover": ""
+        }
+      }
+    },
+    "ajaxLoader": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "type": "default",
+        "label": "Load More",
+        "loadingText": "",
+        "minWidth": "95px",
+        "content": 10,
+        "padding": {
+          "top": "8px",
+          "right": "14px",
+          "bottom": "8px",
+          "left": "14px"
+        },
+        "margin": {
+          "top": "26px",
+          "bottom": "0px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": ""
+        },
+        "textAlign": "center",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "#fff",
+          "textHover": "",
+          "spinnerPrimary": "#fff",
+          "spinnerSecondary": "#989898",
+          "bg": "#5566ca",
+          "bgHover": "#f90",
+          "borderHover": ""
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--advanced-gallery--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

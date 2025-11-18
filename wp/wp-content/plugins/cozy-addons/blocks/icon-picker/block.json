@@ -1,0 +1,117 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/icon-picker",
+  "title": "Icon Picker",
+  "description": "Unlock endless possibilities with our 'Icon Picker' block, providing a user-friendly interface to choose from a diverse range of icons, enhancing the visual appeal of your content.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
+    "view": {
+      "type": "string",
+      "default": "default"
+    },
+    "layout": {
+      "type": "string",
+      "default": "fill"
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 80
+    },
+    "strokeWidth": {
+      "type": "number",
+      "default": 2
+    },
+    "iconViewBox": {
+      "type": "object",
+      "default": {
+        "vx": 0,
+        "vy": 0,
+        "vw": 24,
+        "vh": 23
+      }
+    },
+    "iconPath": {
+      "type": "string",
+      "default": "M10.3646 0.77312L7.5304 6.51965L1.18926 7.44413C0.052104 7.60906 -0.403625 9.01097 0.421028 9.81392L5.0087 14.2844L3.92363 20.5995C3.72832 21.741 4.93058 22.596 5.93752 22.0622L11.6103 19.0804L17.283 22.0622C18.29 22.5917 19.4922 21.741 19.2969 20.5995L18.2118 14.2844L22.7995 9.81392C23.6242 9.01097 23.1684 7.60906 22.0313 7.44413L15.6901 6.51965L12.8559 0.77312C12.3481 -0.251186 10.8768 -0.264207 10.3646 0.77312Z"
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#5566ca"
+    },
+    "iconColorHover": {
+      "type": "string",
+      "default": ""
+    },
+    "iconOpacity": {
+      "type": "number",
+      "default": 1
+    },
+    "iconRotate": {
+      "type": "number",
+      "default": 0
+    },
+    "boxStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "borderRadius": 50,
+        "bgColor": "#b2bcf9",
+        "bgColorHover": ""
+      }
+    },
+    "link": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "url": "",
+        "newTab": false,
+        "noFollow": false
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

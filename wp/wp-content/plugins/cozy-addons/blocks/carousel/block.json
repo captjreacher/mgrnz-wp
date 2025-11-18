@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "cozy-block/carousel",
+  "version": "1.0.0",
+  "title": "Item",
+  "description": "Supportive block for Team and Testimonials blocks.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "parent": [
+    "cozy-block/teams",
+    "cozy-block/testimonial",
+    "cozy-block/featured-content-box",
+    "cozy-block/portfolio-gallery"
+  ]
+}

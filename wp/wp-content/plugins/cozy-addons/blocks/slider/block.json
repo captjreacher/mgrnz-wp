@@ -1,0 +1,245 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/slider",
+  "title": "Slider",
+  "description": "Immerse your audience in captivating visuals with our versatile 'Slider' block, perfect for showcasing images or content in a dynamic and engaging carousel.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "__experimentalBorder": {
+      "color": true,
+      "radius": true,
+      "style": true,
+      "width": true,
+      "__experimentalDefaultControls": {
+        "color": true,
+        "radius": true,
+        "style": true,
+        "width": true
+      }
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "__experimentalFontStyle": true,
+      "__experimentalFontWeight": true,
+      "__experimentalTextTransform": true,
+      "__experimentalFontFamily": true,
+      "__experimentalLetterSpacing": true,
+      "__experimentalTextDecoration": true,
+      "__experimentalSkipSerialization": [
+        "textDecoration"
+      ],
+      "__experimentalDefaultControls": {
+        "fontSize": true
+      }
+    }
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "direction": {
+      "type": "string",
+      "default": "horizontal"
+    },
+    "height": {
+      "type": "number",
+      "default": "750"
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
+    },
+    "hasPagination": {
+      "type": "boolean",
+      "default": true
+    },
+    "hoverShow": {
+      "type": "boolean",
+      "default": true
+    },
+    "hasZoomEffect": {
+      "type": "boolean",
+      "default": false
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "width": "10px",
+        "height": "10px",
+        "borderRadius": "100px",
+        "activeWidth": "10px",
+        "activeHeight": "10px",
+        "activeBorder": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "activeOffset": "4px",
+        "activeBorderRadius": "100px",
+        "bottom": 0,
+        "left": 0,
+        "right": 0,
+        "align": "center",
+        "gap": "4px",
+        "activeColor": "#007cba",
+        "color": "#fff",
+        "activeColorHover": "#164861",
+        "colorHover": "#a5a5a5",
+        "activeBorderHover": "",
+        "dynamicBullets": false
+      }
+    },
+    "hasNavigation": {
+      "type": "boolean",
+      "default": true
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "iconSize": 15,
+        "iconRotate": 0,
+        "iconBoxWidth": 35,
+        "iconBoxHeight": 35,
+        "borderRadius": 50,
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "backgroundColor": "#fff",
+        "color": "#007cba",
+        "backgroundColorHover": "#007cba",
+        "colorHover": "#fff",
+        "padding": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5,
+          "responsive": "desktop"
+        },
+        "arrowIconNext": "<svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='0' class='svg-inline--fa fa-0 ' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'><path fill='currentColor' d='M278.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-160 160c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L210.7 256 73.4 118.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l160 160z'></path></svg>",
+        "arrowIconPrev": "<svg aria-hidden='true' focusable='false' data-prefix='fas' data-icon='angle-left' class='svg-inline--fa fa-angle-left ' role='img' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 512'><path fill='currentColor' d='M41.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l160 160c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L109.3 256 246.6 118.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-160 160z'></path></svg>"
+      }
+    },
+    "sliderOptions": {
+      "type": "object",
+      "default": {
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "pauseOnMouseEnter": true,
+          "delay": 2500
+        },
+        "slidesPerView": 1,
+        "centeredSlides": false,
+        "spaceBetween": 26,
+        "speed": 1500,
+        "effect": "none"
+      }
+    },
+    "thumbOptions": {
+      "type": "object",
+      "default": {
+        "loop": false,
+        "centeredSlides": false,
+        "gap": 0,
+        "slidesPerView": 3,
+        "responsive": {
+          "enabled": false,
+          "viewport": 768,
+          "width": "40px",
+          "height": "40px"
+        },
+        "width": "",
+        "height": "150px",
+        "horizontalSpacing": "0px",
+        "verticalSpacing": "0px",
+        "direction": "horizontal",
+        "horizontalJustify": "center",
+        "verticalJustify": "center",
+        "position": "left",
+        "radius": "0px",
+        "default": {
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": 0,
+          "opacity": 50
+        },
+        "active": {
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "offset": 0,
+          "opacity": 100
+        }
+      }
+    },
+    "thumbMedia": {
+      "type": "array",
+      "default": []
+    },
+    "shapeDivider": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "margin": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "height": 200,
+        "position": "bottom",
+        "flip": "right",
+        "svg": "<svg viewBox=\"0 0 519 134\" preserveAspectRatio=\"none\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M0 134H519V0L0 134Z\"/></svg>",
+        "color": "#fff"
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--slider--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

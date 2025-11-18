@@ -1,0 +1,212 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/toggle-content",
+  "title": "Toggle Content (Pro)",
+  "description": "The toggle content, featuring a switcher or tab-style design, allows users to seamlessly switch between different content sections for a more organized and interactive experience.",
+  "category": "cozy-block",
+  "allowedBlocks": [
+    "cozy-block/toggle-content-item"
+  ],
+  "textdomain": "cozy-addons",
+  "attributes": {
+    "activeContent": {
+      "type": "string",
+      "default": ""
+    },
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "tabs": {
+      "type": "array",
+      "default": []
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "type": {
+      "type": "string",
+      "default": "toggle"
+    },
+    "wrapperStyles": {
+      "type": "object",
+      "default": {
+        "width": "100%",
+        "contentAlign": "center",
+        "contentGap": "10px",
+        "padding": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "margin": {
+          "top": "",
+          "bottom": "26px"
+        },
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": {
+          "top": "",
+          "right": "",
+          "bottom": "",
+          "left": ""
+        },
+        "color": {
+          "bg": ""
+        }
+      }
+    },
+    "tabStyles": {
+      "type": "object",
+      "default": {
+        "default": {
+          "padding": {
+            "top": "6px",
+            "right": "18px",
+            "bottom": "6px",
+            "left": "18px"
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": ""
+        },
+        "active": {
+          "margin": {
+            "top": "",
+            "bottom": ""
+          },
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "100px"
+        },
+        "font": {
+          "size": "16px",
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "textActive": "#fff",
+          "textHover": "",
+          "bg": "",
+          "bgActive": "#0c50ff",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "toggleStyles": {
+      "type": "object",
+      "default": {
+        "font": {
+          "size": "16px",
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "button": "#fff",
+          "bg": "#ccc",
+          "buttonActive": "",
+          "bgActive": "#0c50ff"
+        }
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": ""
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "bottom": ""
+      }
+    },
+    "border": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "style": "",
+        "color": ""
+      }
+    },
+    "radius": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "right": "",
+        "bottom": "",
+        "left": ""
+      }
+    },
+    "shadow": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "horizontal": "0px",
+        "vertical": "0px",
+        "blur": "0px",
+        "spread": "0px",
+        "color": "#000",
+        "position": ""
+      }
+    },
+    "color": {
+      "type": "object",
+      "default": {
+        "text": "",
+        "bg": ""
+      }
+    },
+    "font": {
+      "type": "object",
+      "default": {
+        "size": "",
+        "weight": "",
+        "family": ""
+      }
+    }
+  },
+  "providesContext": {
+    "activeContent": "activeContent"
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--toggle-content--frontend-script"
+  ],
+  "render": "file:./render.php"
+}

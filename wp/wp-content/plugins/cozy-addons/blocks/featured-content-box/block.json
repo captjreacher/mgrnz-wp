@@ -1,0 +1,146 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/featured-content-box",
+  "title": "Featured Content Box",
+  "description": "Presenting the 'Featured Content Box' block – your ultimate tool for showcasing standout content! Customize your display for a visually stunning presentation that captivates your audience.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "display": {
+      "type": "string",
+      "default": "grid"
+    },
+    "layout": {
+      "type": "string",
+      "default": "default"
+    },
+    "gridOptions": {
+      "type": "object",
+      "default": {
+        "enableMasonry": false,
+        "columnCount": 3,
+        "gap": 30
+      }
+    },
+    "hoverShow": {
+      "type": "boolean",
+      "default": true
+    },
+    "stackedImage": {
+      "type": "object",
+      "default": {
+        "verticalPosition": -25
+      }
+    },
+    "galleryOptions": {
+      "type": "object",
+      "default": {
+        "overlayOpacity": 0.6,
+        "overlayColorHover": ""
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    "pagination": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "gap": 4,
+        "width": 10,
+        "height": 10,
+        "borderRadius": 10,
+        "activeWidth": 10,
+        "activeHeight": 10,
+        "activeBorderRadius": 10,
+        "activeBorder": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "activeOffset": 0,
+        "activeColor": "#007cba",
+        "color": "#252525",
+        "activeColorHover": "#164861",
+        "colorHover": "#a5a5a5",
+        "activeBorderHover": "",
+        "align": "center",
+        "verticalPosition": 0,
+        "left": "0px",
+        "right": "0px"
+      }
+    },
+    "navigation": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "iconSize": 15,
+        "iconBoxWidth": 35,
+        "iconBoxHeight": 35,
+        "borderRadius": 50,
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "backgroundColor": "#fff",
+        "color": "#007cba",
+        "backgroundColorHover": "#007cba",
+        "colorHover": "#fff",
+        "borderHover": ""
+      }
+    },
+    "sliderOptions": {
+      "type": "object",
+      "default": {
+        "loop": false,
+        "autoplay": {
+          "status": true,
+          "pauseOnMouseEnter": true,
+          "delay": 2500
+        },
+        "reverseDirection": false,
+        "centeredSlides": false,
+        "slidesPerView": 3,
+        "spaceBetween": 30,
+        "speed": 700,
+        "smoothTransition": false
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--featured-content-box--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

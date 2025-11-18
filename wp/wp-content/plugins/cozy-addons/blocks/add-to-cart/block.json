@@ -1,0 +1,160 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/add-to-cart",
+  "title": "Add to Cart",
+  "description": "With the 'Add to Cart' block allows you to easily add products to your cart, featuring a customizable button that can display a label, an icon, or both.",
+  "category": "cozy-block/woocommerce",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "gradients": true,
+      "link": true,
+      "text": true
+    },
+    "spacing": {
+      "padding": true,
+      "margin": [
+        "top",
+        "bottom"
+      ],
+      "__experimentalDefaultControls": {
+        "padding": true
+      }
+    },
+    "interactivity": {
+      "clientNavigation": true
+    }
+  },
+  "usesContext": [
+    "postId",
+    "postType",
+    "queryId"
+  ],
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "postType": {
+      "type": "string",
+      "default": ""
+    },
+    "button": {
+      "type": "object",
+      "default": {
+        "enabled": false,
+        "label": "Add to cart",
+        "width": "100%",
+        "height": "40px",
+        "gap": "6px",
+        "justify": "center",
+        "border": {
+          "width": "",
+          "style": "",
+          "color": ""
+        },
+        "radius": "100px",
+        "shadow": {
+          "default": {
+            "enabled": false,
+            "horizontal": 0,
+            "vertical": 0,
+            "blur": 0,
+            "spread": 0,
+            "color": "#000",
+            "position": ""
+          },
+          "hover": {
+            "enabled": false,
+            "horizontal": 0,
+            "vertical": 0,
+            "blur": 0,
+            "spread": 0,
+            "color": "#000",
+            "position": ""
+          }
+        },
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": ""
+        },
+        "letterCase": "none",
+        "color": {
+          "text": "#090b10",
+          "textHover": "#fff",
+          "bg": "#fff",
+          "bgHover": "#f90",
+          "borderHover": ""
+        }
+      }
+    },
+    "icon": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "size": "16px",
+        "position": "right",
+        "path": "M4 3.99999C4 3.46956 4.21071 2.96085 4.58579 2.58578C4.96086 2.2107 5.46957 1.99999 6 1.99999C6.53043 1.99999 7.03914 2.2107 7.41421 2.58578C7.78929 2.96085 8 3.46956 8 3.99999H4ZM2.66667 3.99999H0.666667C0.489856 3.99999 0.320286 4.07023 0.195262 4.19525C0.0702379 4.32028 0 4.48985 0 4.66666V14C0 14.1768 0.0702379 14.3464 0.195262 14.4714C0.320286 14.5964 0.489856 14.6667 0.666667 14.6667H11.3333C11.5101 14.6667 11.6797 14.5964 11.8047 14.4714C11.9298 14.3464 12 14.1768 12 14V4.66666C12 4.48985 11.9298 4.32028 11.8047 4.19525C11.6797 4.07023 11.5101 3.99999 11.3333 3.99999H9.33333C9.33333 3.11593 8.98214 2.26809 8.35702 1.64297C7.7319 1.01785 6.88406 0.666656 6 0.666656C5.11595 0.666656 4.2681 1.01785 3.64298 1.64297C3.01786 2.26809 2.66667 3.11593 2.66667 3.99999ZM4 6.66666C4 7.19709 4.21071 7.7058 4.58579 8.08087C4.96086 8.45594 5.46957 8.66666 6 8.66666C6.53043 8.66666 7.03914 8.45594 7.41421 8.08087C7.78929 7.7058 8 7.19709 8 6.66666H9.33333C9.33333 7.55071 8.98214 8.39856 8.35702 9.02368C7.7319 9.6488 6.88406 9.99999 6 9.99999C5.11595 9.99999 4.2681 9.6488 3.64298 9.02368C3.01786 8.39856 2.66667 7.55071 2.66667 6.66666H4Z",
+        "viewBox": {
+          "vx": 0,
+          "vy": 0,
+          "vw": 12,
+          "vh": 15
+        },
+        "box": {
+          "margin": {
+            "top": "0px",
+            "bottom": "0px"
+          },
+          "width": "40px",
+          "height": "40px",
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "radius": "100px"
+        },
+        "color": {
+          "text": "#5566ca",
+          "textHover": "",
+          "bg": "#fff",
+          "bgHover": "",
+          "borderHover": ""
+        }
+      }
+    },
+    "toast": {
+      "type": "object",
+      "default": {
+        "font": {
+          "size": "14px",
+          "weight": "500",
+          "family": ""
+        },
+        "color": {
+          "text": "#fff",
+          "bg": "#28a745"
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

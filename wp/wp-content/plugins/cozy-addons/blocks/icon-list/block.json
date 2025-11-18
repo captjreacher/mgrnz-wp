@@ -1,0 +1,162 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/icon-list",
+  "title": "Icon List",
+  "description": "Elevate your lists with style using the 'Icon List' block, offering advanced options to effortlessly integrate and customize icons for a visually appealing and informative presentation.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "iconView": {
+      "type": "string",
+      "default": "default"
+    },
+    "iconLayout": {
+      "type": "string",
+      "default": "fill"
+    },
+    "iconPosition": {
+      "type": "string",
+      "default": "left"
+    },
+    "iconSize": {
+      "type": "number",
+      "default": 16
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "#5566ca"
+    },
+    "iconColorHover": {
+      "type": "string",
+      "default": ""
+    },
+    "iconOpacity": {
+      "type": "number",
+      "default": 1
+    },
+    "iconRotate": {
+      "type": "number",
+      "default": 0
+    },
+    "iconGap": {
+      "type": "number",
+      "default": 10
+    },
+    "enableTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "textAlign": {
+      "type": "string",
+      "default": "left"
+    },
+    "enableLogo": {
+      "type": "boolean",
+      "default": true
+    },
+    "linkType": {
+      "type": "string",
+      "default": "full"
+    },
+    "linkNewTab": {
+      "type": "boolean",
+      "default": true
+    },
+    "linkNoFollow": {
+      "type": "boolean",
+      "default": true
+    },
+    "listStyle": {
+      "type": "string",
+      "default": "vertical"
+    },
+    "containerStyles": {
+      "type": "object",
+      "default": {
+        "width": "",
+        "height": "",
+        "gap": 10,
+        "padding": {
+          "top": 0,
+          "right": 0,
+          "bottom": 0,
+          "left": 0
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "borderRadius": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "bgColor": "",
+        "bgColorHover": ""
+      }
+    },
+    "iconBoxStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 5,
+          "right": 5,
+          "bottom": 5,
+          "left": 5
+        },
+        "borderType": "none",
+        "borderWidth": 1,
+        "borderColor": "#000",
+        "borderColorHover": "",
+        "borderRadius": 50,
+        "bgColor": "#b2bcf9",
+        "bgColorHover": ""
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "fontFamily": "Public Sans",
+        "fontSize": 16,
+        "color": "#000",
+        "colorHover": "",
+        "fontWeight": 400,
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": ""
+      }
+    }
+  },
+  "providesContext": {
+    "enableLogo": "enableLogo",
+    "enableTitle": "enableTitle",
+    "linkType": "linkType",
+    "linkNewTab": "linkNewTab",
+    "linkNoFollow": "linkNoFollow",
+    "iconPosition": "iconPosition"
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

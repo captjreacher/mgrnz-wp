@@ -1,0 +1,119 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/post-carousel",
+  "title": "Post Grid/Carousel",
+  "description": "Immerse yourself in an engaging browsing journey using our 'Post Carousel' block, showcasing visually stunning and interactive featured content for effortless exploration.",
+  "category": "cozy-block/post-magazine",
+  "keywords": [
+    "post",
+    "carousel",
+    "grid"
+  ],
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "layout": {
+      "type": "string",
+      "default": "carousel"
+    },
+    "hoverShow": {
+      "type": "boolean",
+      "default": true
+    },
+    "gridOptions": {
+      "type": "object",
+      "default": {
+        "displayColumn": 3,
+        "masonryEnabled": false,
+        "columnGap": 30
+      }
+    },
+    "carouselOptions": {
+      "type": "object",
+      "default": {
+        "pagination": {
+          "enabled": true,
+          "width": 10,
+          "height": 10,
+          "borderRadius": 10,
+          "activeWidth": 10,
+          "activeHeight": 10,
+          "activeBorder": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "activeOffset": 0,
+          "gap": 4,
+          "activeBorderRadius": 10,
+          "activeColor": "#007cba",
+          "color": "#252525",
+          "activeColorHover": "#164861",
+          "colorHover": "#a5a5a5",
+          "align": "center",
+          "positionVertical": -20,
+          "left": "0px",
+          "right": "0px"
+        },
+        "navigation": {
+          "enabled": true,
+          "iconSize": 15,
+          "iconBoxWidth": 35,
+          "iconBoxHeight": 35,
+          "border": {
+            "width": "",
+            "style": "",
+            "color": ""
+          },
+          "borderRadius": 50,
+          "backgroundColor": "#fff",
+          "color": "#007cba",
+          "backgroundColorHover": "#007cba",
+          "colorHover": "#fff",
+          "borderHover": ""
+        },
+        "sliderOptions": {
+          "autoplay": {
+            "enabled": true,
+            "pauseOnMouseEnter": true,
+            "reverseDirection": false,
+            "delay": 2500
+          },
+          "loop": false,
+          "centeredSlides": false,
+          "slidesPerView": 3,
+          "spaceBetween": 30,
+          "speed": 700
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-swiper-bundle",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--post-carousel--frontend-script"
+  ],
+  "script": [
+    "cozy-swiper-bundle"
+  ],
+  "render": "file:./render.php"
+}

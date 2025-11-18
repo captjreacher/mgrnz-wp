@@ -1,0 +1,333 @@
+= 2.1.31 - October 27, 2025 = 
+* Fix: Minor block improvements.
+
+= 2.1.30 - September 18, 2025 = 
+* Fix: Minor block improvements.
+* Fix: User role check for Contact Form Styler API.
+
+= 2.1.29 - August 27, 2025 = 
+* Fix: Cozy Animation.
+
+= 2.1.28 - August 20, 2025 = 
+* Fix: Admin links redirection.
+* Add: Smooth slide transition and reverse slider direction feature in Featured Content Box, Teams and Testimonial blocks.
+
+= 2.1.27 - August 15, 2025 = 
+* Fix: Portfolio Gallery block.
+
+= 2.1.26 - July 15, 2025 = 
+* Fix: Keyword stuffing in plugin title.
+
+= 2.1.25 - May 01, 2025 = 
+* Fix: Advanced Gallery block's lightbox active slide visibility.
+
+= 2.1.24 - April 28, 2025 = 
+* Fix: Product Review block render.
+
+= 2.1.23 - April 22, 2025 = 
+* Fix: Block improvements.
+* Fix: REST API broken access control. 
+* Fix: 'Sidebar Panel' block style conflict with Spectra. 
+* Update: Compatible with WordPress 6.8
+
+= 2.1.22 - April 08, 2025 = 
+* Fix: Sidebar panel block.
+
+= 2.1.21 - April 07, 2025 = 
+* Fix: Block improvements.
+
+= 2.1.20 - March 24, 2025 = 
+* Fix: 'Related Post' block's render query.
+
+= 2.1.9 - March 24, 2025 = 
+* Fix: 'Related Post' block's render query.
+* Fix: 'Categorized Post Tabs' layout style.
+
+= 2.1.8 - March 10, 2025 = 
+* Fix: Core 'Navigation' block Hover Styles attribute.
+* Add: Show/Hide nested categories option in 'Advanced Categories' block.
+
+= 2.1.7 - February 26, 2025 = 
+* Fix: Block Improvements.
+* Add: Post Offset option for 'Magazine Grid' & 'Magazine List'.
+
+= 2.1.6 - February 19, 2025 = 
+* Fix: Possible cross site scripting in 'Pricing table' block.
+
+= 2.1.5 - February 13, 2025 = 
+* Add: Toggle Content, Contact Form 7 Styler, Countdown Timer and Toggle Content blocks.
+* Fix: Block improvements.
+
+= 2.1.4 - January 27, 2025 = 
+* Fix: 'All Product Review' block render styles.
+
+= 2.1.3 - January 27, 2025 = 
+* Update: Freemius SDK to 2.11.0
+* Fix: Core 'Navigation' block hover styles.
+* Fix: Block improvements.
+
+= 2.1.2 - January 22, 2025 = 
+* Add: Pricing table block.
+* Fix: Block improvements.
+
+= 2.1.1 - January 22, 2025 = 
+* Add: Pricing table block.
+* Fix: Block improvements.
+
+= 2.1.0 - January 08, 2025 = 
+* Add: Version Control.
+* Fix: Block improvements.
+* Update: Removed Elementor Support.
+
+= 2.0.29 - December 13, 2024 = 
+* Add: Sticky color for fixed position in 'Cozy Container' block.
+* Fix: Overlay hover styles render in frontend for 'Featured Content Box' block.
+
+= 2.0.28 - December 11, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Styles preg match for 'Cozy Hover Styles' attribute.
+
+= 2.0.27 - December 9, 2024 = 
+* Fix: Styles for 'Advanced Mega Menu' block.
+* Fix: Slider options for 'Featured Content Box' block.
+
+= 2.0.26 - November 27, 2024 = 
+* Fix: Slider options 'Speed', 'Autoplay Delay' value to minimum 0.
+* Add: Transform option for default state in 'Cozy Hover Effect' functionality.
+* Add: Overflow option for default state in 'Cozy Hover Effect' functionality.
+
+= 2.0.25 - November 25, 2024 = 
+* Fix: Slider styles.
+* Add: z-index option for 'Cozy Hover Effect' functionality.
+* Add: Post meta options for 'Popular Post' and 'Trending Posts' blocks.
+
+= 2.0.24 - November 20, 2024 = 
+* Fix: 'Advanced Mega Menu' block's active menu item's text/background color and typography settings.
+* Fix: Render the popup in the respective block section for 'Sidebar Panel' block.
+* Fix: Render the popup in the respective block section for 'Popup Builder' block.
+* Fix: Reduced load time for plugin's Dashboard > Blocks enable/disabled status.
+
+= 2.0.23 - November 15, 2024 = 
+* Fix: Typography settings for general blocks.
+* Fix: Show block CPT if the option not set.
+
+= 2.0.22 - November 13, 2024 = 
+* Fix: Post/Product blocks typography settings.
+* Fix: 'Advanced Mega Menu' responsive dropdown.
+
+= 2.0.21 - November 6, 2024 = 
+* Add: 'Categorized Post Tabs' content wrapper border.
+* Add: 'Magazine Grid' content wrapper border.
+* Fix: Post/Product link redirection.
+* Fix: 'Advanced Mega Menu' responsive dropdown.
+
+= 2.0.19 - October 22, 2024 = 
+* Fix: Slider block's initial render template.
+* Fix: Security check for elementor widgets render data.
+* Add: Elementor support removal notice.
+
+= 2.0.18 - October 7, 2024 = 
+* Fix: Lightbox for carousel layout in 'Advanced Gallery' block.
+* Fix: Filter for portfolio gallery category.
+
+= 2.0.17 - October 2, 2024 = 
+* Fix: Advanced Gallery ajax loader.
+* Fix: Slider thumbnail image fit.
+* Update: Freemius SDK.
+
+= 2.0.16 - September 30, 2024 = 
+* Fix: Advanced Gallery lightbox slider initialization.
+* Fix: Advanced Gallery ajax loader.
+* Fix: Portfolio Gallery lightbox slider initialization.
+* Fix: XSS in elementor Call to Action Widget.
+
+= 2.0.15 - September 12, 2024 = 
+* Add: Affiliate partnership program.
+* Add: Featured Post element styles in 'Categorized Post tabs' and 'Magazine Grid' block.
+* Fix: Ajax loader button closing div element.
+* Fix: Featured Product & Featured Product Tabs sale badge content type render.
+
+= 2.0.14 - September 2, 2024 = 
+* Fix: Product Showcase Tabs sale badge content type render.
+
+= 2.0.13 - August 30, 2024 = 
+* Fix: 'Product Carousel' block with util icons.
+* Fix: Ajax loader for 'Advanced Gallery' block.
+
+= 2.0.12 - August 28, 2024 = 
+* Add: Advertisement, Quick View, Wishlist blocks.
+* Add: Integrated Quick View, Wishlist and Add to cart util icons to WooCommerce blocks.
+* Fix: Security update for cross site scripting.
+
+= 2.0.11 - August 2, 2024 = 
+* Add: Advanced Gallery block.
+* Fix: Gallery Layout for Portfolio block.
+* Fix: RGBA color control for 'Cozy Hover Effect' control.
+
+= 2.0.10 - July 26, 2024 = 
+* Add: Categorized Post Tabs, Featured Post, Magazine Grid & Magazine List blocks.
+* Fix: CSS display adjustment for 'Cozy Responsive' attribute in core blocks.
+
+= 2.0.9 - July 8, 2024 = 
+* Fix: Broken link in 'Accordion' block.
+
+= 2.0.8 - July 8, 2024 = 
+* Fix: Undefined attributes in frontend for 'Product Carousel' block.
+* Fix: Enable/Disable pagination for 'Slider' block in editor view.
+
+= 2.0.7 - July 8, 2024 = 
+* Add: Thumbnail layout for 'Slider' block.
+* Add: 'Cozy Animation' control for 'Slider', 'Post Slider' and 'Product Slider' blocks.
+* Fix: Undefined attributes in frontend for 'Product Carousel' block.
+
+= 2.0.6 - June 28, 2024 = 
+* Fix: Portfolio Gallery block for undefined attributes error.
+* Fix: Template import from the template library.
+
+= 2.0.5 - June 26, 2024 = 
+* Add: New Blocks: Advanced Categories, Featured Post Tabs, Post Comments, Post Views & Featured Product Tabs.
+* Fix: Undefined attribute warning in frontend.
+* Fix: Porfolio Block layout type options and related controls.
+* Fix: Overall layout and controls of Products Showcase Tabs.
+* Update: Freemius SDK version '2.7.2'.
+
+= 2.0.4 - May 27, 2024 = 
+* Fix: Fetch WooCommerce products review user display name.
+
+= 2.0.3 - May 20, 2024 = 
+* Fix: Adding link to the list items in the plugin description.
+
+= 2.0.2 - May 20, 2024 = 
+* Add: Template library.
+* Fix: Patterns layout to comply with active theme.
+* Fix: Optimization for slow speed.
+
+= 2.0.1 - Apr 29, 2024 = 
+* Fix: Enable/Disable option for Elementor widgets.
+
+= 2.0.0 - Apr 29, 2024 = 
+* Add: Pattern Library.
+* Add: Animation on Scroll.
+* Add: Advanced Hover Effects.
+* Add: Google Fonts for blocks.
+* Fix: Styles not rendered while saving the file.
+* Tested: Tested upto 6.5 WordPress version.
+
+= 1.3.13 - Mar 13, 2024 = 
+* Add: Plugin installation link to readme file.
+
+= 1.3.12 - Mar 13, 2024 = 
+* Add: Portfolio Gallery block.
+
+= 1.3.11 - Mar 1, 2024 = 
+* Fix: Short description of the plugin limited to 144 characters.
+
+= 1.3.10 - Feb 23, 2024 = 
+* Add: Advanced Mega Menu Block.
+* Fix: Product Grid/Carousel's responsive grid layout.
+
+= 1.3.9 - Feb 07, 2024 = 
+* Fix: Advanced Tab alignment style.
+
+= 1.3.8 - Feb 07, 2024 = 
+* Adding Woocommerce Product Reviews block, Product Grid/Carousel block and many more with minor improvements in existing blocks.
+
+= 1.3.7 - Jan 24, 2024 = 
+* Adding Woocommerce Product Slider block with minor improvements in existing blocks.
+
+= 1.3.6 - Jan 22, 2024 = 
+* Adding Accordion, Advanced Tabs, Shape Divider and more blocks.
+
+= 1.3.5 - Jan 10, 2024 = 
+* Adding Icon List, Social Shares and more blocks.
+
+= 1.3.4 - Jan 03, 2024 = 
+* Security issue fix.
+
+= 1.3.3 - Jan 01, 2024 = 
+* Freemius Version Updated
+
+= 1.3.2 - Dec 22, 2023 = 
+* Minor bug fixes for blocks display.
+
+= 1.3.1 - Dec 22, 2023 = 
+* Adding assets for plugin icon
+
+= 1.3.0 - Dec 22, 2023 = 
+* Adding Blocks for FSE and Gutenberg Editor.
+
+= 1.2.10 - Oct 17, 2023 = 
+* Freemius licensed issue fixed
+
+= 1.2.9 - Oct 13, 2023 = 
+* Bug fixed related to plugin update notification.
+
+= 1.2.8 - Oct 11, 2023 = 
+* Update Freemius to 2.5.12
+* Tested up to 6.3
+
+= 1.2.7 - July 29, 2023 = 
+* Minor layout improved for minicart, menu search and my account widgets
+
+= 1.2.6 - July 27, 2023 =
+* Navigation bug fixed.
+
+= 1.2.5 - July 24, 2023 =
+* Minor bug fixed for dashboard links
+
+= 1.2.4 - July 20, 2023 =
+* Bug fixed for header and footer builder for elementor
+* Dashboard update notice bug fixed
+
+= 1.2.4 - July 19, 2023 =
+* Bug fixed for header and footer builder for elementor
+
+= 1.2.3 - July 19, 2023 =
+* Minor improvement of admin section
+
+= 1.2.2 - July 18, 2023 =
+* Dashboard notice issue fixed
+
+= 1.2.1 - July 18, 2023 =
+* Fixes for dashboard notice buttons link and redirection
+
+= 1.2.0 - July 10, 2023 =
+* Adding freemius function replacement of uninstall hook
+
+= 1.0.9 - July 06, 2023 =
+* Adding Event list and My account widgets
+
+= 1.0.8 - July 02, 2023 =
+* Improving Widgets
+* Adding new widgets, Travel list, Properties list, Courses List, Footer Copyright Text, Menu Search, Menu Cart, Toggle Content and more..
+* Adding Header and Footer builder for Elementor
+* Adding sticky section for elementor section
+* Adding Custom CSS, Custom Footer scripts and header scripts options
+
+= 1.0.7 - May 22, 2023 =
+* Tested upto 6.2
+* Tested upto Elementor 3.13.2
+
+= 1.0.5 - Feb 12, 2023 = 
+* Tested upto Elementor 3.10.2
+
+= 1.0.4 - Sept 21, 2022 =
+* Adding search form widget for elementor
+* Adding Author Box Widget for Elementor
+
+= 1.0.3 - Oct 16, 2022 =
+* Responsive Layout improvement for woocommerce product layout widget
+
+= 1.0.2 - Sept 11, 2022 =
+* Adding Basic Magazine Block Widgets
+* Adding Post slider Widget
+* Adding Focus Post Widget
+* Adding Advanced Magazine Block
+* Improving sliders Layouts
+* Improving and Adding More layout for Popular Posts
+
+= 1.0.1 - March 08, 2022 = 
+* Adding Plugin Assets
+
+= 1.0.0 - March 04, 2022 = 
+* Initial Release

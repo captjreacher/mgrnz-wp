@@ -1,0 +1,119 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/portfolio-gallery-meta",
+  "title": "Portfolio Gallery Meta",
+  "description": "Fetches the meta field for portfolio gallery.",
+  "category": "cozy-block",
+  "supports": {
+    "spacing": {
+      "margin": true
+    }
+  },
+  "attributes": {
+    "clientId": {
+      "type": "string",
+      "default": ""
+    },
+    "meta": {
+      "type": "string",
+      "default": "year"
+    },
+    "metaTitle": {
+      "type": "string",
+      "default": "Project Year"
+    },
+    "cat": {
+      "type": "object",
+      "default": {
+        "gap": "",
+        "rowGap": "",
+        "padding": {
+          "top": "5px",
+          "right": "12px",
+          "bottom": "5px",
+          "left": "12px"
+        },
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "border": {
+          "width": "1px",
+          "style": "solid",
+          "color": "#0c50ff"
+        },
+        "radius": "5px",
+        "font": {
+          "size": "13px",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "#0c50ff",
+          "bg": ""
+        }
+      }
+    },
+    "title": {
+      "type": "object",
+      "default": {
+        "margin": {
+          "top": "",
+          "bottom": ""
+        },
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": ""
+        }
+      }
+    },
+    "link": {
+      "type": "object",
+      "default": {
+        "newTab": false,
+        "noFollow": false
+      }
+    },
+    "typography": {
+      "type": "object",
+      "default": {
+        "font": {
+          "size": "",
+          "weight": "",
+          "family": ""
+        },
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "color": {
+          "text": "",
+          "textHover": ""
+        }
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "render": "file:./render.php"
+}

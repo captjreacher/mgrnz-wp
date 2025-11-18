@@ -1,0 +1,133 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "cozy-block/modal",
+  "title": "Popup Builder (Pro)",
+  "description": "Capture attention with our 'Popup Builder' block, a pop-up window designed to showcase offers and promotions, providing a compelling way to communicate with your audience.",
+  "category": "cozy-block",
+  "textdomain": "cozy-addons",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "cover": {
+      "type": "string",
+      "default": ""
+    },
+    "blockClientId": {
+      "type": "string",
+      "default": ""
+    },
+    "boxWidth": {
+      "type": "number",
+      "default": 645
+    },
+    "modalType": {
+      "type": "string",
+      "default": "default"
+    },
+    "modalEvent": {
+      "type": "string",
+      "default": "load"
+    },
+    "loadOnRefresh": {
+      "type": "boolean",
+      "default": false
+    },
+    "backgroundOverlayColor": {
+      "type": "string",
+      "default": "#222222ad"
+    },
+    "backgroundColor": {
+      "type": "string",
+      "default": ""
+    },
+    "iconStyles": {
+      "type": "object",
+      "default": {
+        "enabled": true,
+        "alignment": "right",
+        "horizontalSpacing": -50,
+        "verticalSpacing": -50,
+        "boxWidth": 36,
+        "boxHeight": 36,
+        "radius": 100,
+        "iconSize": 15,
+        "bg": "#0c50ff",
+        "bgHover": "#f90",
+        "iconColor": "#fff",
+        "iconColorHover": "",
+        "border": "1px solid #000",
+        "borderRadius": 20
+      }
+    },
+    "clickButtonStyles": {
+      "type": "object",
+      "default": {
+        "padding": {
+          "top": 10,
+          "right": 10,
+          "bottom": 10,
+          "left": 10
+        },
+        "content": "default",
+        "label": "Open Popup",
+        "imgURL": "Open Popup",
+        "imgWidth": 100,
+        "imgHeight": 100,
+        "imgRadius": 0,
+        "imgHasPulse": 0,
+        "fontSize": 14,
+        "fontFamily": "Public Sans",
+        "fontWeight": "500",
+        "letterCase": "none",
+        "decoration": "none",
+        "lineHeight": "",
+        "letterSpacing": "",
+        "justify": "center",
+        "borderType": "none",
+        "borderWidth": {
+          "top": 1,
+          "right": 1,
+          "bottom": 1,
+          "left": 1
+        },
+        "borderColor": "#000",
+        "borderRadius": 60,
+        "color": "#0ba986",
+        "colorHover": "",
+        "bgColor": "#dcf2ec",
+        "bgColorHover": ""
+      }
+    },
+    "padding": {
+      "type": "object",
+      "default": {
+        "top": 50,
+        "right": 50,
+        "bottom": 50,
+        "left": 50
+      }
+    },
+    "margin": {
+      "type": "object",
+      "default": {
+        "top": "",
+        "bottom": ""
+      }
+    }
+  },
+  "editorScript": [
+    "file:./index.js",
+    "file:../index.js"
+  ],
+  "editorStyle": "file:./index.css",
+  "style": [
+    "file:./style-index.css",
+    "cozy-block--global-block-styles"
+  ],
+  "viewScript": [
+    "cozy-block--modal--frontend-script"
+  ],
+  "render": "file:./render.php"
+}
