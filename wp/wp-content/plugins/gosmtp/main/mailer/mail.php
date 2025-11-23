@@ -22,7 +22,7 @@ class Mail extends Loader{
 		global $phpmailer;
 		
 		$phpmailer->isMail();
-		
+
 		if($phpmailer->preSend()){
 		    
 			try{

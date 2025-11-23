@@ -533,8 +533,13 @@ class Import{
 
 	static function replace_snippet_vars($string, $plugin){
 		if(empty($string)) return $string;
+		
+		// We should not process the string if it does not have a variable
+		if(!preg_match('/%|{|#/', $string)){
+			return;
+		}
 
-		$plugins = [
+		static $plugins = [
 			'rank_math' => [
 				'%sep%' => '%%sep%%',
 				'%sitename%' => '%%sitetitle%%',

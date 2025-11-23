@@ -291,6 +291,15 @@ class Analysis{
 		$keywords = get_post_meta($post->ID, '_siteseo_analysis_target_kw', true);
 		$meta_desc = get_post_meta($post->ID, '_siteseo_titles_desc', true);
 		
+		// Bricks
+		if(defined('BRICKS_DB_PAGE_CONTENT')){
+			$is_bricks_page = get_post_meta($post->ID, BRICKS_DB_PAGE_CONTENT, true);
+
+			if(!empty($is_bricks_page) && is_array($is_bricks_page)){
+				$content = self::get_bricks_page_content($is_bricks_page);
+			}
+		}
+			
 		if(empty($meta_desc)){
 			$meta_desc = '';
 		}
@@ -1386,4 +1395,19 @@ class Analysis{
 
 		return false;
 	}
+
+	static function get_bricks_page_content($bricks_page){
+
+		if(empty($bricks_page) || !is_array($bricks_page)){
+			return;
+		}
+
+		$content = \Bricks\Frontend::render_data($bricks_page);
+
+		$content = strip_shortcodes($content); // remove shortcodes
+		$content = wp_strip_all_tags($content); // remove HTML tags
+
+		return $content;
+	}
+
 }

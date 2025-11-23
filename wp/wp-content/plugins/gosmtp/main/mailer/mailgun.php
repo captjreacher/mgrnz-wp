@@ -219,24 +219,24 @@ class Mailgun extends Loader{
 		
 		$fields = array(
 			'api_key' => array(
-				'title' => __('Private API Key'),
+				'title' => __('Private API Key', 'gosmtp'),
 				'type' => 'password',
-				'desc' => __( 'Follow this link to get a Private API Key from Mailgun: <a href="https://app.mailgun.com/app/account/security/api_keys" target="_blank">Get a Private API Key.</a>' ),
+				'desc' => __( 'Follow this link to get a Private API Key from Mailgun: <a href="https://app.mailgun.com/app/account/security/api_keys" target="_blank">Get a Private API Key.</a>', 'gosmtp' ),
 			),
 			'domain_name' => array(
-				'title' => __('Domain Name'),
+				'title' => __('Domain Name', 'gosmtp'),
 				'type' => 'text',
-				'desc' => __( 'Follow this link to get a Domain Name from Mailgun: <a href="https://app.mailgun.com/app/domains" target="_blank">Get a Domain Name.</a>' ),
+				'desc' => __( 'Follow this link to get a Domain Name from Mailgun: <a href="https://app.mailgun.com/app/domains" target="_blank">Get a Domain Name.</a>', 'gosmtp' ),
 			),
 			'region' => array(
-				'title' => __('Region'),
+				'title' => __('Region', 'gosmtp'),
 				'type' => 'radio',
 				'class' => 'regular-text',
 				'list' => array(
 					'us' => 'US',
 					'eu' => 'EU',
 				),
-				'desc' => __( 'Define which endpoint you want to use for sending messages.<br>If you are operating under EU laws, you may be required to use EU region. <a href="https://www.mailgun.com/about/regions/" target="_blank">More information</a> on Mailgun.com.' ),
+				'desc' => __( 'Define which endpoint you want to use for sending messages.<br>If you are operating under EU laws, you may be required to use EU region. <a href="https://www.mailgun.com/about/regions/" target="_blank">More information</a> on Mailgun.com.', 'gosmtp' ),
 			),
 		);
 		

@@ -77,7 +77,7 @@ class GenerateSitemap{
 		self::maybe_redirect();
 
 		// Output the Sitemap style
-		if(get_query_var('sitemap-stylesheet')){
+		if(get_query_var('sitemap-stylesheet') === 'sitemap'){
 			self::sitemap_xsl();
 			exit;
 		}
@@ -209,20 +209,22 @@ class GenerateSitemap{
 			foreach($siteseo->sitemap_settings['xml_sitemap_taxonomies_list'] as $taxonomy => $settings){
 				
 				$args = [
+					'taxonomy' => $taxonomy,
 					'hide_empty' => true,
+					'fields' => 'count',
 					'hierarchical' => false,
 					'update_term_meta_cache' => false,
 				];
 				
-				$tax_count = defined('SITEPAD') ? wp_count_terms($taxonomy, $args) : wp_count_terms($args);
+				$tax_count = get_terms($args);
 
-				if(empty($tax_count)){
-					return;
+				if(is_wp_error($tax_count) || $tax_count == 0){
+					continue;
 				}
 
 				$total_pages = (int) ceil($tax_count/2000);
 				
-				if(!empty($settings['include'])){
+				if(!empty($settings['include']) && $total_pages > 0){
 					$terms = get_terms([
 						'taxonomy' => $taxonomy,
 						'number' => 1,
@@ -231,10 +233,10 @@ class GenerateSitemap{
 						'fields' => 'ids',
 					]);
 					
-					$lastmod = !empty($terms) ? current_time('c') : current_time('c'); // taxonomy terms don’t have modified, fallback
+					$lastmod = !empty($terms) ? current_time('c') : current_time('c'); // taxonomy terms don't have modified, fallback
 					
 					for($page = 1; $page <= $total_pages; $page++){
-						echo '<sitemap>
+						echo '<sitemap>	
 							<loc>'.esc_url(home_url("/$taxonomy-sitemap$page.xml")).'</loc>
 							<lastmod>'.esc_xml($lastmod).'</lastmod>
 						</sitemap>';

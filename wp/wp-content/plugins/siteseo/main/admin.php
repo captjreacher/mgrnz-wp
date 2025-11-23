@@ -105,19 +105,19 @@ class Admin{
 	}
 	
 	static function add_capabilities(){
+		global $siteseo;
+
 		$options = get_option('siteseo_advanced_option_name');
 		$roles = wp_roles();
 
 		foreach($roles->get_names() as $role_slug => $role_name){
 			$role = get_role($role_slug);
-			if(!$role) continue;
+			if(empty($role)) continue;
 
 			if($role_slug === 'administrator'){
 				$role->add_cap('siteseo_manage', true); // Adding the only cap to admin.
 				continue;
 			}
-
-			$has_any_permission = false;
 			
 			// The structure is page name => capability name without the prefix of siteseo_manage_
 			// Will need to add it here whenever a new page is added to SiteSEO
@@ -128,27 +128,22 @@ class Admin{
 				'google-analytics' => 'analytics',
 				'instant-indexing' => 'instant_indexing',
 				'advanced' => 'advanced', 
-				'import-export' => 'tools'
 			];
-			
+
 			$has_access = 0; // To make sure siteseo_manage is added once.
 			foreach($pages as $page => $cap){
 				$option_key = "siteseo_advanced_security_metaboxe_siteseo-{$page}";
-				if(isset($options[$option_key][$role_slug]) && $options[$option_key][$role_slug]){
-					$has_any_permission = true;
+				if(!empty($options[$option_key][$role_slug]) && !empty($siteseo->setting_enabled['toggle-advanced'])){
 					$has_access++;
-				}
 
-				if($has_any_permission){
 					if($has_access == 1){
 						$role->add_cap('siteseo_manage', true);
 					}
-
+                    
 					$role->add_cap('siteseo_manage_'.$cap, true);
-				}else{
+				} else {
 					$role->remove_cap('siteseo_manage_'.$cap);
 				}
-				
 			}
 			
 			// If no one has this access then just remove siteseo_manage as well.
@@ -237,12 +232,6 @@ class Admin{
 				'callback' => '\SiteSEO\Settings\Advanced::menu',
 				'option_key' => 'siteseo_advanced_security_metaboxe_siteseo-advanced'
 			],
-			'tools' => [
-				'slug' => 'siteseo-tools',
-				'title' => __('Tools', 'siteseo'),
-				'callback' => '\SiteSEO\Settings\Tools::menu',
-				'option_key' => 'siteseo_advanced_security_metaboxe_siteseo-import-export'
-			]
 		];
 
 		foreach($menu_pages as $page){
@@ -261,22 +250,13 @@ class Admin{
 				add_submenu_page('siteseo', $page['title'], $page['title'], $capability, $page['slug'], $page['callback']);
 			}
 		}
+		
+		if(!empty($is_admin)){
+			add_submenu_page('siteseo', __('Tools', 'siteseo'), 'Tools', 'manage_options','siteseo-tools' ,'\SiteSEO\Settings\Tools::menu');
+		}
 
 		// Page for Universal metabox
 		add_submenu_page('admin.php', __('Universal MetaBox', 'siteseo'), __('Universal MetaBox', 'siteseo'), 'edit_posts', 'siteseo-metabox-wizard',  '\SiteSEO\Metaboxes\Settings::universal');
-
-		if(is_plugin_active('siteseo-pro/siteseo-pro.php') && !defined('SITEPAD')){
-			$show_pro = $is_admin;
-
-			if(!$show_pro){
-				foreach($current_user->roles as $role){
-					if(isset($options['siteseo_advanced_security_page_pro'][$role]) && $options['siteseo_advanced_security_page_pro'][$role]){
-	                    $show_pro = true;
-						break;
-					}
-				}
-			}
-		}
 	}
 	
 	static function admin_bar($wp_admin_bar){

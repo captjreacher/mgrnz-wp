@@ -70,7 +70,7 @@ class Sendgrid extends Loader{
 					'status' => true,
 					'code' => 202,
 					'messageId' => $messageId,
-					'message' => __('Mail Sent successfully'),
+					'message' => __('Mail Sent successfully', 'gosmtp'),
 				];
 				
 			}else{
@@ -216,7 +216,7 @@ class Sendgrid extends Loader{
 
 		$fields = array(
 			'api_key' => array(
-				'title' => __('API Key'),
+				'title' => __('API Key', 'gosmtp'),
 				'type' => 'password',
 			),
 		);

@@ -82,15 +82,15 @@ class SMTP extends Loader{
 		
 		$fields = array(
 			'smtp_host' => array(
-				'title' => __('SMTP Host'),
+				'title' => __('SMTP Host', 'gosmtp'),
 				'type' => 'text',
 				'place_holder' => 'smtp.example.com',
-				'desc' => __( 'Your mail server' ),
+				'desc' => __( 'Your mail server', 'gosmtp' ),
 			),
 			'encryption' => array(
-				'title' => __('Type of Encryption'),
+				'title' => __('Type of Encryption', 'gosmtp'),
 				'type' => 'radio',
-				'desc' => __( 'For most servers TLS is the recommended option. If your SMTP provider offers both SSL and TLS options, we recommend using TLS.' ),
+				'desc' => __( 'For most servers TLS is the recommended option. If your SMTP provider offers both SSL and TLS options, we recommend using TLS.', 'gosmtp' ),
 				'list' => array(
 					'none' => 'None',
 					'ssl' => 'SSL',
@@ -98,38 +98,38 @@ class SMTP extends Loader{
 				),
 			),
 			'smtp_port' => array(
-				'title' => __('SMTP Port'),
+				'title' => __('SMTP Port', 'gosmtp'),
 				'type' => 'text',
 				'place_holder' => '465',
-				'desc' => __( 'The port to your mail server' ),
+				'desc' => __( 'The port to your mail server', 'gosmtp' ),
 			),
 			'smtp_auth' => array(
-				'title' => __('SMTP Authentication'),
+				'title' => __('SMTP Authentication', 'gosmtp'),
 				'type' => 'radio',
-				'desc' => __( 'This options should always be checked Yes' ),
+				'desc' => __( 'This options should always be checked Yes', 'gosmtp' ),
 				'list' => array(
 					'No' => 'No',
 					'Yes' => 'Yes',
 				),
 			),
 			'smtp_username' => array(
-				'title' => __('SMTP Username'),
+				'title' => __('SMTP Username', 'gosmtp'),
 				'type' => 'text',
 				'place_holder' => 'admin',
 				'tr_class' => 'smtp-authentication',
-				'desc' => __( 'The username to login to your mail server'),
+				'desc' => __( 'The username to login to your mail server', 'gosmtp'),
 			),
 			'smtp_password' => array(
-				'title' => __('SMTP Password'),
+				'title' => __('SMTP Password', 'gosmtp'),
 				'type' => 'password',
 				'place_holder' => 'Password',
 				'tr_class' => 'smtp-authentication',
-				'desc' => __( 'The SMTP Password to login to your mail server. The saved password is not shown for security reasons. You need enter it every time you update the settings.'),
+				'desc' => __( 'The SMTP Password to login to your mail server. The saved password is not shown for security reasons. You need enter it every time you update the settings.', 'gosmtp'),
 			),
 			'disable_ssl_verification' => array(
-				'title' => __('Disable SSL Certificate Verification'),
+				'title' => __('Disable SSL Certificate Verification', 'gosmtp'),
 				'type' => 'checkbox',
-				'desc' => __( 'As of PHP 5.6 you will get a warning/error if the SSL certificate on the server is not properly configured. You can check this option to disable that default behaviour. Please note that PHP 5.6 made this change for a good reason. So you should get your host to fix the SSL configurations instead of bypassing it'),
+				'desc' => __( 'As of PHP 5.6 you will get a warning/error if the SSL certificate on the server is not properly configured. You can check this option to disable that default behaviour. Please note that PHP 5.6 made this change for a good reason. So you should get your host to fix the SSL configurations instead of bypassing it', 'gosmtp'),
 			),
 		);
 		

@@ -193,7 +193,7 @@ class Advanced{
 		
 	static function remove_wc_category_base(){
 		global $siteseo;
-				
+
 		if(empty($siteseo->advanced_settings['advanced_product_cat_url']) || empty($siteseo->setting_enabled['toggle-advanced'])){
 			return;
 		}

@@ -222,19 +222,19 @@ class Sparkpost extends Loader{
 	public function load_field(){
 		$fields = array(
 			'api_key' => array(
-				'title' => __('API Key'),
+				'title' => __('API Key', 'gosmtp'),
 				'type' => 'password',
-				'desc' => __( 'Follow this link to get an API Key from SparkPost: <a href="https://app.sparkpost.com/account/api-keys" target="_blank">Get API Key.</a>' ),
+				'desc' => __( 'Follow this link to get an API Key from SparkPost: <a href="https://app.sparkpost.com/account/api-keys" target="_blank">Get API Key.</a>', 'gosmtp' ),
 			),
 			'region' => array(
-				'title' => __('Region'),
+				'title' => __('Region', 'gosmtp'),
 				'type' => 'radio',
 				'class'=>'regular-text',
 				'list'=>array(
 					'Us'=>'US',
 					'EU'=>'EU',
 				),
-				'desc' => __( 'Select your SparkPost account region. <a href="https://support.sparkpost.com/docs/getting-started/getting-started-sparkpost" target="_blank">More information </a>on SparkPost.' ),
+				'desc' => __( 'Select your SparkPost account region. <a href="https://support.sparkpost.com/docs/getting-started/getting-started-sparkpost" target="_blank">More information </a>on SparkPost.', 'gosmtp' ),
 			),
 		);
 		

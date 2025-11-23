@@ -209,9 +209,9 @@ class Sendlayer extends Loader{
 		
 		$fields = array(
 			'api_key' => array(
-				'title' => __('API Key'),
+				'title' => __('API Key', 'gosmtp'),
 				'type' => 'password',
-				'desc' => __( 'Follow this link to get an API Key from SendLayer: <a href="https://app.sendlayer.com/settings/api/" target="_blank">Get API Key.</a>' ),
+				'desc' => __( 'Follow this link to get an API Key from SendLayer: <a href="https://app.sendlayer.com/settings/api/" target="_blank">Get API Key.</a>', 'gosmtp' ),
 			),
 
 		);

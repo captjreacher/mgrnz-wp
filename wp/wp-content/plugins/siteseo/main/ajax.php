@@ -45,7 +45,7 @@ class Ajax{
 	static function handle_import(){
 		check_ajax_referer('siteseo_admin_nonce', 'nonce');
 		
-		if(!siteseo_user_can('manage_tools')){
+		if(!siteseo_user_can('manage_options')){
 			wp_send_json_error(['message' => esc_html__('Insufficient permissions', 'siteseo')]);
 		}
 		
@@ -87,7 +87,7 @@ class Ajax{
 
 		check_ajax_referer('siteseo_admin_nonce', 'nonce');
 		
-		if(!siteseo_user_can('manage_tools')){
+		if(!current_user_can('manage_options')){
 			wp_send_json_error(['message' => esc_html__('Insufficient permissions', 'siteseo')]);
 		}
 		
@@ -114,7 +114,7 @@ class Ajax{
 	static function import_settings(){
 		check_ajax_referer('siteseo_admin_nonce', 'nonce');
 		
-		if(!siteseo_user_can('manage_tools')){
+		if(!current_user_can('manage_options')){
 			wp_send_json_error(['message' => esc_html__('Insufficient permissions', 'siteseo')]);
 		}
 		
@@ -134,6 +134,12 @@ class Ajax{
 		// Verify file exists and is readable
 		if(!file_exists($imported_file) || !is_readable($imported_file) || !is_uploaded_file($imported_file)){
 			wp_send_json_error(array('message' => __('Uploaded file is not readable.', 'siteseo')));
+		}
+		
+		$mime_type = sanitize_text_field(wp_unslash($_FILES['import_file']['type']));
+		
+		if($mime_type !== 'application/json'){
+			wp_send_json_error(array('message' => __('Invalid mime type. The uploaded file has invalid mime type', 'siteseo')));
 		}
 
 		// Making sure is the correct file format
@@ -195,7 +201,7 @@ class Ajax{
 	static function export_settings(){
 		check_ajax_referer('siteseo_admin_nonce', 'nonce');
 		
-		if(!siteseo_user_can('manage_tools')){
+		if(!current_user_can('manage_options')){
 			wp_send_json_error(['message' => esc_html__('Insufficient permissions', 'siteseo')]);
 		}
 
@@ -542,6 +548,11 @@ class Ajax{
 		}
 		
 		$post_id = sanitize_text_field(wp_unslash($_POST['post_id']));
+
+		if(!current_user_can('edit_post', $post_id)){
+			wp_send_json_error(__('You do not have required permission to edit this file.', 'siteseo'));
+		}
+
 		$post = get_post($post_id);
 		
 		\SiteSEO\Metaboxes\Settings::save_metabox($post_id, $post);
@@ -563,6 +574,10 @@ class Ajax{
 		$post_id = (int) sanitize_text_field(wp_unslash($_POST['post_id']));
 		$content = sanitize_text_field(wp_unslash($_POST['content']));
 		
+		if(!current_user_can('edit_post', $post_id)){
+			wp_send_json_error(__('You do not have permission to access this post', 'siteseo'));
+		}
+
 		$tmp_post = $post;
 		$post = get_post($post_id);
 		$replaced_content = \SiteSEO\TitlesMetas::replace_variables($content, true);
@@ -574,8 +589,8 @@ class Ajax{
 	static function clear_indexing_history(){
 		check_ajax_referer('siteseo_admin_nonce', 'nonce');
 		
-		if(!current_user_can('siteseo_manage')){
-			wp_send_json_error(__('You do not have required permission to edit this file.', 'siteseo'));
+		if(!current_user_can('manage_options')){
+			wp_send_json_error(__('You do not have required permission to clear indexing history.', 'siteseo'));
 		}
 		
 		global $siteseo;

@@ -9,7 +9,7 @@
 if (!defined('ABSPATH')) exit;
 
 define('GOSMTP_BASE', plugin_basename(GOSMTP_FILE));
-define('GOSMTP_VERSION', '1.1.5');
+define('GOSMTP_VERSION', '1.1.6');
 define('GOSMTP_DIR', dirname(GOSMTP_FILE));
 define('GOSMTP_SLUG', 'gosmtp');
 define('GOSMTP_URL', plugins_url('', GOSMTP_FILE));
@@ -204,13 +204,20 @@ function gosmtp_load_phpmailer($atts){
 	
 	// Load all mailer
 	$gosmtp->mailer_list = gosmtp_get_mailer_list();
+
+	$connection_key = apply_filters('gosmtp_connection_key', 0);
 	
+	// Making sure the filter returns expected type
+	if(!is_string($connection_key) && !is_int($connection_key)){
+		$connection_key = 0;
+	}
+
 	// For PHP Email dont do anything
-	if(empty($gosmtp->options['mailer'][0]['mail_type']) || $gosmtp->options['mailer'][0]['mail_type'] == 'mail'){
+	if(empty($gosmtp->options['mailer'][$connection_key]['mail_type'])){
 		return $atts;
 	}
-	
-	$mailer = sanitize_key( $gosmtp->options['mailer'][0]['mail_type'] );			
+
+	$mailer = sanitize_key( $gosmtp->options['mailer'][$connection_key]['mail_type'] );
 	$class = $gosmtp->mailer_list[$mailer]['class'];
 	
 	if(!class_exists($class)){
@@ -219,7 +226,8 @@ function gosmtp_load_phpmailer($atts){
 	
 	$gosmtp->_mailer = $mailer;
 	$gosmtp->mailer = new $class();
-	
+	$gosmtp->mailer->conn_id = $connection_key;
+
 	// Handle the from email name
 	add_filter('wp_mail_from', [$gosmtp->mailer, 'get_from'], 100, 1);
 
@@ -237,10 +245,10 @@ function gosmtp_admin_menu() {
 	$capability = 'activate_plugins';// TODO : Capability for accessing this page
 
 	// Add the menu page
-	add_menu_page(__('GoSMTP'), __('GoSMTP'), $capability, 'gosmtp', 'gosmtp_page_handler', 'dashicons-email-alt');
+	add_menu_page(__('GoSMTP', 'gosmtp'), __('GoSMTP', 'gosmtp'), $capability, 'gosmtp', 'gosmtp_page_handler', 'dashicons-email-alt');
 	
 	// Settings Page
-	add_submenu_page( 'gosmtp', __('Settings'), __('Settings'), $capability, 'gosmtp', 'gosmtp_page_handler');
+	add_submenu_page( 'gosmtp', __('Settings', 'gosmtp'), __('Settings', 'gosmtp'), $capability, 'gosmtp', 'gosmtp_page_handler');
 	
 	// Test Mail Page
 	add_submenu_page( 'gosmtp', 'Test Mail', 'Test Mail', $capability, 'gosmtp#test-mail', 'gosmtp_page_handler');
@@ -248,26 +256,26 @@ function gosmtp_admin_menu() {
 	if(defined('GOSMTP_PREMIUM')){
 		
 		// Logs Page
-		add_submenu_page( 'gosmtp', __('Email Logs'), __('Email Logs'), $capability, 'gosmtp-logs', 'gosmtp_logs_handler');
+		add_submenu_page( 'gosmtp', __('Email Logs', 'gosmtp'), __('Email Logs', 'gosmtp'), $capability, 'gosmtp-logs', 'gosmtp_logs_handler');
 
 		// Email reports
-		add_submenu_page( 'gosmtp', __('Email Reports'), __('Email Reports'), $capability, 'email_reports', 'gosmtp_email_reports_handler');
+		add_submenu_page( 'gosmtp', __('Email Reports', 'gosmtp'), __('Email Reports', 'gosmtp'), $capability, 'email_reports', 'gosmtp_email_reports_handler');
 
 		// Export Page
-		add_submenu_page( 'gosmtp', __('Export'), __('Export'), $capability, 'export', 'gosmtp_export_handler');
+		add_submenu_page( 'gosmtp', __('Export', 'gosmtp'), __('Export', 'gosmtp'), $capability, 'export', 'gosmtp_export_handler');
 		
 		// Email reports
-		add_submenu_page( '', __('Email Reports'), __('Weekly Email'), $capability, 'weekly_email_reports', 'gosmtp_weekly_email_handler');
+		add_submenu_page( '', __('Email Reports', 'gosmtp'), __('Weekly Email', 'gosmtp'), $capability, 'weekly_email_reports', 'gosmtp_weekly_email_handler');
 
 		// License Page
 		if(!defined('SITEPAD')){
-			add_submenu_page( 'gosmtp', __('License'), __('License'), $capability, 'gosmtp-license', 'gosmtp_license_handler');
+			add_submenu_page( 'gosmtp', __('License', 'gosmtp'), __('License', 'gosmtp'), $capability, 'gosmtp-license', 'gosmtp_license_handler');
 		}
 	}
 	
 	// Support
 	if(!defined('SITEPAD')){
-		add_submenu_page( 'gosmtp', __('Support'), __('Support'), $capability, 'gosmtp#support', 'gosmtp_page_handler');
+		add_submenu_page( 'gosmtp', __('Support', 'gosmtp'), __('Support', 'gosmtp'), $capability, 'gosmtp#support', 'gosmtp_page_handler');
 	}
 }
 

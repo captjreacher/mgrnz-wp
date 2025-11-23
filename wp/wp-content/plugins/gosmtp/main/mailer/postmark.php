@@ -191,14 +191,14 @@ class Postmark extends Loader{
 
 		$fields = array(
 			'server_api_token' => array(
-				'title' => __('Server API Token'),
+				'title' => __('Server API Token', 'gosmtp'),
 				'type' => 'password',
-				'desc' => _( 'Follow this link to get a Server API Token from Postmark: <a href="https://account.postmarkapp.com/login" target="_blank">Get Server API Token.</a>' ),
+				'desc' => __( 'Follow this link to get a Server API Token from Postmark: <a href="https://account.postmarkapp.com/login" target="_blank">Get Server API Token.</a>', 'gosmtp' ),
 			),
 			'message_stream_id' => array(
-				'title' => __('Message Stream ID'),
+				'title' => __('Message Stream ID', 'gosmtp'),
 				'type' => 'text',
-				'desc' => _( 'Follow this link to get a Server API Token from Postmark: <a href="https://account.postmarkapp.com/login" target="_blank">Get Server API Token.</a>' ),
+				'desc' => __( 'Follow this link to get a Server API Token from Postmark: <a href="https://account.postmarkapp.com/login" target="_blank">Get Server API Token.</a>', 'gosmtp' ),
 			),
 		);
 		

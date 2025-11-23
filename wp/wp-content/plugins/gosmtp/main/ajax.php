@@ -20,6 +20,7 @@ function gosmtp_test_mail(){
 	$to = gosmtp_optpost('reciever_test_email');
 	$subject = gosmtp_optpost('smtp_test_subject');
 	$body = gosmtp_optpost('smtp_test_message');
+	$use_template = gosmtp_optpost('use_html_template');
 	
 	// TODO: send debug param
 	if(isset($_GET['debug'])){
@@ -32,17 +33,24 @@ function gosmtp_test_mail(){
 	}
 	
 	$msg = array();
+	$headers = [];
 	
 	// TODO check for mailer
 	if(!get_option('gosmtp_options')){
-		$msg['error'] = _('You have not configured SMTP settings yet !');
+		$msg['error'] = __('You have not configured SMTP settings yet !', 'gosmtp');
 	}else{
-		$result = wp_mail($to, $subject, $body);
+		
+		if(!empty($use_template) && function_exists('gosmtp_pro_test_html_template')){
+			$body = gosmtp_pro_test_html_template();
+			$headers = ['Content-Type: text/html; charset=UTF-8'];
+		}
+
+		$result = wp_mail($to, $subject, $body, $headers);
 
 		if(!$result){
-			$msg['error'] = __('Unable to send mail !').(empty($phpmailer->ErrorInfo) ? '' : ' '.__('Error : ').$phpmailer->ErrorInfo);
+			$msg['error'] = __('Unable to send mail !', 'gosmtp').(empty($phpmailer->ErrorInfo) ? '' : ' '.__('Error : ', 'gosmtp').$phpmailer->ErrorInfo);
 		}else{
-			$msg['response'] = __('Message sent successfully !');
+			$msg['response'] = __('Message sent successfully !', 'gosmtp');
 		}
 	}
 	

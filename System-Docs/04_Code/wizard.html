@@ -1,0 +1,398 @@
+<style>
+  .mgrnz-ai-wizard {
+    max-width: 840px;
+    margin: 2rem auto 4rem;
+    padding: 2rem 2.5rem;
+    background: #0f172a;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 18px 60px rgba(0, 0, 0, 0.5);
+    color: #ffffff;
+    font-family: inherit;
+  }
+  .mgrnz-ai-wizard h2 {
+    font-size: 1.8rem;
+    margin: 0 0 0.75rem;
+    color: #ffffff;
+  }
+  .mgrnz-ai-wizard p {
+    margin: 0 0 1.25rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  .mgrnz-ai-progress {
+    margin-bottom: 1.5rem;
+  }
+  .mgrnz-ai-progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.4rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .mgrnz-ai-step-label {
+    font-weight: 600;
+  }
+  .mgrnz-ai-progress-bar {
+    position: relative;
+    width: 100%;
+    height: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+  }
+  .mgrnz-ai-progress-fill {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+    background: linear-gradient(90deg, #ffcf00, #ff4f00);
+    transition: width 0.25s ease;
+  }
+  .mgrnz-ai-step-label {
+    font-weight: 600;
+  }
+  .mgrnz-ai-step-title {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+    color: #ffffff;
+  }
+  .mgrnz-field {
+    margin-bottom: 1.5rem;
+  }
+  .mgrnz-field label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0.35rem;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .mgrnz-field textarea,
+  .mgrnz-field input[type="text"],
+  .mgrnz-field input[type="email"] {
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: #131c32;
+    color: #ffffff;
+    padding: 0.75rem 0.9rem;
+    font-size: 0.95rem;
+    resize: vertical;
+  }
+  .mgrnz-field textarea::placeholder,
+  .mgrnz-field input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+  }
+  .mgrnz-ai-nav {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 0.25rem;
+  }
+  .mgrnz-ai-nav .spacer {
+    flex: 1;
+  }
+  .mgrnz-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    padding: 0.7rem 1.4rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-decoration: none;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .mgrnz-btn-primary {
+    background: #0f172a;
+    color: #ffffff;
+    border-color: #ff4f00;
+  }
+  .mgrnz-btn-primary:hover {
+    background: #ffffff;
+    color: #ff4f00;
+  }
+  .mgrnz-btn-secondary {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.9);
+    border-color: rgba(255, 255, 255, 0.5);
+  }
+  .mgrnz-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+  .mgrnz-btn[disabled] {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+  .mgrnz-status {
+    margin-top: 0.75rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    min-height: 1.1em;
+  }
+  .mgrnz-status-error {
+    color: #ffcf00;
+  }
+  .mgrnz-ai-review-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1rem;
+    font-size: 0.9rem;
+  }
+  .mgrnz-ai-review-list li {
+    margin-bottom: 0.5rem;
+  }
+  .mgrnz-ai-review-label {
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.9);
+  }
+  .mgrnz-ai-steps {
+    position: relative;
+  }
+  .mgrnz-ai-step {
+    display: none;
+  }
+  .mgrnz-ai-step.active {
+    display: block;
+  }
+  .mgrnz-blueprint-wrap h2 {
+    font-size: 1.6rem;
+    margin-bottom: 0.75rem;
+  }
+  .mgrnz-summary {
+    font-size: 0.98rem;
+    margin-bottom: 1.25rem;
+  }
+  .mgrnz-blueprint {
+    padding: 1rem 1.1rem;
+    background: #131c32;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    max-height: 420px;
+    overflow: auto;
+    font-size: 0.9rem;
+  }
+  .mgrnz-blueprint pre {
+    margin: 0;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      "Liberation Mono", "Courier New", monospace;
+  }
+  .mgrnz-ai-actions {
+    margin-top: 1.5rem;
+  }
+  .mgrnz-ai-actions-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+  @media (max-width: 720px) {
+    .mgrnz-ai-wizard {
+      margin: 1.5rem 1rem 3rem;
+      padding: 1.5rem 1.25rem;
+    }
+    .mgrnz-ai-actions-buttons {
+      flex-direction: column;
+    }
+    .mgrnz-btn {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+</style>
+
+<section class="mgrnz-ai-wizard">
+  <div id="ai-wizard-form-wrap">
+    <h2>Start using AI in your workflow</h2>
+    <p>Tell me what you’re trying to achieve and how you work today. I’ll map out a practical AI-enabled workflow for you.</p>
+
+    <div class="mgrnz-ai-progress">
+      <div class="mgrnz-ai-progress-header">
+        <span class="mgrnz-ai-step-label" id="ai-step-label">Step 1 of 5</span>
+        <span id="ai-step-caption">Your goal</span>
+      </div>
+      <div class="mgrnz-ai-progress-bar">
+        <div class="mgrnz-ai-progress-fill" id="ai-progress-fill"></div>
+      </div>
+    </div>
+
+    <form id="ai-wizard-form" novalidate>
+      <div class="mgrnz-ai-steps">
+        <!-- STEP 1 -->
+        <div class="mgrnz-ai-step active" data-step="1">
+          <div class="mgrnz-ai-step-title">What’s the main outcome you want?</div>
+          <div class="mgrnz-field">
+            <label for="goal">Describe your ideal result.</label>
+            <textarea
+              id="goal"
+              name="goal"
+              rows="3"
+              placeholder="e.g. Consistently generate and qualify leads without me living in my inbox."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 2 -->
+        <div class="mgrnz-ai-step" data-step="2">
+          <div class="mgrnz-ai-step-title">How do you currently do this?</div>
+          <div class="mgrnz-field">
+            <label for="workflow">
+              Walk me through your current workflow step-by-step.
+            </label>
+            <textarea
+              id="workflow"
+              name="workflow_description"
+              rows="4"
+              placeholder="Include who does what, and in what order."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 3 -->
+        <div class="mgrnz-ai-step" data-step="3">
+          <div class="mgrnz-ai-step-title">What tools are you using?</div>
+          <div class="mgrnz-field">
+            <label for="tools">Apps, platforms, spreadsheets, anything.</label>
+            <input
+              id="tools"
+              name="tools"
+              type="text"
+              placeholder="e.g. WordPress, MailerLite, Gmail, Google Sheets"
+            />
+          </div>
+        </div>
+
+        <!-- STEP 4 -->
+        <div class="mgrnz-ai-step" data-step="4">
+          <div class="mgrnz-ai-step-title">
+            Where does it feel slow, manual, or messy?
+          </div>
+          <div class="mgrnz-field">
+            <label for="pain_points">
+              What drains your time, energy, or accuracy?
+            </label>
+            <textarea
+              id="pain_points"
+              name="pain_points"
+              rows="3"
+              placeholder="e.g. Copying data between tools, chasing people, keeping track of follow-ups."
+            ></textarea>
+          </div>
+        </div>
+
+        <!-- STEP 5 -->
+        <div class="mgrnz-ai-step" data-step="5">
+          <div class="mgrnz-ai-step-title">Where can I send follow-ups?</div>
+          <div class="mgrnz-field">
+            <label for="email">
+              Email (optional, but handy if you want me to refine this with you)
+            </label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              placeholder="you@example.com"
+            />
+          </div>
+
+          <p style="margin-top: 0.5rem; margin-bottom: 0.75rem;">
+            Quick review of what you’ve told me:
+          </p>
+          <ul class="mgrnz-ai-review-list">
+            <li>
+              <span class="mgrnz-ai-review-label">Goal:</span>
+              <span id="review-goal"></span>
+            </li>
+            <li>
+              <span class="mgrnz-ai-review-label">Current workflow:</span>
+              <span id="review-workflow"></span>
+            </li>
+            <li>
+              <span class="mgrnz-ai-review-label">Tools:</span>
+              <span id="review-tools"></span>
+            </li>
+            <li>
+              <span class="mgrnz-ai-review-label">Pain points:</span>
+              <span id="review-pain"></span>
+            </li>
+          </ul>
+          <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7);">
+            When you click "Build my AI workflow", I’ll send these details to my
+            AI workflow engine and generate a tailored blueprint for you.
+          </p>
+        </div>
+      </div>
+
+      <div class="mgrnz-ai-nav">
+        <button
+          type="button"
+          class="mgrnz-btn mgrnz-btn-secondary"
+          id="ai-prev-btn"
+        >
+          Back
+        </button>
+        <div class="spacer"></div>
+        <button
+          type="button"
+          class="mgrnz-btn mgrnz-btn-primary"
+          id="ai-next-btn"
+        >
+          Next
+        </button>
+        <button
+          type="button"
+          class="mgrnz-btn mgrnz-btn-primary"
+          id="ai-submit-btn"
+          style="display: none;"
+        >
+          Build my AI workflow
+        </button>
+      </div>
+
+      <div id="ai-wizard-status" class="mgrnz-status" aria-live="polite"></div>
+    </form>
+  </div>
+
+  <div
+    id="ai-wizard-blueprint-wrap"
+    class="mgrnz-blueprint-wrap"
+    style="display: none;"
+  >
+    <h2>Your AI-enabled workflow blueprint</h2>
+    <p id="ai-wizard-summary" class="mgrnz-summary"></p>
+
+    <div id="ai-wizard-blueprint-markdown" class="mgrnz-blueprint"></div>
+
+    <div class="mgrnz-ai-actions">
+      <p>What do you want to do next?</p>
+      <div class="mgrnz-ai-actions-buttons">
+        <button
+          type="button"
+          class="mgrnz-btn mgrnz-btn-secondary"
+          id="ai-wizard-subscribe"
+        >
+          Subscribe &amp; get updates
+        </button>
+
+        <button
+          type="button"
+          class="mgrnz-btn mgrnz-btn-primary"
+          id="ai-wizard-consult"
+        >
+          Book an AI consult
+        </button>
+      </div>
+    </div>
+
+    <div
+      id="ai-wizard-decision-status"
+      class="mgrnz-status"
+      aria-live="polite"
+    ></div>
+  </div>
+</section>

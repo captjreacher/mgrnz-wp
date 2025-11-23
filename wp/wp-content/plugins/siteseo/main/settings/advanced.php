@@ -717,7 +717,6 @@ class Advanced{
 									'google-analytics' => esc_html__('Analytics', 'siteseo'),
 									'instant-indexing' => esc_html__('Instant Indexing', 'siteseo'),
 									'advanced' => esc_html__('Advanced', 'siteseo'),
-									'import-export' => esc_html__('Tools', 'siteseo')
 								];
 								
 								foreach($settings_pages as $page_key => $page_title){
@@ -921,7 +920,7 @@ class Advanced{
 		}
 		
 		
-		if(isset($_POST['siteseo_options']['security_tab'])){
+		if(isset($_POST['siteseo_options']['security_tab']) && current_user_can('manage_options')){
 			
 			$has_admin = ['security_metaboxe_role', 'security_metaboxe_ca_role'];
 			

@@ -110,7 +110,7 @@ class Sendinblue extends Loader{
 					'status' => true,
 					'code' => $responseCode,
 					'messageId' => $responseBody['messageId'],
-					'message' => __('Mail Sent successfully'),
+					'message' => __('Mail Sent successfully', 'gosmtp'),
 
 				];
 				
@@ -188,9 +188,9 @@ class Sendinblue extends Loader{
 
 		$fields = array(
 			'api_key' => array(
-				'title' => __('API Key'),
+				'title' => __('API Key', 'gosmtp'),
 				'type' => 'password',
-				'desc' => __( 'Follow this link to get an API Key: <a href="https://app.brevo.com/settings/keys/api" target="_blank">Get v3 API Key.</a>' ),
+				'desc' => __( 'Follow this link to get an API Key: <a href="https://app.brevo.com/settings/keys/api" target="_blank">Get v3 API Key.</a>', 'gosmtp' ),
 			)
 		);
 		

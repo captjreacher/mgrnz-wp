@@ -441,7 +441,8 @@ class TitlesMetas{
 					'%%wc_single_short_desc%%' => $product->get_short_description(),
 					'%%wc_single_price%%' => $product->get_price(),
 					'%%wc_single_price_exe_tax%%' => wc_get_price_excluding_tax($product),
-					'%%wc_sku%%' => $product->get_sku()
+					'%%wc_sku%%' => $product->get_sku(),
+					'%%wc_parent_cat%%' => self::get_parent_category_name($post->ID),
 				);
 			}
 		}
@@ -457,7 +458,8 @@ class TitlesMetas{
 					'%%wc_single_short_desc%%' => $product->get_short_description(),
 					'%%wc_single_price%%' => $product->get_price(),
 					'%%wc_single_price_exe_tax%%' => kkart_get_price_excluding_tax($product),
-					'%%wc_sku%%' => $product->get_sku()
+					'%%wc_sku%%' => $product->get_sku(),
+					'%%wc_parent_cat%%' => self::get_parent_category_name($post->ID),
 				);
 			}
 		}
@@ -516,8 +518,37 @@ class TitlesMetas{
 			$replacements = array_merge($replacements, $kkart_variables);
 		}
 
+		$safe_list = [
+			'_siteseo_titles_title',
+			'_siteseo_titles_desc',
+			'_siteseo_social_fb_title',
+			'_siteseo_social_fb_desc',
+			'_siteseo_social_fb_img',
+			'_siteseo_social_twitter_title',
+			'_siteseo_social_twitter_desc',
+			'_siteseo_social_twitter_img',
+
+			// WooCommerce 
+			'_price',
+			'_regular_price',
+			'_sale_price',
+			'_stock',
+			'_stock_status',
+			'_sku',
+			'_weight',
+			'_length',
+			'width',
+			'_height',
+			'total_sales',
+		];
+
 		if(preg_match_all('/%%_cf_(.*?)%%/', $content, $matches)){
 			foreach ($matches[1] as $custom_field) {
+
+				if(!in_array($custom_field, $safe_list, true)){
+					continue;
+				}
+
 				$meta_value = get_post_meta($post->ID, $custom_field, true);
 				$replacements["%%_cf_{$custom_field}%%"] = $meta_value;
 			}
@@ -525,6 +556,11 @@ class TitlesMetas{
 
 		if(preg_match_all('/%%_ct_(.*?)%%/', $content, $matches)){
 			foreach($matches[1] as $taxonomy){
+
+				if(!in_array($taxonomy, $safe_list, true)){
+					continue;
+				}
+
 				$terms = get_the_terms($post->ID, $taxonomy);
 				$term_names = is_array($terms) ? wp_list_pluck($terms, 'name') : [];
 				$replacements["%%_ct_{$taxonomy}%%"] = implode(', ', $term_names);
@@ -533,6 +569,11 @@ class TitlesMetas{
 
 		if(preg_match_all('/%%_ucf_(.*?)%%/', $content, $matches)){
 			foreach($matches[1] as $user_meta){
+
+				if(!in_array($user_meta, $safe_list, true)){
+					continue;
+				}
+
 				$meta_value = get_user_meta($author_id, $user_meta, true);
 				$replacements["%%_ucf_{$user_meta}%%"] = $meta_value;
 			}
@@ -554,6 +595,26 @@ class TitlesMetas{
 			array_values($replacements),
 			$content
 		);
+	}
+
+	static function get_parent_category_name($product_id){
+		if(!class_exists('WooCommerce') && !class_exists('KKART')){
+			return;
+		}
+
+		$terms = get_the_terms($product_id, 'product_cat');
+
+		if(empty($terms) || is_wp_error($terms)){
+			return '';
+		}
+
+		// Find the parent category (the one with parent = 0)
+		foreach($terms as $term){
+			if($term->parent == 0){
+				return $term->name;
+			}
+		}
+
 	}
 	
 	static function modify_site_title($title, $sep = ''){

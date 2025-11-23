@@ -2,9 +2,9 @@
 Contributors: softaculous, pagelayer
 Tags: smtp, wordpress smtp, gmail smtp, sendgrid smtp, aws smtp, gmail, outlook, zoho, aws, postmark, sparkpost, mail, mailer, phpmailer, wp_mail, email, mailgun, sendgrid, gmail, sendinblue, wp smtp, sendlayer
 Requires at least: 5.5
-Tested up to: 6.8.2
+Tested up to: 6.9
 Requires PHP: 5.5
-Stable tag: 1.1.5
+Stable tag: 1.1.6
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -82,6 +82,12 @@ Go To your WordPress install -> Plugins -> Add New Button -> In Search Box searc
 4. **Email Logs Wizard** check the emails sent with this wizard.
 
 == Changelog ==
+
+= 1.1.6 (Nov 17, 2025) =
+* [Improvement Pro] Added option to select Additional Connections for testing when sending a Test Mail.
+* [Improvement Pro] Added option to send a message in HTML format instead of a custom message when sending a Test Mail.
+* [Improvement Pro] Email Logs are provided for default PHP Mailer.
+* [Bug-Fix] Email Logs were not deleted even after the set expiry period. This is fixed.
 
 = 1.1.5 (Sep 22, 2025) =
 * [Feature] Support for email provider Maileroo has been added.

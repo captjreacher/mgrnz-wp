@@ -252,7 +252,7 @@ class Loader{
 		}else{
 			$message = array(
 				'code'    => $code,
-				'message' => __('Unable to send mail, Please check your SMTP details')
+				'message' => __('Unable to send mail, Please check your SMTP details', 'gosmtp')
 			);
 		}
 		
@@ -294,7 +294,7 @@ class Loader{
 		$source = $this->get_mailer_source();
 		
 		if(empty($source)){
-			$source = __('NA');
+			$source = __('NA', 'gosmtp');
 		}
 		
 		$headers = array(
@@ -355,7 +355,7 @@ class Loader{
 		
 		if($gosmtp->mailer->conn_id !== 0 && !empty($gosmtp->mailer->parent_log)){
 			$data['parent_id'] = $gosmtp->mailer->parent_log;
-			$data['source'] = __('GoSMTP Pro');
+			$data['source'] = __('GoSMTP Pro', 'gosmtp');
 		}
 
 		if(isset($_POST['gostmp_id'])){
@@ -495,7 +495,7 @@ class Loader{
 	}
 
 	public function get_backup_connection(){
-		
+
 		// Is Primary email?
 		if($this->conn_id !== 0 || empty($this->options['mailer'][0]['backup_connection'])){
 			return false;

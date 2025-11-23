@@ -2,9 +2,9 @@
 Contributors: pagelayer, softaculous
 Tags: SEO, schema, xml sitemap, meta description
 Requires at least: 5.0
-Tested up to: 6.8
+Tested up to: 6.9
 Requires PHP: 7.2
-Stable tag: 1.3.2
+Stable tag: 1.3.3
 License: GPLv2
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -120,6 +120,17 @@ Yes!
 6. SiteMap Settings
 
 == Changelog ==
+
+= 1.3.3 (November 17, 2025) =
+* [Minor Security Fix] There was an issue reported by Supakiad S. (m3ez) - E-CQURITY(WordFence) which has been fixed.
+* [Minor Security Fix] There was an issue reported by Athiwat Tiprasaharn (Jitlada)(WordFence) which has been fixed.
+* [Improvement] Added product full description variable for schema.
+* [Improvement] Added product parent category variable.
+* [Bug-Fix] Fixed an issue with the product sitemap.
+* [Bug-Fix] Fixed an issue with the taxonomies sitemap.
+* [Bug-Fix] Fixed an issue where Bricks Builder post data could not be retrieved.
+* [Task] Minor refactor in breadcumb parent post handling.
+* [Task] Tested with WordPress 6.9.
 
 = 1.3.2 (October 30, 2025) =
 * [Minor Security Fix] There was an issue reported by Athiwat Tiprasaharn (Jitlada)(WordFence) which has been fixed.

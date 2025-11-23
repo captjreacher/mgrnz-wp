@@ -696,7 +696,17 @@ jQuery(document).ready(function(){
 		}
 		
 	});
-  
+	
+	// Toggling the test message input
+	if(jQuery('.gosmtp-test-html-template').length){
+		jQuery('.gosmtp-test-html-template').on('change', function(){
+			if(jQuery(this).is(':checked')){
+				jQuery('.gosmtp-test-message').hide();
+			} else{
+				jQuery('.gosmtp-test-message').show();
+			}
+		});
+	}
 });
 
 function gosmtp_isJSON(str) {

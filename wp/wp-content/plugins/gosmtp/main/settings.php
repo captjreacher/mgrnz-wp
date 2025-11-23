@@ -379,23 +379,23 @@ function gosmtp_settings_page(){
 	gosmtp_page_header();
 	
 	if(!empty($msg['success'])){
-		echo '<div id="message" class="updated notice is-dismissible"><p>'.__('SMTP settings have been saved successfully!').'</p></div>';
+		echo '<div id="message" class="updated notice is-dismissible"><p>'.__('SMTP settings have been saved successfully!', 'gosmtp').'</p></div>';
 	}
 
 	if(!empty($send_mail['success'])){
-		echo '<div id="message" class="updated notice is-dismissible"><p>'.__('Mail sent successfully!').'</p></div>';
+		echo '<div id="message" class="updated notice is-dismissible"><p>'.__('Mail sent successfully!', 'gosmtp').'</p></div>';
 	}else if(!empty($send_mail['error'])){
 		echo '<div id="message" class="error notice is-dismissible">
-		<p>'.( !empty($send_mail['error_msg']) ? wp_kses_post($send_mail['error_msg']) : __('Unable to send mail, Please check your SMTP details') ).'</p></div>';
+		<p>'.( !empty($send_mail['error_msg']) ? wp_kses_post($send_mail['error_msg']) : __('Unable to send mail, Please check your SMTP details', 'gosmtp') ).'</p></div>';
 	}
 	
 	$tabs_nav = array(
-		'smtpsetting' => __('SMTP Settings'), 
-		'test-mail' => __('Test Mail')	
+		'smtpsetting' => __('SMTP Settings', 'gosmtp'), 
+		'test-mail' => __('Test Mail', 'gosmtp')	
 	);
 
 	if(!defined('SITEPAD')){
-		$tabs_nav['support'] = __('Support');
+		$tabs_nav['support'] = __('Support', 'gosmtp');
 	}
 	
 	$tabs_nav = apply_filters('gosmtp_settings_tabs_nav', $tabs_nav);
@@ -411,7 +411,7 @@ function gosmtp_settings_page(){
 							$classes .= ' nav-tab-active';
 						}
 						
-						echo '<a href="#'. $id .'" class="'.$classes.'">'.$title.'</a>';
+						echo '<a href="#'. esc_attr($id) .'" class="'.esc_attr($classes).'">'.esc_html($title).'</a>';
 					}
 				?>
 			</h2>
@@ -426,26 +426,29 @@ function gosmtp_settings_page(){
 				<form class="gosmtp-smtp-mail" id="smtp-test-mail" name="test-mail" method="post" action="">
 					<table class="form-table">
 						<tr>
-							<th scope="row"><?php _e('To'); ?>:</th>
+							<th scope="row"><?php _e('To', 'gosmtp'); ?>:</th>
 							<td>
 								<input type="email" name="reciever_test_email" class="regular-text" placeholder="example@example.com" required />
-								<p class="description" id="tagline-description"><?php _e( 'Enter the recipient\'s email address.' ); ?></p>
+								<p class="description" id="tagline-description"><?php _e( 'Enter the recipient\'s email address.', 'gosmtp' ); ?></p>
 							</td>
 						</tr>
 						<tr>
-							<th scope="row"><?php _e('Subject'); ?>:</th>
+							<th scope="row"><?php _e('Subject', 'gosmtp'); ?>:</th>
 							<td>
 								<input type="text" name="smtp_test_subject" class="regular-text" placeholder="Enter Subject" value="Test Mail" required />
-								<p class="description" id="tagline-description"><?php _e( 'Enter a subject for your message.' ); ?></p>
+								<p class="description" id="tagline-description"><?php _e( 'Enter a subject for your message.', 'gosmtp' ); ?></p>
 							</td>
 						</tr>
-						<tr>
-							<th scope="row"><?php _e('Message'); ?></th>
+						<tr class="gosmtp-test-message">
+							<th scope="row"><?php _e('Message', 'gosmtp'); ?></th>
 							<td>
-								<textarea name="smtp_test_message" placeholder="Enter Message" class="regular-text" rows="10"required ><?php _e('This is a test mail!'); ?></textarea>
-								<p class="description" id="tagline-description"><?php _e( 'Write your email message' ); ?> </p>
+								<textarea name="smtp_test_message" placeholder="Enter Message" class="regular-text" rows="10"required ><?php _e('This is a test mail!', 'gosmtp'); ?></textarea>
+								<p class="description" id="tagline-description"><?php _e( 'Write your email message', 'gosmtp' ); ?> </p>
 							</td>
 						</tr>
+						<?php
+						do_action('gosmtp_pro_test_connection_and_template');
+						?>
 					</table>
 					<p>
 						<input type="submit" name="send_mail" id="send_mail" class="button button-primary" value="Send Mail">
@@ -455,7 +458,7 @@ function gosmtp_settings_page(){
 			<div class="gosmtp-tab-panel" id="support" style="display:none">
 				<div style="width:70%; margin:20px auto; display:flex; justify-content:center; flex-direction:column; align-items:center; line-height:1.5;">
 					<img src="<?php echo esc_url(GOSMTP_URL) .'/images/gosmtp-text.png'?>" width="200"/>
-					<h2><?php esc_html_e('You can contact the GoSMTP Team via email. Our email address is', 'gosmtp'); ?> <a href="mailto:support@gosmtp.net">support@gosmtp.net</a> <?php esc_html_e('or through Our Premium Support Ticket System at', 'gosmtp'); ?> <a href="https://softaculous.deskuss.com" target="_blank"><?php _e('here'); ?></a></h2>
+					<h2><?php esc_html_e('You can contact the GoSMTP Team via email. Our email address is', 'gosmtp'); ?> <a href="mailto:support@gosmtp.net">support@gosmtp.net</a> <?php esc_html_e('or through Our Premium Support Ticket System at', 'gosmtp'); ?> <a href="https://softaculous.deskuss.com" target="_blank"><?php _e('here', 'gosmtp'); ?></a></h2>
 				</div>
 			</div>
 			
@@ -485,7 +488,7 @@ function gosmtp_mailer_settings($smtp_options, $is_new_connection = false){
 	$settings['from_name'] = isset($smtp_options['from_name']) ? $smtp_options['from_name'] : '';
 	$settings['force_from_name'] = isset($smtp_options['force_from_name']) ? $smtp_options['force_from_name'] : '';
 	$settings['return_path'] = isset($smtp_options['return_path']) ? $smtp_options['return_path'] : '';
-	$brand_name = !defined('SITEPAD') ? __('WordPress') : BRAND_SM;
+	$brand_name = !defined('SITEPAD') ? __('WordPress', 'gosmtp') : BRAND_SM;
 	
 	// Is new connection?
 	if($is_new_connection){
@@ -505,7 +508,7 @@ function gosmtp_mailer_settings($smtp_options, $is_new_connection = false){
 		if($is_new_connection){
 		?>
 		<tr>
-			<th scope="row"><?php _e('Connection Nickname'); ?></th>
+			<th scope="row"><?php _e('Connection Nickname', 'gosmtp'); ?></th>
 			<td>
 				<input name="nickname" type="text" class="regular-text always_active" placeholder="Default Connection"  value="<?php if(!empty($settings['nickname'])){
 					echo esc_attr($settings['nickname']);
@@ -516,7 +519,7 @@ function gosmtp_mailer_settings($smtp_options, $is_new_connection = false){
 		}
 		?>
 		<tr>
-			<th scope="row"><?php _e('From Email'); ?></th>
+			<th scope="row"><?php _e('From Email', 'gosmtp'); ?></th>
 			<td>
 				<input name="from_email" type="text" class="regular-text always_active" placeholder="notifications@example.com"  value="<?php if(!empty($settings['from_email'])){
 					echo esc_attr($settings['from_email']);
@@ -524,52 +527,52 @@ function gosmtp_mailer_settings($smtp_options, $is_new_connection = false){
 				<p class="description" id="tagline-description">
 				<?php
 					printf(
-						__('Set the from email address for your %s emails. If you\'re using an email provider (Gmail, Outlook.com, etc.), this should be your email address for that account'),
-						$brand_name
+						__('Set the from email address for your %s emails. If you\'re using an email provider (Gmail, Outlook.com, etc.), this should be your email address for that account', 'gosmtp'),
+						esc_html($brand_name)
 					);
 				?>
 				</p>
-				<p class="description" id="tagline-description"><i><?php _e("Please note, enable the below setting to apply this setting."); ?></i></p>
+				<p class="description" id="tagline-description"><i><?php _e("Please note, enable the below setting to apply this setting.", 'gosmtp'); ?></i></p>
 				<br>
 				<input name="force_from_email" type="checkbox" <?php if(!empty($settings['force_from_email'])){
 					echo "checked";
 				}?>>
-				<label><?php _e('Force From Email');?></label>
-				<p class="description" id="tagline-description"><?php _e( 'If checked, From email set by other plugins will be ignored and the above Form Email setting will be used.' ); ?></p>
+				<label><?php _e('Force From Email', 'gosmtp');?></label>
+				<p class="description" id="tagline-description"><?php _e( 'If checked, From email set by other plugins will be ignored and the above Form Email setting will be used.', 'gosmtp'); ?></p>
 			
 			</td>
 		</tr>
 
 		<tr>
-			<th scope="row"><?php _e('From Name'); ?></th>
+			<th scope="row"><?php _e('From Name', 'gosmtp'); ?></th>
 			<td>
 				<input name="from_name" type="text" class="regular-text always_active" placeholder="My Website"  value="<?php if(!empty($settings['from_name'])){
 					echo esc_attr($settings['from_name']);
 				}?>"> 
-				<p class="description" id="tagline-description"><?php _e( "Set the from name that emails are sent from." ); ?></p>
+				<p class="description" id="tagline-description"><?php _e( "Set the from name that emails are sent from.", 'gosmtp' ); ?></p>
 				<br>
 				<input name="force_from_name" type="checkbox" <?php if(!empty($settings['force_from_name'])){
 					echo "checked";
 				}?>>
-				<label><?php _e('Force From Name');?></label>
-				<p class="description" id="tagline-description"><?php _e( 'If checked, From name set by other plugins will be ignored and the above Form Name setting will be used.' ); ?></p>
+				<label><?php _e('Force From Name', 'gosmtp');?></label>
+				<p class="description" id="tagline-description"><?php _e( 'If checked, From name set by other plugins will be ignored and the above Form Name setting will be used.', 'gosmtp' ); ?></p>
 			
 			</td>
 		</tr>
 
 		<tr>
-			<th scope="row"><?php _e('Return Path'); ?></th>
+			<th scope="row"><?php _e('Return Path', 'gosmtp'); ?></th>
 			<td>
 				<input class="mail sendlayer mailgun smtp" name="return_path" type="checkbox" <?php if(!empty($settings['return_path'])){
 					echo "checked";
 				}?>>
-				<label><?php _e('Set return-path');?></label>
-				<p class="description" id="tagline-description"><?php _e( 'Set return-path to match the From Email, the return path indicates where non-delivery receipts or bounce messages are to be sent. If unchecked, non-delivery messages may be lost.' ); ?></p>
+				<label><?php _e('Set return-path', 'gosmtp');?></label>
+				<p class="description" id="tagline-description"><?php _e( 'Set return-path to match the From Email, the return path indicates where non-delivery receipts or bounce messages are to be sent. If unchecked, non-delivery messages may be lost.', 'gosmtp' ); ?></p>
 			</td>
 		</tr>
 
 		<tr>
-			<th scope="row"><?php _e('Mailer'); ?></th>
+			<th scope="row"><?php _e('Mailer', 'gosmtp'); ?></th>
 			<td class="mailer_container">
 
 			<?php
@@ -631,10 +634,10 @@ function gosmtp_mailer_settings($smtp_options, $is_new_connection = false){
 		if(defined('GOSMTP_PREMIUM') && isset($smtp_options['mailer'][0])){
 		?>
 		<tr class="always_active">
-			<th scope="row"><?php _e('Backup Connection'); ?></th>
+			<th scope="row"><?php _e('Backup Connection', 'gosmtp'); ?></th>
 			<td>
 				<select name="backup_mailer" class="regular-text">
-					<option value=""><?php _e('None'); ?></option>
+					<option value=""><?php _e('None', 'gosmtp'); ?></option>
 			<?php
 			if(count($smtp_options['mailer']) > 1){
 			?>
@@ -644,16 +647,16 @@ function gosmtp_mailer_settings($smtp_options, $is_new_connection = false){
 						continue;
 					}
 					$con_id = !empty($settings['backup_connection']) ? $settings['backup_connection'] : '';
-					$conn_name = !empty($mailer['nickname']) ? $mailer['nickname'] : __('(No Name)');
+					$conn_name = !empty($mailer['nickname']) ? $mailer['nickname'] : __('(No Name)', 'gosmtp');
 					$conn_type = !empty($mailer['mail_type']) ? ucfirst($mailer['mail_type']) : '';
-					echo "<option value='".$key."' ".selected($con_id, $key, true).">".$conn_name.' - ['.$conn_type."]</option>";
+					echo "<option value='".esc_attr($key)."' ".selected($con_id, $key, true).">".esc_html($conn_name).' - ['.esc_html($conn_type)."]</option>";
 				}
 			}?>
 				</select>
 				<p class="description" id="tagline-description"><?php 
 					printf(
 						'Set backup email address for your %s emails. If primary mailer fails then backup mailer will be used to send the mail.',
-						$brand_name
+						esc_html($brand_name)
 					);
 				?>
 				</p>
@@ -667,7 +670,7 @@ function gosmtp_mailer_settings($smtp_options, $is_new_connection = false){
 		<?php
 			if(!empty($smtp_options['mailer'][0]) || !empty($settings['conn_id'])){
 		?>
-			<input type="hidden" name="conn_id" value="<?php echo ($is_new_connection && !empty($settings['conn_id']) ? $settings['conn_id'] : 0) ?>">
+			<input type="hidden" name="conn_id" value="<?php echo esc_attr($is_new_connection && !empty($settings['conn_id']) ? $settings['conn_id'] : 0); ?>">
 		<?php
 			}
 		?>
@@ -767,7 +770,7 @@ function gosmtp_create_field($fields, $mailer){
 				
 				$input_html .= '<input class="regular-text gosmtp_copy '.$classes.'" placeholder="'.$placeholder.'" id="'.$id.'" value="'.esc_attr($val).'" '.$attrs.'>
 				<span class="dashicons dashicons-admin-page " title="Copy" onclick="gosmtp_copy_url(\''.$id.'\')"></span>
-				<p class="gosmtp_copy_message '.$id.'">'. __('Message coppied Successfully') .'.</p>';
+				<p class="gosmtp_copy_message '.$id.'">'. __('Message coppied Successfully', 'gosmtp') .'.</p>';
 				
 				break;
 

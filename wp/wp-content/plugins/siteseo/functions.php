@@ -70,6 +70,7 @@ function siteseo_suggestions_variable(){
 		'%%_ucf_your_user_meta%%' => 'Custom User Meta',
 		'%%currentmonth_num%%' => 'Current month in digital format',
 		'%%target_keyword%%' => 'Target keywords',
+		'%%wc_parent_cat%%' => 'Product Single Parent Category',
 	];
 }
 
@@ -173,6 +174,7 @@ function siteseo_universal_assets(){
 		isset($_GET['tve']) ||
 		isset($_GET['pagelayer-live']) ||
 		(!empty(get_queried_object_id()) && is_admin_bar_showing()) // To show when user is viewing the page as a admin
+		&& !is_category() && !is_tax() && !is_tag() // exclude
     ) {
 		wp_enqueue_script('siteseo-universal-metabox', SITESEO_ASSETS_URL . '/js/universal-metabox.js', ['jquery'], SITESEO_VERSION);
 		wp_localize_script('siteseo-universal-metabox', 'siteseo_universal', [

@@ -246,14 +246,14 @@ class SMTPcom extends Loader{
 
 		$fields = array(
 			'api_key' => array(
-				'title' => __('API Key'),
+				'title' => __('API Key', 'gosmtp'),
 				'type' => 'password',
-				'desc' => __( 'Follow this link to get an API Key from SMTP.com: <a href="https://my.smtp.com/settings/api" target="_blank">Get API Key.</a>' ),
+				'desc' => __( 'Follow this link to get an API Key from SMTP.com: <a href="https://my.smtp.com/settings/api" target="_blank">Get API Key.</a>', 'gosmtp' ),
 			),
 			'channel' => array(
-				'title' => __('Sender Name'),
+				'title' => __('Sender Name', 'gosmtp'),
 				'type' => 'text',
-				'desc' => __( 'Follow this link to get a Sender Name from SMTP.com: <a href="https://my.smtp.com/senders/" target="_blank">Get Sender Name.</a>' ),
+				'desc' => __( 'Follow this link to get a Sender Name from SMTP.com: <a href="https://my.smtp.com/senders/" target="_blank">Get Sender Name.</a>', 'gosmtp' ),
 			),
 		);
 		

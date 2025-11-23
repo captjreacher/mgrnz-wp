@@ -85,7 +85,7 @@ class OnBoarding{
 	}
 	
 	static function add_to_menu(){
-		add_submenu_page('', __('SiteSEO Onboarding', 'siteseo'), 'Onboarding', 'siteseo_manage', 'siteseo-onboarding', 'SiteSEO\Settings\Onboarding::wizard');
+		add_submenu_page('', __('SiteSEO Onboarding', 'siteseo'), 'Onboarding', 'manage_options', 'siteseo-onboarding', 'SiteSEO\Settings\Onboarding::wizard');
 	}
 	
 	static function page(){

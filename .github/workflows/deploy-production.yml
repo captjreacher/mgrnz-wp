@@ -38,7 +38,7 @@ jobs:
             --exclude='node_modules/' \
             --exclude='.git/' \
             wp/wp-content/ \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/wp-content/
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/wp-content/"
           
           echo "✅ WordPress files deployed successfully!"
           
@@ -49,12 +49,12 @@ jobs:
           # Deploy wp-config-loader.php
           scp -P ${{ secrets.SSH_PORT }} \
             wp-config-loader.php \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/"
           
           # Deploy .env.production as .env
           scp -P ${{ secrets.SSH_PORT }} \
             .env.production \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/.env
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}:${{ secrets.PRODUCTION_PATH }}/.env"
           
           echo "✅ Configuration files deployed!"
           
@@ -63,7 +63,7 @@ jobs:
           echo "🧹 Clearing WordPress cache..."
           
           ssh -p ${{ secrets.SSH_PORT }} \
-            ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} \
+            "${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }}" \
             "cd ${{ secrets.PRODUCTION_PATH }} && wp cache flush"
           
           echo "✅ Cache cleared!"
