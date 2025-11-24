@@ -1,0 +1,97 @@
+/**
+ * Admin CSS for AI Workflow Error Logs
+ * Additional styles beyond inline styles in template
+ */
+
+/* Ensure proper spacing and layout */
+.mgrnz-logs-admin .wrap {
+    margin-right: 20px;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 782px) {
+    .mgrnz-stats-grid {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .mgrnz-filter-row {
+        grid-template-columns: 1fr !important;
+    }
+    
+    .mgrnz-filter-actions {
+        flex-direction: column;
+    }
+    
+    .mgrnz-filter-actions .button {
+        width: 100%;
+    }
+    
+    .mgrnz-modal-content {
+        width: 95% !important;
+        margin: 10% auto !important;
+    }
+}
+
+/* Table responsiveness */
+@media screen and (max-width: 600px) {
+    .mgrnz-logs-table {
+        font-size: 12px;
+    }
+    
+    .mgrnz-logs-table th,
+    .mgrnz-logs-table td {
+        padding: 8px 4px;
+    }
+}
+
+/* Loading spinner animation */
+.mgrnz-loading .spinner {
+    float: none;
+    margin: 0 10px 0 0;
+}
+
+/* Smooth transitions */
+.mgrnz-stat-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mgrnz-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Button hover states */
+.mgrnz-view-log-detail:hover {
+    background-color: #0073aa;
+    color: #fff;
+    border-color: #0073aa;
+}
+
+/* Modal animation */
+.mgrnz-modal {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.mgrnz-modal-content {
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

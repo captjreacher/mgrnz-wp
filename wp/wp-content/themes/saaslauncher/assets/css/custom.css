@@ -1,0 +1,26 @@
+/* ============================================
+   MGRNZ CUSTOM STYLES
+   ============================================ */
+
+/* H2 - Blue and Bold */
+h2 {
+  color: #89BBFE !important;
+  font-weight: bold !important;
+}
+
+/* H3 - Blue and Italic (not bold) */
+h3 {
+  color: #89BBFE !important;
+  font-style: italic !important;
+  font-weight: normal !important;
+}
+
+/* Emphasized text (bold+italic combinations) - Blue, not bold */
+strong em,
+strong i,
+em strong,
+i strong {
+  color: #89BBFE !important;
+  font-style: italic !important;
+  font-weight: normal !important;
+}
